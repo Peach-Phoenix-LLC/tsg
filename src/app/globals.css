@@ -149,7 +149,8 @@ h6 {
 
 /* Iridescence Design System Tokens */
 :root {
-  --brand-purple: #a932bd;
+  --primary: #ab2fc1;
+  --secondary: #a932bd;
   --nav-dark: #32304d;
   --glass: rgba(255, 255, 255, 0.4);
   --glass-border: rgba(255, 255, 255, 0.5);
@@ -157,22 +158,22 @@ h6 {
 
 @layer utilities {
   .liquid-text {
-    background-image: var(--liquid-bg, url(https://lh3.googleusercontent.com/aida-public/AB6AXuCtApt45PxvOYdEf6HvBW6xpXmnpf9lvvrcOAV7SPOcwpFHZ-55IG7YO4Z9l6K5z60jZ3YrgAkIJWmCV0gmCsQML7YIVRWA_wcIF99ARdoW7oOYBZtcB-4Abus-R7XcM9K_rVrGgtpl4pRsMfnTgVojBnMrjWaSenaMrqNU9JFcsbfKtsVtLl2JfaSeL3HrVq3Q2xWe4u2dJRff8dRpa2PwjWNlVbt7NvohGhYQIUzmdfVbBsg7XrfkS3VXeWrUenCLwzvYC75Qniv_));
+    background-image: var(--liquid-bg, url("https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop"));
     background-size: 200% auto;
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
     -webkit-text-fill-color: transparent;
-    animation: liquid-shimmer 8s linear infinite;
+    animation: liquid-shimmer 8s linear infinite alternate;
   }
 
   @keyframes liquid-shimmer {
     0% {
-      background-position: 200% center;
+      background-position: 0% center;
     }
 
     100% {
-      background-position: -200% center;
+      background-position: 100% center;
     }
   }
 

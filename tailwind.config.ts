@@ -13,9 +13,14 @@ const config: Config = {
                 secondary: '#a932bd',
                 'background-light': '#ffffff',
                 'background-dark': '#1d131f',
+                accent: {
+                    cyan: '#00dbde',
+                    pink: '#fc00ff',
+                }
             },
             fontFamily: {
                 display: ['Plus Jakarta Sans', 'sans-serif'],
+                body: ['Inter', 'sans-serif'],
             },
             borderRadius: {
                 DEFAULT: '1rem',
