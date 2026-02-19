@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Navbar from '@/components/Navbar/Navbar';
+import Recommendations from '@/components/Product/Recommendations';
 import styles from './ProductPage.module.css';
 import { useCart } from '@/context/CartContext';
 import { useRouter } from 'next/navigation';
@@ -75,7 +76,13 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
                 <div className={styles.header}>
                     <h1 className={styles.title}>{PRODUCT.title}</h1>
-                    <span className={styles.price}>{PRODUCT.price}</span>
+                    <div className="flex flex-col items-end">
+                        <span className={styles.price}>{PRODUCT.price}</span>
+                        <div className="flex items-center gap-1.5 mt-1 text-[10px] font-bold text-primary uppercase tracking-tighter animate-pulse">
+                            <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(171,47,193,0.8)]"></span>
+                            Low Stock: Only 3 remaining
+                        </div>
+                    </div>
                 </div>
 
                 <div className={styles.variants}>
@@ -113,6 +120,8 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                     </button>
                 </div>
             </div>
+
+            <Recommendations />
         </main>
     );
 }
