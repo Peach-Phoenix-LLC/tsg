@@ -13,6 +13,9 @@ const handler = NextAuth({
         async signIn({ user, account, profile }) {
             if (!user.email) return false;
 
+            const adminEmail = process.env.ADMIN_EMAIL;
+            const role = user.email === adminEmail ? 'ADMIN' : 'CUSTOMER';
+
             // Check if user exists, if not create them
             const existingUser = await prisma.user.findUnique({
                 where: { email: user.email },
@@ -24,8 +27,14 @@ const handler = NextAuth({
                         email: user.email,
                         name: user.name,
                         googleId: user.id,
-                        role: 'CUSTOMER', // Default role
+                        role: role,
                     },
+                });
+            } else if (existingUser.role !== role) {
+                // Update role if it changed (e.g. promoting to admin)
+                await prisma.user.update({
+                    where: { email: user.email },
+                    data: { role: role }
                 });
             }
             return true;

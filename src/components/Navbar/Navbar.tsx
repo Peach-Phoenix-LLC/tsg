@@ -41,7 +41,7 @@ const Navbar = () => {
                     <div className={styles.links}>
                         <Link href="/categories" className={styles.link}>Categories</Link>
                         <Link href="/clothing" className={styles.link}>Clothing</Link>
-                        <span className={styles.link}>Accessories</span>
+                        <Link href="/collections/iridescence" className={styles.link}>Iridescence</Link>
                         <Link href="/collections" className={styles.link}>Collections</Link>
                     </div>
 

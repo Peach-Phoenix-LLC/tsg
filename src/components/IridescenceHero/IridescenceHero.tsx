@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import styles from './IridescenceHero.module.css';
 
 const IridescenceHero = () => {
@@ -27,7 +28,7 @@ const IridescenceHero = () => {
                         A fusion of light and high-tech fabrics. Reflective mesh meets liquid vinyl in a symphony of holographic elegance.
                     </p>
                     <div className={styles.ctaGroup}>
-                        <button className={styles.primaryBtn}>Shop the Drop</button>
+                        <Link href="/collections/iridescence" className={styles.primaryBtn}>Shop the Drop</Link>
                         <button className={styles.secondaryBtn}>View Lookbook</button>
                     </div>
                 </div>

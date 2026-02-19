@@ -61,7 +61,12 @@ const ProductGrid = () => {
             const response = await fetch('/api/products');
             if (!response.ok) throw new Error('Failed to fetch products');
             const data = await response.json();
-            setProducts(data);
+
+            if (data && typeof data === 'object' && 'error' in data) {
+                throw new Error(data.error);
+            }
+
+            setProducts(Array.isArray(data) ? data : []);
         } catch (err) {
             setError(err instanceof Error ? err.message : 'An error occurred');
         } finally {

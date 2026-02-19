@@ -3,6 +3,7 @@ export interface Collection {
     count: string;
     image: string;
     description?: string;
+    path?: string;
 }
 
 export const collections: Collection[] = [
@@ -10,84 +11,98 @@ export const collections: Collection[] = [
         title: 'Peach Phoenix™',
         count: '12 pieces',
         image: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=800',
-        description: 'Rising from the embers in soft pastel hues.'
+        description: 'Rising from the embers in soft pastel hues.',
+        path: '/collections/peach-phoenix'
     },
     {
         title: 'Paris',
         count: '24 pieces',
         image: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&q=80&w=800',
-        description: 'Chic, timeless elegance inspired by the streets of Paris.'
+        description: 'Chic, timeless elegance inspired by the streets of Paris.',
+        path: '/collections/paris'
     },
     {
         title: 'Unicorn 🦄',
         count: '15 pieces',
         image: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800',
-        description: 'Irridescent fabrics and mythical aesthetics.'
+        description: 'Irridescent fabrics and mythical aesthetics.',
+        path: '/collections/iridescence'
     },
     {
         title: 'Arizona 🌵',
         count: '11 pieces',
         image: 'https://images.unsplash.com/photo-1469074062102-149f1ad63af7?auto=format&fit=crop&q=80&w=800',
-        description: 'Desert tones meet high-tech utility.'
+        description: 'Desert tones meet high-tech utility.',
+        path: '/collections/arizona'
     },
     {
         title: 'Womanizer',
-        count: '9 pieces',
+        count: '18 pieces',
         image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=800',
-        description: 'Empowering silhouettes for the modern icon.'
+        description: 'Bold, empowering silhouettes for the modern icon.',
+        path: '/collections/womanizer'
     },
     {
         title: 'TransLove',
-        count: '8 pieces',
+        count: '34 pieces',
         image: 'https://images.unsplash.com/photo-1516575334481-f85287c2c82b?auto=format&fit=crop&q=80&w=800',
-        description: 'Celebrating the spectrum of love and identity.'
+        description: 'Celebrating the boundless spectrum of love.',
+        path: '/collections/translove'
     },
     {
         title: 'TransFLOWer',
-        count: '10 pieces',
+        count: '25 pieces',
         image: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&q=80&w=800',
-        description: 'Fluid floral patterns for a new era of growth.'
+        description: 'Organic growth and fluid geometry in bloom.',
+        path: '/collections/transflower'
     },
     {
         title: 'Flamant 🦩 Rose',
-        count: '7 pieces',
+        count: '16 pieces',
         image: 'https://images.unsplash.com/photo-1516589174184-c685ca30d274?auto=format&fit=crop&q=80&w=800',
-        description: 'Vivid pinks and lightweight summer layers.'
+        description: 'Vibrant pinks and lightweight summer layers.',
+        path: '/collections/flamant-rose'
     },
     {
         title: '🌌✨ Édition Spatiale • Cosmic Edition',
         count: '20 pieces',
         image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
-        description: 'Out-of-this-world textures and astronomical detail.'
+        description: 'Out-of-this-world textures and astronomical detail.',
+        path: '/collections/cosmic'
     },
     {
         title: 'Crystal Skies',
         count: '14 pieces',
         image: 'https://images.unsplash.com/photo-1481349518771-20055b2a7b24?auto=format&fit=crop&q=80&w=800',
-        description: 'Transparent layers and icy, clear-cut aesthetics.'
+        description: 'Transparent layers and icy, clear-cut aesthetics.',
+        path: '/collections/crystal-skies'
     },
     {
         title: '🌈Pride 25',
-        count: '25 pieces',
-        image: 'https://images.unsplash.com/photo-1541332246502-2e99eaa96cc1?auto=format&fit=crop&q=80&w=800',
-        description: 'The definitive celebration of color and courage.'
+        count: '30 pieces',
+        image: 'https://images.unsplash.com/photo-1541336032412-2048a678540d?auto=format&fit=crop&q=80&w=800',
+        description: 'Vibrant, inclusive designs celebrating diversity.',
+        path: '/collections/pride-25'
     },
     {
         title: 'Good Vibes Only',
-        count: '18 pieces',
-        image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&q=80&w=800',
-        description: 'Comfort-first staples designed for positivity.'
+        count: '12 pieces',
+        image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=80&w=800',
+        description: 'Sunny textiles and optimistic silhouettes.',
+        path: '/collections/good-vibes'
     },
     {
         title: 'Made In USA',
-        count: '30 pieces',
-        image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=800',
-        description: 'Locally sourced materials and American craftsmanship.'
+        count: '40 pieces',
+        image: 'https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&q=80&w=800',
+        description: 'Rugged American craftsmanship and heritage.',
+        path: '/collections/made-in-usa'
     },
     {
         title: '❄️ Glow in Winter 26',
-        count: '22 pieces',
-        image: 'https://images.unsplash.com/photo-1453227588063-bb302b62f50b?auto=format&fit=crop&q=80&w=800',
-        description: 'Luminous winter wear for the darkest days.'
+        count: '15 pieces',
+        image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=800',
+        description: 'Luminescent fabrics for the peak of winter.',
+        path: '/collections/winter-26'
     }
 ];

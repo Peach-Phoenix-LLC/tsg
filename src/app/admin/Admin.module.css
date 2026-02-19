@@ -1,0 +1,148 @@
+.adminPage {
+    background: #000;
+    min-height: 100vh;
+    color: #fff;
+    font-family: inherit;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-size: 0.875rem;
+    letter-spacing: 0.4em;
+    font-weight: 500;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.main {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 3rem;
+}
+
+.loading {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: #fff;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 5rem;
+}
+
+.statCard {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 4px;
+}
+
+.statCard h4 {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.2em;
+    margin-bottom: 1rem;
+}
+
+.statCard p {
+    font-size: 2rem;
+    font-weight: 200;
+}
+
+.managementSection {
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.sectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sectionHeader h3 {
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+}
+
+.addBtn {
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.addBtn:hover {
+    opacity: 0.8;
+}
+
+.productTable {
+    padding: 0 2rem 2rem;
+}
+
+.tableHead {
+    display: grid;
+    grid-template-columns: 150px 1fr 100px 100px 150px;
+    padding: 1.5rem 0;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tableRow {
+    display: grid;
+    grid-template-columns: 150px 1fr 100px 100px 150px;
+    padding: 1.5rem 0;
+    font-size: 0.875rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    align-items: center;
+}
+
+.statusActive {
+    color: #2ecc71;
+}
+
+.statusLow {
+    color: #f1c40f;
+}

@@ -13,15 +13,15 @@
 - [x] Configure `prisma/schema.prisma` for Supabase.
 - [x] Run `npx prisma db push` to synchronize.
 
-## 🔵 LEVEL 3 — SQL Fundamentals (COMPLETE 🏆)
+## 🔵 LEVEL 3 — Database Management (COMPLETE 🏆)
 
-- [x] Use SQL Editor to interact with tables.
-- [x] List all public tables via SQL.
+- [x] Use Supabase Dashboard to interact with tables.
+- [x] Verify public schema visibility.
 
 ## 🔵 LEVEL 4 — Production Design (COMPLETE 🏆)
 
 - [x] Implement **Product Variants** for SKU management.
-- [x] Seed luxury products and inventory via SQL/Prisma.
+- [x] Seed luxury products and inventory via Prisma Studio.
 
 ## 🟠 LEVEL 5 — Security & RLS (COMPLETE 🏆)
 

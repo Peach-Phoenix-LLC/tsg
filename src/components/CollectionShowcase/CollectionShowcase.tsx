@@ -20,18 +20,25 @@ const CollectionShowcase = () => {
             try {
                 // Fetch only the Iridescence category
                 const response = await fetch('/api/products?category=Iridescence');
+                if (!response.ok) throw new Error('Failed to fetch collection');
                 const data = await response.json();
 
+                if (data && typeof data === 'object' && 'error' in data) {
+                    throw new Error(data.error);
+                }
+
                 // If no results, fallback to all products for demo purposes
-                if (data.length === 0) {
+                if (Array.isArray(data) && data.length === 0) {
                     const fallbackRes = await fetch('/api/products');
                     const fallbackData = await fallbackRes.json();
-                    setProducts(fallbackData);
+                    setProducts(Array.isArray(fallbackData) ? fallbackData : []);
                 } else {
-                    setProducts(data);
+                    setProducts(Array.isArray(data) ? data : []);
                 }
             } catch (error) {
                 console.error("Failed to fetch collection:", error);
+                // Set empty array to avoid crash on map
+                setProducts([]);
             } finally {
                 setLoading(false);
             }

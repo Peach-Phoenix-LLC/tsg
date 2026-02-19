@@ -5,12 +5,12 @@
 - **Pattern**: Next.js App Router for high-performance server-side rendering and API routes.
 - **ORM**: Prisma 7.4.0 integrated with `prisma.config.ts` for modern database management.
 - **State Management**: React Context (`CartContext`) used for lightweight, persistent cart state.
-- **Auth**: NextAuth.js configured with Google OAuth, implementing auto-user creation in Cloud SQL.
+- **Auth**: NextAuth.js configured with Google OAuth, implementing auto-user creation in Supabase via Prisma.
 
 ## 2. Security Review
 
 - **Authentication**: Google OAuth 2.0 ensures no passwords are stored locally.
-- **Data Protection**: Prisma prevents SQL injection.
+- **Data Protection**: Prisma handles parameterized queries and type-safe data access.
 - **Client Safety**: PayPal Smart Buttons handle PCI-compliant transaction processing directly on the client, minimizing backend exposure.
 - **Missing**: Initial version bypasses server-side validation for product creation; added a TODO for Admin middleware protection.
 

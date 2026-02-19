@@ -24,7 +24,7 @@ You are a frontend engineer focused on transforming designs into clean React cod
 
 ## Architectural rules
 
-* **Modular components**: Break the design into independent files. Avoid large, single-file outputs.
+- **Modular components**: Break the design into independent files. Avoid large, single-file outputs.
 - **Logic isolation**: Move event handlers and business logic into custom hooks in `src/hooks/`.
 - **Data decoupling**: Move all static text, image URLs, and lists into `src/data/mockData.ts`.
 - **Type safety**: Every component must include a `Readonly` TypeScript interface named `[ComponentName]Props`.
@@ -47,5 +47,5 @@ You are a frontend engineer focused on transforming designs into clean React cod
 
 ## Troubleshooting
 
-* **Fetch errors**: Ensure the URL is quoted in the bash command to prevent shell errors.
+- **Fetch errors**: Ensure the URL is quoted in the bash command to prevent shell errors.
 - **Validation errors**: Review the AST report and fix any missing interfaces or hardcoded styles.

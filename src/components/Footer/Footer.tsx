@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Link from 'next/link';
 import styles from './Footer.module.css';
 
 const Footer = () => {
@@ -69,6 +70,7 @@ const Footer = () => {
                         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '0.5rem' }}>
                             <a href="#" style={{ color: 'white' }}>Privacy</a>
                             <a href="#" style={{ color: 'white' }}>Terms</a>
+                            <Link href="/admin" style={{ color: 'rgba(255,255,255,0.05)', fontSize: '0.6rem', marginLeft: 'auto' }}>Admin</Link>
                         </div>
                     </div>
                 </div>
