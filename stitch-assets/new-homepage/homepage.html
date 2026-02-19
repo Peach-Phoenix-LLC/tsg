@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>tsgabrielle® - Artistic Expression</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ab2fc1",
+                        "secondary": "#a932bd",
+                        "background-light": "#ffffff",
+                        "background-dark": "#1d131f",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" },
+                    backgroundImage: {
+                        'holographic': 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 20%, #a18cd1 40%, #fbc2eb 60%, #e0c3fc 80%, #8ec5fc 100%)',
+                        'liquid-text': 'url("https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop")',
+                    },
+                    animation: {
+                        'shimmer': 'shimmer 3s linear infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        shimmer: {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '100%': { backgroundPosition: '100% 50%' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        .liquid-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-size: 200% auto;
+            animation: shimmer 8s linear infinite alternate;
+        }
+
+        .holographic-border {
+            position: relative;
+            border-radius: 9999px;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(45deg, #ab2fc1, #00dbde, #fc00ff, #00dbde) border-box;
+            border: 4px solid transparent;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        /* Hide scrollbar for clean horizontal scroll */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 overflow-x-hidden">
+<!-- Header / Nav -->
+<header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-white/20 transition-all duration-300">
+<div class="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
+<!-- Mobile Menu Trigger (Visible on smaller screens) -->
+<button class="lg:hidden p-2 text-slate-900 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<!-- Desktop Nav Links (Left) -->
+<nav class="hidden lg:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors tracking-wide" href="#">Shop</a>
+<a class="text-sm font-medium hover:text-primary transition-colors tracking-wide" href="#">Collections</a>
+<a class="text-sm font-medium hover:text-primary transition-colors tracking-wide" href="#">About</a>
+</nav>
+<!-- Logo (Centered) -->
+<a class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group" href="#">
+<h1 class="text-2xl font-bold tracking-tighter text-slate-900 group-hover:text-primary transition-colors">
+                    tsgabrielle<span class="align-top text-[10px] font-normal">®</span>
+</h1>
+</a>
+<!-- Right Icons -->
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-slate-100 rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-full transition-colors hidden sm:block">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</button>
+<button class="p-2 hover:bg-slate-100 rounded-full transition-colors relative">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+<span class="absolute top-1 right-1 size-2 bg-primary rounded-full"></span>
+</button>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<main>
+<section class="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute inset-0 z-0 opacity-10 pointer-events-none">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-[128px] animate-float"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-[128px] animate-float" style="animation-delay: 2s;"></div>
+</div>
+<div class="relative z-10 text-center px-6 max-w-5xl mx-auto flex flex-col items-center gap-8">
+<h1 class="liquid-text bg-liquid-text text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none pb-4" data-alt="Abstract liquid purple and blue pattern">
+                    Artistic<br/>expression
+                </h1>
+<p class="text-lg md:text-xl font-light text-slate-600 max-w-2xl leading-relaxed">
+                    Fashion that empowers. Transcending boundaries through artistic expression and fluid design.
+                </p>
+<div class="pt-8">
+<a class="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-primary rounded-full hover:shadow-lg hover:shadow-primary/40 overflow-hidden" href="#">
+<div class="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+<span class="relative flex items-center gap-2">
+                            Explore now
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</a>
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-slate-400">
+<span class="material-symbols-outlined">keyboard_arrow_down</span>
+</div>
+</section>
+<!-- Narrative Section -->
+<section class="py-24 px-6 bg-slate-50 relative overflow-hidden">
+<div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="order-2 md:order-1 relative">
+<div class="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl relative group">
+<img alt="Model posing in artistic fashion wear with high contrast lighting" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="High fashion portrait model looking confident" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkmsUHksGPcOMd1Lfrpq-HrpDj-fsunxXzvduRcWo2ygdGuMtV_Y5O1dP-1nZklneeJuLMiumoqGoE7nKZg-h83pvzGUERrO1yF1sMBoHNjurfXmrQ6YkB2USUACtj4m953j4_vh8Sbzo_8U0GzdACYdP0beVUXIFLSmGUU39m3vFKew3_i8_G_UXqUUBHhavaKB0WOVGexdLjdbppQhL9rbm2RGBzOVwLgO9TRHQyLJcL1Jd9Wy7m2OprFOOknvke4rHFQyTArHOJ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+</div>
+<!-- Floating Badge -->
+<div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl max-w-[200px] hidden md:block">
+<p class="text-sm font-bold text-primary">Est. 2023</p>
+<p class="text-xs text-slate-500 mt-1">Parisian Design Studio</p>
+</div>
+</div>
+<div class="order-1 md:order-2 flex flex-col gap-6">
+<h2 class="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
+                        Our Narrative
+                    </h2>
+<div class="w-20 h-1 bg-primary rounded-full"></div>
+<p class="text-lg text-slate-600 font-light leading-relaxed">
+                        Gabrielle's vision goes beyond fabric and thread. It is a dialogue between identity and form. 
+                        Each piece is crafted to celebrate the fluidity of the human experience, offering silhouettes that 
+                        don't just fit the body, but empower the soul.
+                    </p>
+<p class="text-lg text-slate-600 font-light leading-relaxed">
+                        From the streets of Paris to the digital runway, tsgabrielle® stands as a beacon for those who 
+                        dare to define themselves.
+                    </p>
+<div class="pt-4">
+<a class="text-primary font-bold hover:underline decoration-2 underline-offset-4 inline-flex items-center gap-1" href="#">
+                            Read the full story
+                            <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Curated Collections -->
+<section class="py-24 px-6 bg-white">
+<div class="max-w-[1400px] mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div>
+<h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Curated Collections</h2>
+<p class="text-slate-500">Discover the pieces that define the season.</p>
+</div>
+<a class="hidden md:inline-flex items-center gap-2 text-sm font-bold text-slate-900 hover:text-primary transition-colors" href="#">
+                        View all collections
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+<!-- Collection Item 1 -->
+<a class="group flex flex-col items-center gap-6" href="#">
+<div class="holographic-border p-1 transition-transform duration-300 group-hover:-translate-y-2">
+<div class="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden">
+<img alt="Elegant evening dress collection" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Person wearing a flowing elegant dress" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCYOP12PEsUmMXn_NEkx3jJ1syX5BbuuQLH7axTuZ4DpjfaB791t0zOkFWC3H381orb166qJTI_aVhrJcQ9xdMpUlXstLPQyIuU2jhscNNpUXzfngPOsah9vKRub7423GqnOR9Vj466tcqXQm2OkxTy4en97Sdlm5HzwG8q9BeJILTrqIGw5c5fhQDiX2UeUscarqejrArIiQoIkHYMt6WHSgjUxAIZOPJq4KZhtLjQd99fALLFKloc1usBk1OKIIrZniljJPSCPWT"/>
+</div>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">Dresses</h3>
+<span class="text-sm text-slate-500 font-medium mt-1 block">Shop Now</span>
+</div>
+</a>
+<!-- Collection Item 2 -->
+<a class="group flex flex-col items-center gap-6" href="#">
+<div class="holographic-border p-1 transition-transform duration-300 group-hover:-translate-y-2">
+<div class="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden">
+<img alt="High end fashion accessories" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Luxury jewelry and accessories display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJVnNWN6tuHxIfeXEuPsIqoZUubkPstN-wRA7YLzW6jzhAgt_Y3-GKrb65SCyb4IrJ2PiwsUFowa-IMtGZxPrkZ707d_9onqpxL7D775ONsZXlbv7er5mF8X_c-nux-7wGyBpKAe1Mfw1Rj5XDj9TBmrR4OryezV8Xpk_EFJm-2YZKzZhH37e00tgYPUvgGOiuWvpVaszKNu6K74TY296We4kqfmHMbcClezLD0z8xNcQgyKX_6oxUl9htYjFmH1716yzEcZ2R2WPF"/>
+</div>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">Accessories</h3>
+<span class="text-sm text-slate-500 font-medium mt-1 block">Shop Now</span>
+</div>
+</a>
+<!-- Collection Item 3 -->
+<a class="group flex flex-col items-center gap-6" href="#">
+<div class="holographic-border p-1 transition-transform duration-300 group-hover:-translate-y-2">
+<div class="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden">
+<img alt="New seasonal arrivals fashion" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Model in trendy new arrival outfit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBJvaDay6hJiruNfcYwtgoheFXDSFfwhC1C7r16CIjgwnJtIbExdcxZxsbtBk97qGATvjXfrSDbFSd5eeuscVNiDT42QsMZbLbhIEokW0uWZn0Db5nKVJ8QoNf7n2bQCw-hwkPC4rwPqC_kznHJ9OV3_OSAvHuz54bM-cszqoSswMysI2JWlfJvERfirHychkf9XaadHYv6MSRfTzicWoi876TekSU4MuuZJM6RsqZGp9WTdffoiTpzMJuYsIMvDOpTJ5vWUuo0FF7"/>
+</div>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">New Arrivals</h3>
+<span class="text-sm text-slate-500 font-medium mt-1 block">Shop Now</span>
+</div>
+</a>
+<!-- Collection Item 4 -->
+<a class="group flex flex-col items-center gap-6" href="#">
+<div class="holographic-border p-1 transition-transform duration-300 group-hover:-translate-y-2">
+<div class="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden">
+<img alt="Best selling fashion items" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Top rated fashion items on display" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsqLCLG5N0f5IqMmX9YNX6EQ7Q9rZmk1vf-0vuRnPiWy6W7TQTMn182oXzszswYr4c8-kg-Q4xQHjyzoqQI-ouuQslbElBBxj-J7YzbvlmPx5hDhRO7RDik6b6DuE3TUB73IVtc3oP6s-NF8h6GqKqsr9VUMeOUpbdhsU7cA5zrHCKSf09AtrlhMd7Zp9lWOUFPRJqNx3qI4a25j9jvuYC2xIdHkh4-WNVCcSlYUJFHDL8WGQtBVR1XXfTicVbNCUbck1E_TbjwmbB"/>
+</div>
+</div>
+<div class="text-center">
+<h3 class="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">Best Sellers</h3>
+<span class="text-sm text-slate-500 font-medium mt-1 block">Shop Now</span>
+</div>
+</a>
+</div>
+<div class="mt-12 text-center md:hidden">
+<a class="inline-flex items-center gap-2 text-sm font-bold text-slate-900 hover:text-primary transition-colors" href="#">
+                        View all collections
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Reviews Section (Glass Cards) -->
+<section class="py-24 px-6 relative bg-slate-50">
+<!-- Background gradient blobs -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none">
+<div class="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+<div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-pink-200/40 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
+</div>
+<div class="max-w-[1400px] mx-auto relative z-10">
+<div class="flex items-center gap-2 mb-10">
+<span class="material-symbols-outlined text-primary">verified</span>
+<h2 class="text-2xl font-bold text-slate-900">Trusted by You</h2>
+</div>
+<div class="flex gap-6 overflow-x-auto no-scrollbar pb-8 snap-x snap-mandatory">
+<!-- Review Card 1 -->
+<div class="min-w-[300px] md:min-w-[400px] glass-card p-8 rounded-3xl snap-center transition-transform hover:-translate-y-1">
+<div class="flex gap-1 text-amber-400 mb-4">
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+</div>
+<p class="text-slate-700 font-light italic mb-6">"The quality is absolutely stunning. I've never felt more confident than when I wore the Gabrielle evening gown. It truly is fashion that empowers."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="Reviewer portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG1upMDlkuPHj-ATByDHySJlRcxVUU3lpQjv8vA-dNMnGGOUVXGTOB1B8Fk-y12atYlxPXQsYK_qr-sAGAJUA_lrM2YGkFRqYnIBqPeXBJvkNTe0e5HOsv-jIsfs3JiVjKMo7Uri3dOqFPC_utIi8LZpGlNrsfTKyMLNGw70MXnlce-ZEWARst2I7oMxWZRjM0A4_sIm_os8kSEowdQuEcn02cWxg2D4H9MpKC38hmRjSs7Az38NpAVSNPrNiK-9_kiv7wadVQLyG2"/>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900">Sophie M.</p>
+<p class="text-xs text-slate-500">Verified Buyer</p>
+</div>
+</div>
+</div>
+<!-- Review Card 2 -->
+<div class="min-w-[300px] md:min-w-[400px] glass-card p-8 rounded-3xl snap-center transition-transform hover:-translate-y-1">
+<div class="flex gap-1 text-amber-400 mb-4">
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+</div>
+<p class="text-slate-700 font-light italic mb-6">"Finally, a brand that understands fluidity and grace. The shipping was fast to Berlin, and the packaging was an experience in itself."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="Reviewer portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuGNb8yPCMFLc2rgpe9wdk8FsvuyFzsdMj3ToiM9lGk-o2twDlNiUQIrl_6y67cD-8Wp7yT19hAojpYzBaEA6U9ssxayxTsvDKYRzzhOHxp7_ufA1qnl7BskizEJ_vPVUYfLlsQDcHrILxeVhfv-SvWFIDGpWWVQAiTLIaSXo5Hz8udh3AZY9z6IS1uI0Detk-YQLikjyttu3YS01SOyFsHeMdFbFS3bHJX5CNucCK2xl0IzHCLVN_o7EqRwLA-7SEtUxYXZ19QmlL"/>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900">Lucas D.</p>
+<p class="text-xs text-slate-500">Verified Buyer</p>
+</div>
+</div>
+</div>
+<!-- Review Card 3 -->
+<div class="min-w-[300px] md:min-w-[400px] glass-card p-8 rounded-3xl snap-center transition-transform hover:-translate-y-1">
+<div class="flex gap-1 text-amber-400 mb-4">
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="material-symbols-outlined text-lg fill-current">star_half</span>
+</div>
+<p class="text-slate-700 font-light italic mb-6">"Absolutely in love with the accessories collection. The holographic details are subtle yet mesmerizing. Highly recommended!"</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+<img alt="User avatar" class="w-full h-full object-cover" data-alt="Reviewer portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa5XeaO2h6YVBS5r_XF_rBzxvyx-Ati61ZG4xW_ibs20edr7rk3S3aFJUjCQ9suvr7ikvWWbqD1lz2Q1V9u26m-gwbosYvpMC0i3EkCZMR_s-arxiWhZoBfve8Q0HTOyczdxq2oWCOagERqDdLQFbdvTm5mP0BjUS3Rxnv1pexISIzlYVPheSb_ERNS95U43gQLB77g1K3ua5T7xa0L-4yrFs1Fqjhbp9y0j5_ugis7ACMkVVvAZrJz9fc585OPOdE9dQZi7jBv6tv"/>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900">Emma R.</p>
+<p class="text-xs text-slate-500">Verified Buyer</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-secondary text-white pt-20 pb-10 rounded-t-[3rem] mt-10">
+<div class="max-w-[1400px] mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+<!-- Brand Column -->
+<div class="flex flex-col gap-6">
+<h2 class="text-3xl font-bold tracking-tighter">tsgabrielle®</h2>
+<p class="text-white/80 font-light max-w-xs">
+                        Redefining luxury through the lens of identity and artistic expression.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<span class="sr-only">Instagram</span>
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors" href="#">
+<span class="sr-only">Facebook</span>
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg>
+</a>
+</div>
+</div>
+<!-- Links Column -->
+<div>
+<h3 class="text-lg font-bold mb-4">Shop</h3>
+<ul class="flex flex-col gap-3 text-white/80">
+<li><a class="hover:text-white transition-colors" href="#">New Arrivals</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Dresses</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Accessories</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Best Sellers</a></li>
+</ul>
+</div>
+<!-- Links Column -->
+<div>
+<h3 class="text-lg font-bold mb-4">Support</h3>
+<ul class="flex flex-col gap-3 text-white/80">
+<li><a class="hover:text-white transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Size Guide</a></li>
+<li><a class="hover:text-white transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<!-- Newsletter Column -->
+<div>
+<h3 class="text-lg font-bold mb-4">Stay in the loop</h3>
+<p class="text-white/80 font-light mb-4">Subscribe for exclusive drops and updates.</p>
+<form class="flex flex-col gap-3">
+<input class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-white/40" placeholder="Enter your email" type="email"/>
+<button class="w-full px-4 py-3 rounded-xl bg-white text-secondary font-bold hover:bg-slate-100 transition-colors" type="button">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60">
+<p>© 2023 tsgabrielle®. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white" href="#">Privacy Policy</a>
+<a class="hover:text-white" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

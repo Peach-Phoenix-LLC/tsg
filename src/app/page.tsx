@@ -1,27 +1,20 @@
 import React from 'react';
-import Navbar from '@/components/Navbar/Navbar';
-// import Hero from '@/components/Hero/Hero'; // Deprecated for Mobile First design
-import IridescenceHero from '@/components/IridescenceHero/IridescenceHero';
-import { MobileCategories } from '@/components/MobileHome/MobileCategories';
-import CollectionShowcase from '@/components/CollectionShowcase/CollectionShowcase';
-import CollectionsGrid from '@/components/CollectionsGrid/CollectionsGrid';
-import BrandPhilosophy from '@/components/BrandPhilosophy/BrandPhilosophy';
-import Manifesto from '@/components/Manifesto/Manifesto';
-import ProductGrid from '@/components/ProductGrid/ProductGrid';
-import Footer from '@/components/Footer/Footer';
+import ModernNavbar from '@/components/Home/ModernNavbar';
+import NewHero from '@/components/Home/NewHero';
+import Narrative from '@/components/Home/Narrative';
+import CuratedCollections from '@/components/Home/CuratedCollections';
+import Reviews from '@/components/Home/Reviews';
+import ModernFooter from '@/components/Home/ModernFooter';
 
 export default function Home() {
   return (
-    <main>
-      <Navbar />
-      <IridescenceHero />
-      <MobileCategories />
-      <CollectionShowcase />
-      <CollectionsGrid />
-      <BrandPhilosophy />
-      <Manifesto />
-      <ProductGrid />
-      <Footer />
+    <main className="min-h-screen bg-background-light selection:bg-primary/30">
+      <ModernNavbar />
+      <NewHero />
+      <Narrative />
+      <CuratedCollections />
+      <Reviews />
+      <ModernFooter />
     </main>
   );
 }
