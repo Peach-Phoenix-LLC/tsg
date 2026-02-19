@@ -19,7 +19,11 @@ const PRODUCT = {
         "https://lh3.googleusercontent.com/aida-public/AB6AXuDt8-9yL0w2j3k4m5n6o7p8q9r0s1t2u3v4w5x6y7z8a9b0c1d2e3f4g5h6i7j8k9l0m1n2o3p4q5r6s7t8u9v0w1x2y3z4a5b6c7d8e9f", // Placeholder
         "https://lh3.googleusercontent.com/aida-public/AB6AXuE9-0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef" // Placeholder
     ],
-    variants: ["Prism White", "Void Black", "Cyber Silver"],
+    variants: [
+        { name: "Prism White", stock: 3 },
+        { name: "Void Black", stock: 12 },
+        { name: "Cyber Silver", stock: 0 }
+    ],
     details: [
         "100% Bio-Silk",
         "Hand-finished in Paris",
@@ -30,7 +34,7 @@ const PRODUCT = {
 export default function ProductPage({ params }: { params: { id: string } }) {
     const { addToCart } = useCart();
     const router = useRouter();
-    const [selectedVariant, setSelectedVariant] = useState(PRODUCT.variants[0]);
+    const [selectedVariant, setSelectedVariant] = useState(PRODUCT.variants[0].name);
     const [activeImage, setActiveImage] = useState(0);
 
     const handleAddToCart = () => {
@@ -78,10 +82,14 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                     <h1 className={styles.title}>{PRODUCT.title}</h1>
                     <div className="flex flex-col items-end">
                         <span className={styles.price}>{PRODUCT.price}</span>
-                        <div className="flex items-center gap-1.5 mt-1 text-[10px] font-bold text-primary uppercase tracking-tighter animate-pulse">
-                            <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(171,47,193,0.8)]"></span>
-                            Low Stock: Only 3 remaining
-                        </div>
+                        {(PRODUCT.variants.find(v => v.name === selectedVariant)?.stock ?? 0) < 10 && (
+                            <div className="flex items-center gap-1.5 mt-1 text-[10px] font-bold text-primary uppercase tracking-tighter animate-pulse">
+                                <span className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_8px_rgba(171,47,193,0.8)]"></span>
+                                {(PRODUCT.variants.find(v => v.name === selectedVariant)?.stock ?? 0) > 0
+                                    ? `Low Stock: Only ${PRODUCT.variants.find(v => v.name === selectedVariant)?.stock} remaining`
+                                    : "Out of Stock"}
+                            </div>
+                        )}
                     </div>
                 </div>
 
@@ -90,11 +98,11 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                     <div className={styles.variantGrid}>
                         {PRODUCT.variants.map(v => (
                             <button
-                                key={v}
-                                className={`${styles.variantBtn} ${selectedVariant === v ? styles.variantActive : ''}`}
-                                onClick={() => setSelectedVariant(v)}
+                                key={v.name}
+                                className={`${styles.variantBtn} ${selectedVariant === v.name ? styles.variantActive : ''}`}
+                                onClick={() => setSelectedVariant(v.name)}
                             >
-                                {v}
+                                {v.name}
                             </button>
                         ))}
                     </div>

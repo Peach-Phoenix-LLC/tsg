@@ -57,11 +57,17 @@ const HotspotCampaign = () => {
                             className="absolute"
                             style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
                         >
-                            <button
-                                onClick={() => setActiveHotspot(activeHotspot === spot.id ? null : spot.id)}
-                                className={`hotspot-point ${activeHotspot === spot.id ? 'scale-125' : ''}`}
-                                aria-label={`View ${spot.productName}`}
-                            />
+                            <div className="relative group/hotspot">
+                                {/* Invisible larger touch target for mobile */}
+                                <div
+                                    className="absolute -inset-4 z-10 cursor-pointer"
+                                    onClick={() => setActiveHotspot(activeHotspot === spot.id ? null : spot.id)}
+                                />
+                                <button
+                                    className={`hotspot-point pointer-events-none ${activeHotspot === spot.id ? 'scale-125' : ''}`}
+                                    aria-label={`View ${spot.productName}`}
+                                />
+                            </div>
 
                             {activeHotspot === spot.id && (
                                 <div className="absolute top-8 left-1/2 -translate-x-1/2 z-30 animate-in fade-in zoom-in duration-300">
