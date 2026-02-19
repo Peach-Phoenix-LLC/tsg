@@ -10,43 +10,51 @@ const handler = NextAuth({
         }),
     ],
     callbacks: {
-        async signIn({ user, account, profile }) {
+        async signIn({ user }) {
             if (!user.email) return false;
 
-            const adminEmail = process.env.ADMIN_EMAIL;
-            const role = user.email === adminEmail ? 'ADMIN' : 'CUSTOMER';
+            try {
+                const adminEmail = process.env.ADMIN_EMAIL?.trim();
+                const role = user.email === adminEmail ? 'ADMIN' : 'CUSTOMER';
 
-            // Check if user exists, if not create them
-            const existingUser = await prisma.user.findUnique({
-                where: { email: user.email },
-            });
-
-            if (!existingUser) {
-                await prisma.user.create({
-                    data: {
-                        email: user.email,
-                        name: user.name,
-                        googleId: user.id,
-                        role: role,
-                    },
-                });
-            } else if (existingUser.role !== role) {
-                // Update role if it changed (e.g. promoting to admin)
-                await prisma.user.update({
+                const existingUser = await prisma.user.findUnique({
                     where: { email: user.email },
-                    data: { role: role }
                 });
+
+                if (!existingUser) {
+                    await prisma.user.create({
+                        data: {
+                            email: user.email,
+                            name: user.name,
+                            googleId: user.id,
+                            role: role,
+                        },
+                    });
+                } else if (existingUser.role !== role) {
+                    await prisma.user.update({
+                        where: { email: user.email },
+                        data: { role: role },
+                    });
+                }
+            } catch (err) {
+                // If DB write fails, still allow sign-in (user just won't have DB record yet)
+                console.error('[NextAuth] signIn DB error:', err);
             }
+
             return true;
         },
-        async session({ session, user, token }) {
-            if (session.user) {
-                const dbUser = await prisma.user.findUnique({
-                    where: { email: session.user.email! },
-                });
-                if (dbUser) {
-                    (session.user as any).role = dbUser.role;
-                    (session.user as any).id = dbUser.id;
+        async session({ session }) {
+            if (session.user?.email) {
+                try {
+                    const dbUser = await prisma.user.findUnique({
+                        where: { email: session.user.email },
+                    });
+                    if (dbUser) {
+                        (session.user as { role?: string; id?: string }).role = dbUser.role;
+                        (session.user as { role?: string; id?: string }).id = dbUser.id;
+                    }
+                } catch (err) {
+                    console.error('[NextAuth] session DB error:', err);
                 }
             }
             return session;
