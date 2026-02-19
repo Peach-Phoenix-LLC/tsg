@@ -1,0 +1,132 @@
+.section {
+    padding: 8rem 0;
+    background: #fff;
+    text-align: center;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 200;
+    margin-bottom: 1rem;
+    letter-spacing: 0.2em;
+    color: #000;
+}
+
+.divider {
+    width: 4rem;
+    height: 1px;
+    background: #000;
+    margin: 0 auto 4rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 4rem 2rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.imageContainer {
+    position: relative;
+    width: 14rem;
+    height: 14rem;
+    padding: 2px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(169, 50, 189, 0.2), rgba(0, 255, 255, 0.2));
+    margin-bottom: 2rem;
+    transition: all 0.4s ease;
+}
+
+.card:hover .imageContainer {
+    background: linear-gradient(135deg, #a932bd, #00ffff);
+    box-shadow: 0 0 30px rgba(169, 50, 189, 0.3);
+}
+
+.innerImage {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+.innerImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card:hover .innerImage img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.4s ease;
+}
+
+.card:hover .overlay {
+    background: rgba(169, 50, 189, 0.2);
+}
+
+.overlayText {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 200;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.4s ease;
+}
+
+.card:hover .overlayText {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.cardTitle {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.card:hover .cardTitle {
+    color: #a932bd;
+}
+
+.cardMeta {
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.4);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}

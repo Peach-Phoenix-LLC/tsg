@@ -1,0 +1,136 @@
+.showcase {
+    padding: 8rem 2rem;
+    background: #000;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 4rem;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 200;
+    letter-spacing: 0.2em;
+    color: #fff;
+}
+
+.filterBar {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.activeFilter {
+    color: #fff;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 0.5rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.card {
+    position: relative;
+    cursor: pointer;
+}
+
+.imageWrapper {
+    position: relative;
+    aspect-ratio: 4/5;
+    overflow: hidden;
+    background: #111;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.imageWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card:hover .imageWrapper img {
+    transform: scale(1.1);
+}
+
+.cardOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(169, 50, 189, 0.1);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.card:hover .cardOverlay {
+    opacity: 1;
+}
+
+.quickAdd {
+    padding: 0.75rem 2rem;
+    background: #fff;
+    color: #000;
+    border: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.card:hover .quickAdd {
+    transform: translateY(0);
+}
+
+.info {
+    padding: 1.5rem 0;
+}
+
+.productName {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.price {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 200;
+}
+
+.loader {
+    padding: 10rem;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 0.5em;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
