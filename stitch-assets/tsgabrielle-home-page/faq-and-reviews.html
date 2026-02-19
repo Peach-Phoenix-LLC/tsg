@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>tsgabrielle® FAQ and Reviews</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#cb13ec",
+                        "primary-light": "#e98ef9",
+                        "primary-dark": "#9a0fb3",
+                        "background-light": "#f8f6f8",
+                        "background-dark": "#1f1022",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'holographic': 'linear-gradient(135deg, #cb13ec 0%, #00d4ff 50%, #cb13ec 100%)',
+                        'glass': 'linear-gradient(145deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.2) 100%)',
+                        'text-shimmer': 'linear-gradient(90deg, #cb13ec, #00d4ff, #cb13ec)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e4cfe7; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #cb13ec; 
+        }
+
+        /* GIF-fill text effect simulation using animated gradient */
+        .gif-text {
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 4s linear infinite;
+            background-image: linear-gradient(to right, #cb13ec 0%, #ff00cc 25%, #333399 50%, #ff00cc 75%, #cb13ec 100%);
+        }
+
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        /* Holographic Border Effect */
+        .holo-border {
+            position: relative;
+            background: #fff;
+            background-clip: padding-box;
+            border: 2px solid transparent;
+            border-radius: 0.75rem;
+        }
+        .holo-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            margin: -2px;
+            border-radius: inherit;
+            background: linear-gradient(45deg, #cb13ec, #00d4ff, #cb13ec);
+            animation: holo-rotate 5s linear infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes holo-rotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card 3D Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 4px 6px -1px rgba(0, 0, 0, 0.05), 
+                0 10px 15px -3px rgba(203, 19, 236, 0.1),
+                inset 0 0 20px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .glass-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 
+                0 20px 25px -5px rgba(0, 0, 0, 0.05), 
+                0 15px 30px -5px rgba(203, 19, 236, 0.2);
+        }
+
+        /* Custom Detail Summary Marker Removal */
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col font-display text-slate-900 dark:text-slate-100 overflow-x-hidden">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 border-b border-white/20 shadow-sm">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<!-- Logo -->
+<div class="flex items-center gap-2">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined !text-[24px]">diamond</span>
+</div>
+<h1 class="text-xl font-black tracking-tighter text-slate-900 dark:text-white">tsgabrielle®</h1>
+</div>
+<!-- Nav Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#">Shop</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#">Collections</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary transition-colors" href="#">About Gabrielle</a>
+<a class="text-sm font-medium text-primary font-bold transition-colors" href="#">FAQ</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="text-slate-900 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-slate-900 hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+<button class="hidden sm:block text-slate-900 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col lg:flex-row max-w-[1440px] mx-auto w-full p-6 lg:p-12 gap-12 relative">
+<!-- Background Elements -->
+<div class="fixed top-20 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none mix-blend-multiply"></div>
+<div class="fixed bottom-0 right-0 w-[500px] h-[500px] bg-[#00d4ff]/5 rounded-full blur-3xl -z-10 pointer-events-none mix-blend-multiply"></div>
+<!-- Left Column: FAQ -->
+<section class="flex-1 flex flex-col gap-8 w-full">
+<div class="space-y-4">
+<span class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">Help Center</span>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight leading-[1.1] gif-text max-w-lg">
+                    Common Questions &amp; Experiences
+                </h2>
+<p class="text-slate-500 text-lg max-w-md">
+                    Everything you need to know about our collections, sizing, and shipping to ensure the perfect fit for your unique self.
+                </p>
+</div>
+<div class="flex flex-col gap-4 mt-4">
+<!-- FAQ Item 1 -->
+<details class="group holo-border open:bg-white transition-all duration-300">
+<summary class="flex cursor-pointer items-center justify-between gap-4 p-5">
+<h3 class="text-slate-900 font-bold text-lg">Shipping &amp; Returns Policy</h3>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="px-5 pb-5 pt-0 text-slate-600 leading-relaxed animate-fadeIn">
+                        We offer worldwide shipping with premium holographic packaging to ensure your items arrive in style. Returns are accepted within 30 days of delivery for unworn items with original tags attached.
+                    </div>
+</details>
+<!-- FAQ Item 2 -->
+<details class="group holo-border bg-white transition-all duration-300">
+<summary class="flex cursor-pointer items-center justify-between gap-4 p-5">
+<h3 class="text-slate-900 font-bold text-lg">Sizing Guide for Gabrielle's Collection</h3>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="px-5 pb-5 pt-0 text-slate-600 leading-relaxed">
+                        Our sizing is inclusive and designed for diverse body types. Please refer to our detailed size chart on each product page, which includes specific measurements for chest, waist, and hips to ensure a tailored fit.
+                    </div>
+</details>
+<!-- FAQ Item 3 -->
+<details class="group holo-border bg-white transition-all duration-300">
+<summary class="flex cursor-pointer items-center justify-between gap-4 p-5">
+<h3 class="text-slate-900 font-bold text-lg">International Customs Duties</h3>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="px-5 pb-5 pt-0 text-slate-600 leading-relaxed">
+                        For international orders, customs duties and taxes may apply depending on your country's regulations. These are the responsibility of the customer and are not included in the checkout price.
+                    </div>
+</details>
+<!-- FAQ Item 4 -->
+<details class="group holo-border bg-white transition-all duration-300">
+<summary class="flex cursor-pointer items-center justify-between gap-4 p-5">
+<h3 class="text-slate-900 font-bold text-lg">Care Instructions for Delicate Fabrics</h3>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="px-5 pb-5 pt-0 text-slate-600 leading-relaxed">
+                        To maintain the quality of our delicate fabrics, we recommend gentle hand washing with cold water or dry cleaning. Avoid direct sunlight when drying to preserve color vibrancy.
+                    </div>
+</details>
+<!-- FAQ Item 5 -->
+<details class="group holo-border bg-white transition-all duration-300">
+<summary class="flex cursor-pointer items-center justify-between gap-4 p-5">
+<h3 class="text-slate-900 font-bold text-lg">Pre-Order Timelines</h3>
+<span class="material-symbols-outlined text-primary group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="px-5 pb-5 pt-0 text-slate-600 leading-relaxed">
+                        Pre-order items typically ship within 3-4 weeks. You will receive email updates throughout the production process, bringing you along on the journey of creating your garment.
+                    </div>
+</details>
+</div>
+<div class="mt-4">
+<button class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
+<span>Contact Support Team</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</section>
+<!-- Right Column: Reviews -->
+<section class="flex-1 flex flex-col gap-8 w-full mt-10 lg:mt-0 relative">
+<!-- Decorative background for reviews section -->
+<div class="absolute inset-0 bg-gradient-to-br from-white/40 to-white/10 rounded-3xl -z-10 border border-white/50 shadow-sm backdrop-blur-sm lg:block hidden"></div>
+<div class="flex items-center justify-between lg:px-6 pt-4">
+<h2 class="text-2xl font-bold text-slate-900 flex items-center gap-2">
+                    Verified Reviews
+                    <span class="material-symbols-outlined text-primary filled text-[20px]" style="font-variation-settings: 'FILL' 1;">verified</span>
+</h2>
+<div class="flex items-center gap-1">
+<span class="text-slate-900 font-bold text-lg">4.9</span>
+<div class="flex">
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-slate-500 text-sm ml-1">(1,240)</span>
+</div>
+</div>
+<div class="flex flex-col gap-6 lg:px-6 pb-6">
+<!-- Review Card 1 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-slate-200 overflow-hidden border-2 border-white shadow-sm">
+<img alt="Portrait of a smiling woman with curly hair" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-plWpXV-LEHnlLe4OGhR83soqoWkO0ZI7zSnFSvqQihsg38Axyplw-_8TAtwwJoYBAj-t2suk67yJyvtzcokvrcXyGtZRnlkeF1i78tvMqH51XijkSfNVaIcEc7Gec__PVjrprC8gIFHrY5y4ViXym3Fb3QneU_pAwhmjhA4szB-ApzJMACwXXz_9hhSfR4K0I7ntZjpCVmt49-0M5gWUmWbbClMMhYNwZ4W-mygzJ7-u8GE3JAe07TJ8z4ykxdOHHFCNHZlkxOMq"/>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Sophie M.</h4>
+<p class="text-xs text-slate-500">2 days ago • Verified Buyer</p>
+</div>
+</div>
+<div class="bg-primary/10 p-1.5 rounded-lg">
+<img alt="Google Logo" class="w-4 h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKxD04GJEkYwLhXjnoJ90epyH2glGhqbMKI4B5b_3knFbMtgE0roF3PpQYsqKxtZD0c13TRIMjiPPe3rLlSZGwg3kO9Um__POJtOrUDi2Xyz0J0VPkBdIM9Ek14teSb5Ko0KAZUTdh0rbhsCJmptC9GOF3Dk5hzg9SSWW9Z6jnGAyFMv8H1pqoQ03KPMzJ-o0vtoRO2xG8yk7ojgjv2622_sXRthPFuM-ucTdjpIX0vk35IqtZM93gV1afMT-dEcWufKZBk3WSqOG4"/>
+</div>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-slate-700 font-medium italic text-lg">"The fabric is exquisite. Finally, fashion that fits perfectly. The holographic packaging was a delightful surprise."</p>
+<div class="flex gap-2 mt-2">
+<div class="w-16 h-16 rounded-lg overflow-hidden border border-white/50 shadow-sm cursor-pointer hover:scale-105 transition-transform">
+<img alt="Close up of fabric texture" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCo6qktnvT3N_uxthIpDmY_suhMVzpyFtklwJ9ocSMnWDORDfmi2ac6AYEPkkHaT4w3QfxewX_cdG2G-XCWBH0t1T_hgze_NeBQ8AGkYqPWgNhEJv6MsWtas3beGcLigfyzpAJW9Ksf5ldmAIvOePHuRwRf52ud-DG3kYRyVSRnFqvtmmAP0szhx71EvopX3y5BR85fcrlo1zDsgEwcBMrdL4BP7Dw3y_tt_SfrZTeXDvT0fe8aZuXSxYemWjFFD-Gk5Ca9XHVBJXu6"/>
+</div>
+</div>
+</div>
+<!-- Review Card 2 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-slate-200 overflow-hidden border-2 border-white shadow-sm">
+<img alt="Portrait of a smiling man with a beard" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFmQ5iXs2IG2bHKfUbw2WOcWDEOQ-DEJWGQu2l1BayBywFh2euN2yw3SLINrejCna-j2u7rvVEt5HU7cCvQZrJAfS9FsYv8SrIpsV67YOs9jyJaUJ8wAc-9dyGzto1gUnKd0_wi9jpoIdi1X97omwkeYFO6fFBeQTkRCcsIQGNWzWn8RA8vaUTbC33-3GdjwYh2zyjF2ACzNnqvHrJAozS9iVJjMHydRHAT5xt9X5X9YxizQl4LXg1HdGkf-v6m2mc8b-xTTz7x_Vu"/>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Jean-Luc</h4>
+<p class="text-xs text-slate-500">1 week ago • Verified Buyer</p>
+</div>
+</div>
+<div class="bg-primary/10 p-1.5 rounded-lg">
+<img alt="Google Logo" class="w-4 h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-bJQds-6XE6uHch8EM-CTm4VVw6IRDF_cezEF48zY3oce2jUmQwHDg6Q8tKA1RhInQlv20UxU1buJfi13Dt2YqCl1LplEMb31USwAZaZyiCJDx6PXL4pQ1Xp-utOF-SM0x_8knEofAH5nrhDqPBLWEwBNeqiy2MFO-aly4uCQYvVtRIeKj-Xm75tYYGu2zcaUTd8WSjSDjUn7R-dKnNl7IYA79htO808A-e_NPtNggtoqjCMLd04F_iR9Z50IOdbosXYHx0bl9cbP"/>
+</div>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-slate-700 font-medium italic text-lg">"Stunning packaging and incredible fast delivery to Paris. The quality is unmatched."</p>
+</div>
+<!-- Review Card 3 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-full bg-slate-200 overflow-hidden border-2 border-white shadow-sm">
+<img alt="Portrait of a young person looking at the camera" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZx7n7drGDr-t2CLctY0kqjPabo9xEYGQ9UEVsIIdzIHYZPBJ243YsQoisa8d-TrY2tBmU30ISnzFciLrqyeNrIp0BUrAK2veeFdlPZlN1ymal-ZYC-S_zd7KUP8Lw8nGvYIEp_94rpprLE-G8Nv9Pbz1ejBUl8WqT2QZ5_WSodlOdEZ-nHeS3Ujn5p6kHRmeiFVcqoG29fkvq2MXAd_MvP2Tpy7twVdM7i7HeZDI4RhFIU7zQTWz6pVy_kc_4PthrvaswwLcqVvxq"/>
+</div>
+<div>
+<h4 class="font-bold text-slate-900">Alex</h4>
+<p class="text-xs text-slate-500">2 weeks ago • Verified Buyer</p>
+</div>
+</div>
+<div class="bg-primary/10 p-1.5 rounded-lg">
+<img alt="Google Logo" class="w-4 h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0f5XF-178tNqapV0oXKVvgVJMrZS7ahgxgMDOJromfFpfDRdeqx4A9BncMB2tGIHDJ_UBJUOQImoX2mctzn8uUGV6uPaM5xHiPOi37wCUmCVBP15jeANR5zn_RtAbYmivMF0qe_Z2aJ-UeBhVWShCawivX--PQdU1RoVEKmTuqMEw6QOlrGYNeNH7P33JlympUllvxHKquT9bntVjR9hRXUBqaSmzXZZ0JIpI1cJS1m1roJWokYi7R6NNJf0OllvjiebMsGw7jjYL"/>
+</div>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0.5;">star_half</span>
+</div>
+<p class="text-slate-700 font-medium italic text-lg">"Love the bold aesthetics and the message behind the brand. Will definitely order again."</p>
+</div>
+</div>
+<div class="flex justify-center mt-4 pb-8 lg:pb-0">
+<button class="px-6 py-3 rounded-full bg-white border border-slate-200 text-slate-900 font-bold hover:bg-slate-50 transition-colors shadow-sm text-sm">
+                    Load More Reviews
+                </button>
+</div>
+</section>
+</main>
+<!-- Unified Footer -->
+<footer class="bg-[#1f1022] text-white pt-20 pb-10 rounded-t-[2.5rem] mt-12 relative overflow-hidden">
+<!-- Footer Gradient Overlay -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-[#00d4ff] to-primary"></div>
+<div class="absolute -top-[200px] -right-[200px] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col gap-12 relative z-10">
+<!-- Top Footer Section -->
+<div class="flex flex-col lg:flex-row justify-between gap-12">
+<div class="flex flex-col gap-6 max-w-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary !text-[32px]">diamond</span>
+<h2 class="text-3xl font-black tracking-tighter">tsgabrielle®</h2>
+</div>
+<p class="text-slate-300 text-sm leading-relaxed">
+                        Redefining luxury through the lens of bold authenticity. Empowering style for every identity, crafted with French elegance and modern innovation.
+                    </p>
+<div class="flex gap-4 mt-2">
+<a class="w-10 h-10 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors" href="#">
+<img alt="Instagram" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUQY0ShonJWOiol2gT9KCTyFHITV30C9Vi9B5aVZsn6-mra4Edv9QXj7fNyqf8E9cwYsI77zKReKQx3qcvqpeOrakwONxqinsVyqtV4MZ_2awhJ2-m2iWuuNjXMQHO7p2kRW__owR_XH4WootcIIfTCGF9_sEoEGCRc_Rsr4p3YnYEUq_WXuAEJ5l85r_SWQLBMVB8MUfe9sqt2lSjayLHw9XydB-r9G-_ol3R001DYv1BIIckjkq57bx1OWJSNdRmTygTjJC7lQn5"/>
+</a>
+<a class="w-10 h-10 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors" href="#">
+<img alt="TikTok" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwiRzdJyrh9omsPNrbjaXBpF04Cw89u9hnkfSpQ05J_jGyMOgPKUdEwGjIfPGNUZNvErS_S5FI4BzoAI5zVaU8uVcWC1BgRq5g4rA2Oa3sFP6RUIS0kIdF18eBUMVJLsv0y-1aqjeWiNv3zgrM4RBzR7UcXd7rQd-43J4gBTFvF89dLBc58a_CHi6U-tyerTR3kV2HEx8Wi3H1mLPjIyq9EWjbSzDrHLyfGEAOgFoXthSXboDd70wMwZJcJM6ZGD8jmDNu1v9Ol5Pe"/>
+</a>
+<a class="w-10 h-10 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center transition-colors" href="#">
+<img alt="Pinterest" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh4arCMMNbDG7TmKlQ94xZBmxSNnoj3ZXOGTOagab8A3jpkxeY2glNOl4nDNbd8kr-bMclOe89Rx5pcCt_dGy_o5UQE5e08o3r7lfD3kc2eWMbtSi-aza4p3OZIFhANDnL9W3yNI6QpjYMJzN81XaLahdVLqOtzmo9rtfsfTCfRPOerBbG62iv9TEtKw9xwE8DF1OdHlx0IICux0Z7GAYDUlzoepC9PD_7iHuqJHXxBGiFhqcatkG_MEjH5H5uWbATPiVNm7kxs6Pa"/>
+</a>
+</div>
+</div>
+<div class="flex flex-wrap gap-16 lg:gap-24">
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-lg text-primary uppercase tracking-wider text-xs">Shop</h3>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">New Arrivals</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Best Sellers</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Accessories</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Gift Cards</a>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-lg text-primary uppercase tracking-wider text-xs">Company</h3>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Our Story</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Sustainability</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Careers</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Press</a>
+</div>
+<div class="flex flex-col gap-4">
+<h3 class="font-bold text-lg text-primary uppercase tracking-wider text-xs">Legal</h3>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-300 hover:text-white transition-colors" href="#">Cookie Policy</a>
+</div>
+</div>
+</div>
+<!-- Newsletter -->
+<div class="border-t border-white/10 pt-12">
+<div class="flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col gap-2 text-center md:text-left">
+<h3 class="text-xl font-bold">Join the Inner Circle</h3>
+<p class="text-slate-400 text-sm">Subscribe for exclusive drops, early access, and 10% off your first order.</p>
+</div>
+<form class="flex w-full md:w-auto max-w-md gap-2">
+<input class="flex-grow md:w-64 h-12 rounded-lg bg-white/5 border border-white/20 px-4 text-white placeholder-slate-500 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Enter your email" type="email"/>
+<button class="h-12 px-6 rounded-lg bg-primary hover:bg-primary-dark text-white font-bold transition-colors uppercase tracking-wider text-sm whitespace-nowrap">
+                            Sign Up
+                        </button>
+</form>
+</div>
+</div>
+<!-- Copyright -->
+<div class="flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 pt-6 gap-4">
+<p>© 2024 tsgabrielle®. All rights reserved. Paris, France.</p>
+<div class="flex gap-6">
+<span>Currency: USD ($)</span>
+<span>Language: English</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

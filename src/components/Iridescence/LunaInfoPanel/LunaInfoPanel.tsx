@@ -9,13 +9,21 @@ export const LunaInfoPanel = () => {
     useEffect(() => {
         const handleScroll = () => {
             const scrollY = window.scrollY;
-            const threshold = window.innerHeight * 0.7;
+            // Force visible for testing/UX - or lower threshold significantly
+            // const threshold = window.innerHeight * 0.7;
+            const threshold = 100; // Show almost immediately
+            console.log(`[LunaPanel] Scroll: ${scrollY} / Threshold: ${threshold}`);
             setIsVisible(scrollY > threshold);
         };
 
         window.addEventListener('scroll', handleScroll);
+        // Trigger once on mount to check initial position
+        handleScroll();
+
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    console.log("Rendering LunaInfoPanel, isVisible:", isVisible);
 
     return (
         <div className={`fixed right-8 bottom-8 z-[100] bg-white/90 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/50 w-full max-w-sm transition-all duration-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0 pointer-events-none'}`}>

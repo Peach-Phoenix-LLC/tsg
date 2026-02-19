@@ -53,6 +53,8 @@ export default function AdminDashboard() {
     const [loadingProducts, setLoadingProducts] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
+    const [orders, setOrders] = useState<any[]>([]);
+
     useEffect(() => {
         if (activeTab === 'products') {
             setLoadingProducts(true);
@@ -60,6 +62,12 @@ export default function AdminDashboard() {
                 .then(r => r.json())
                 .then(data => { setProducts(data); setLoadingProducts(false); })
                 .catch(() => setLoadingProducts(false));
+        }
+        if (activeTab === 'orders') {
+            fetch('/api/orders')
+                .then(r => r.json())
+                .then(data => setOrders(data))
+                .catch(err => console.error(err));
         }
     }, [activeTab]);
 
@@ -265,18 +273,22 @@ export default function AdminDashboard() {
                             <table className={styles.table}>
                                 <thead>
                                     <tr>
-                                        <th>ORDER ID</th><th>CUSTOMER</th><th>PRODUCT</th>
-                                        <th>DATE</th><th>TOTAL</th><th>STATUS</th><th></th>
+                                        <th>ORDER ID</th><th>CUSTOMER</th><th>TOTAL</th>
+                                        <th>DATE</th><th>STATUS</th><th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {MOCK_ORDERS.map(order => (
+                                    {orders.map((order: any) => (
                                         <tr key={order.id}>
-                                            <td className={styles.orderId}>{order.id}</td>
-                                            <td><div className={styles.customerCell}><span className={styles.miniAvatar}>{order.avatar}</span>{order.customer}</div></td>
-                                            <td>{order.product}</td>
-                                            <td className={styles.dateCell}>{order.date}</td>
-                                            <td className={styles.totalCell}>{order.total}</td>
+                                            <td className={styles.orderId}>#{order.id.slice(-6).toUpperCase()}</td>
+                                            <td>
+                                                <div className={styles.customerCell}>
+                                                    <span className={styles.miniAvatar}>{(order.firstName?.[0] || order.guestEmail?.[0] || '?').toUpperCase()}</span>
+                                                    {order.firstName ? `${order.firstName} ${order.lastName}` : (order.guestEmail || 'Guest')}
+                                                </div>
+                                            </td>
+                                            <td className={styles.totalCell}>${order.total.toFixed(2)}</td>
+                                            <td className={styles.dateCell}>{new Date(order.createdAt).toLocaleDateString()}</td>
                                             <td><span className={`${styles.badge} ${STATUS_BADGE[order.status] ?? ''}`}>{order.status}</span></td>
                                             <td><button className={styles.menuBtn}>⋮</button></td>
                                         </tr>

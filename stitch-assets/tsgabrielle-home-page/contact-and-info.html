@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>tsgabrielle® - Contact</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Lato:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#bf12de",
+                        "primary-dark": "#9a0fb3",
+                        "primary-light": "#fdf4ff",
+                        "background-light": "#ffffff",
+                        "background-dark": "#1f1022",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Lato", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "holographic": "0 0 0 2px rgba(191, 18, 222, 0.1), 0 0 8px 0 rgba(0, 255, 255, 0.15)",
+                        "holographic-focus": "0 0 0 2px rgba(191, 18, 222, 0.5), 0 0 12px 0 rgba(0, 255, 255, 0.4)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Holographic Input Styles */
+        .holo-input {
+            transition: all 0.3s ease;
+            border: 1px solid #e5e5e5;
+        }
+        
+        .holo-input:focus {
+            outline: none;
+            border-color: transparent;
+            box-shadow: 0 0 0 2px #bf12de, 0 0 15px rgba(0, 255, 255, 0.3);
+            background: linear-gradient(#fff, #fff) padding-box,
+                        linear-gradient(45deg, #bf12de, #00ffff) border-box;
+        }
+
+        /* Custom Scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d8b4e2; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #bf12de; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display antialiased min-h-screen flex flex-col">
+<!-- Navbar -->
+<header class="sticky top-0 z-50 w-full border-b border-primary/10 bg-background-light/80 backdrop-blur-md dark:bg-background-dark/80">
+<div class="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-6 lg:px-12">
+<!-- Logo -->
+<div class="flex items-center gap-2">
+<span class="text-primary material-symbols-outlined text-[28px]">diamond</span>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">tsgabrielle®</h1>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors" href="#">Shop</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors" href="#">Collections</a>
+<a class="text-sm font-medium text-slate-600 hover:text-primary dark:text-slate-300 dark:hover:text-primary transition-colors" href="#">About</a>
+<a class="text-sm font-medium text-primary dark:text-primary transition-colors" href="#">Contact</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center rounded-full p-2 text-slate-600 hover:bg-primary/5 hover:text-primary dark:text-slate-300 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="relative flex items-center justify-center rounded-full p-2 text-slate-600 hover:bg-primary/5 hover:text-primary dark:text-slate-300 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute right-1 top-1 flex h-2 w-2">
+<span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
+<span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
+</span>
+</button>
+<button class="md:hidden flex items-center justify-center rounded-full p-2 text-slate-600 hover:text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow">
+<div class="mx-auto max-w-[1440px] px-6 py-12 lg:px-12 lg:py-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+<!-- Left: Contact Form -->
+<div class="lg:col-span-7 flex flex-col justify-center">
+<div class="mb-10">
+<span class="text-primary text-sm font-bold tracking-widest uppercase mb-2 block">Client Services</span>
+<h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">Get in Touch</h2>
+<p class="text-slate-500 dark:text-slate-400 font-body text-lg leading-relaxed max-w-xl">
+                            Whether you have a question about your order, our latest collection, or just want to say hello, we're here to help.
+                        </p>
+</div>
+<form class="space-y-6 max-w-2xl">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="name">Full Name</label>
+<input class="holo-input w-full rounded-lg bg-background-light dark:bg-background-dark/50 p-4 text-base placeholder-slate-400 text-slate-900 dark:text-white" id="name" placeholder="Gabrielle Doe" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="email">Email Address</label>
+<input class="holo-input w-full rounded-lg bg-background-light dark:bg-background-dark/50 p-4 text-base placeholder-slate-400 text-slate-900 dark:text-white" id="email" placeholder="name@example.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="subject">Subject</label>
+<div class="relative">
+<select class="holo-input w-full appearance-none rounded-lg bg-background-light dark:bg-background-dark/50 p-4 text-base text-slate-900 dark:text-white pr-10" id="subject">
+<option>General Inquiry</option>
+<option>Order Status</option>
+<option>Returns &amp; Exchanges</option>
+<option>Press &amp; Media</option>
+<option>Wholesale</option>
+</select>
+<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-slate-500">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300" for="message">Message</label>
+<textarea class="holo-input w-full rounded-lg bg-background-light dark:bg-background-dark/50 p-4 text-base placeholder-slate-400 text-slate-900 dark:text-white resize-none" id="message" placeholder="How can we help you today?" rows="5"></textarea>
+</div>
+<div class="pt-4">
+<button class="w-full md:w-auto px-10 h-14 bg-primary hover:bg-primary-dark text-white font-bold tracking-wider rounded-lg shadow-lg hover:shadow-primary/40 transition-all duration-300 flex items-center justify-center gap-2 group" type="button">
+<span>SEND MESSAGE</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Right: Contact Information -->
+<div class="lg:col-span-5 relative">
+<!-- Decorative Background element -->
+<div class="absolute -right-20 -top-20 -z-10 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl"></div>
+<div class="bg-slate-50 dark:bg-slate-800/50 rounded-2xl p-10 lg:p-12 h-full flex flex-col justify-center border border-slate-100 dark:border-slate-700/50">
+<h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-8 border-b border-primary/20 pb-4">Contact Information</h3>
+<div class="space-y-10 font-body">
+<!-- Atelier -->
+<div class="flex gap-5 items-start">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">storefront</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Atelier</h4>
+<p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        15 Rue de la Paix<br/>
+                                        75002 Paris, France
+                                    </p>
+<a class="inline-flex items-center gap-1 text-sm text-primary font-bold mt-2 hover:underline" href="#">
+                                        View on Map <span class="material-symbols-outlined text-sm">north_east</span>
+</a>
+</div>
+</div>
+<!-- Support -->
+<div class="flex gap-5 items-start">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">support_agent</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Support</h4>
+<p class="text-slate-600 dark:text-slate-300 leading-relaxed mb-1">
+<span class="block text-xs uppercase tracking-wider text-slate-400 mb-1">Email</span>
+<a class="hover:text-primary transition-colors" href="mailto:care@tsgabrielle.com">care@tsgabrielle.com</a>
+</p>
+<p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+<span class="block text-xs uppercase tracking-wider text-slate-400 mb-1 mt-2">Phone</span>
+<a class="hover:text-primary transition-colors" href="tel:+33123456789">+33 1 23 45 67 89</a>
+</p>
+<p class="text-xs text-slate-400 mt-2">Mon-Fri, 9am - 6pm CET</p>
+</div>
+</div>
+<!-- Press -->
+<div class="flex gap-5 items-start">
+<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+<span class="material-symbols-outlined">newspaper</span>
+</div>
+<div>
+<h4 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Press &amp; Media</h4>
+<p class="text-slate-600 dark:text-slate-300 leading-relaxed">
+                                        For PR inquiries, please contact:
+                                    </p>
+<a class="text-primary font-bold hover:underline block mt-1" href="mailto:press@tsgabrielle.com">press@tsgabrielle.com</a>
+</div>
+</div>
+</div>
+<!-- Social Proof / Image -->
+<div class="mt-12 overflow-hidden rounded-xl relative h-48 w-full group">
+<img alt="Abstract macro shot of purple fabric texture representing high fashion quality" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwhjVraioYByGiBJBFUARJarJQly0QuGEQAmOzRUub_YKGa87gEzo82lltihodnyLLKLWuLrMVPUJNYr2jC_bx9ZpdMvOr72JLA1g1L8Snv3z02VlnswAEawg7lKVLb5zvOeVNrWPwxXyvHTaImbnhmi0ANlWXFcYz88ue7zVj8WxcNsgw0-fc_WT_mv7BEXqY4wx8wA-rplHE-khKpeTDJfCS9TwSxLv3Y1K4xJalnV3voZ4Pnuty7rBII8fIwyL8cgqA5lC_UMqk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex items-end p-6">
+<p class="text-white font-bold font-display text-lg">"Fashion is the armor to survive the reality of everyday life."</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Unified Purple Footer -->
+<footer class="bg-primary text-white pt-16 pb-8 font-display">
+<div class="mx-auto max-w-[1440px] px-6 lg:px-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+<!-- Brand -->
+<div class="space-y-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[32px]">diamond</span>
+<h2 class="text-2xl font-bold tracking-tight">tsgabrielle®</h2>
+</div>
+<p class="text-primary-light/80 text-sm leading-relaxed max-w-xs">
+                        Redefining luxury through the lens of inclusivity and modern identity. Designed in Paris for the bold and the authentic.
+                    </p>
+<div class="flex gap-4">
+<a class="h-10 w-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white hover:text-primary transition-all" href="#">
+<!-- Placeholder for social icon, using text for now or generic shape -->
+<span class="font-bold text-lg">Ig</span>
+</a>
+<a class="h-10 w-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white hover:text-primary transition-all" href="#">
+<span class="font-bold text-lg">Tt</span>
+</a>
+<a class="h-10 w-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white hover:text-primary transition-all" href="#">
+<span class="font-bold text-lg">Li</span>
+</a>
+</div>
+</div>
+<!-- Shop -->
+<div>
+<h3 class="font-bold text-lg mb-6">Shop</h3>
+<ul class="space-y-4 text-primary-light/80 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">New Arrivals</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Best Sellers</a></li>
+<li><a class="hover:text-white transition-colors" href="#">The Collection</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Accessories</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Gift Cards</a></li>
+</ul>
+</div>
+<!-- Company -->
+<div>
+<h3 class="font-bold text-lg mb-6">Company</h3>
+<ul class="space-y-4 text-primary-light/80 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">Our Story</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Sustainability</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Press</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Contact Us</a></li>
+</ul>
+</div>
+<!-- Newsletter -->
+<div>
+<h3 class="font-bold text-lg mb-6">Stay in the Loop</h3>
+<p class="text-primary-light/80 text-sm mb-4">Subscribe to receive updates, access to exclusive deals, and more.</p>
+<form class="flex flex-col gap-2">
+<input class="bg-white/10 border border-white/20 rounded-lg px-4 py-3 text-white placeholder-white/50 focus:outline-none focus:bg-white/20 focus:border-white/50 transition-all" placeholder="Your email address" type="email"/>
+<button class="bg-white text-primary font-bold rounded-lg px-4 py-3 hover:bg-primary-light transition-colors" type="submit">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-primary-light/60">
+<p>© 2024 tsgabrielle®. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-white transition-colors" href="#">Shipping &amp; Returns</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
