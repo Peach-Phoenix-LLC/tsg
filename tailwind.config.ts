@@ -18,12 +18,14 @@ const config: Config = {
                 'background-dark': '#1d131f',
                 "brand-gray": "#e7e7e7",
                 "accent-purple": "#a932bd",
+                "accent-blue": "#1111d4",
                 "holo-pink": "#ffb6ff",
                 "holo-cyan": "#b3ffff",
                 "holo-silver": "#f0f0f0",
                 accent: {
                     cyan: '#00dbde',
                     pink: '#fc00ff',
+                    blue: '#1111d4',
                 }
             },
             fontFamily: {
@@ -32,6 +34,7 @@ const config: Config = {
                 serif: ["Lato", "sans-serif"],
                 body: ["Lato", "sans-serif"],
                 lato: ["Lato", "sans-serif"],
+                manrope: ["Manrope", "sans-serif"],
             },
             borderRadius: {
                 DEFAULT: '0.25rem',
