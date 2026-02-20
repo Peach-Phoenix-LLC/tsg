@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function CheckoutForm() {
     return (
@@ -10,7 +11,11 @@ export default function CheckoutForm() {
             <form className="space-y-12">
 
                 {/* 1. Contact Information */}
-                <div>
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                >
                     <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                         <span className="w-6 h-6 rounded-full bg-accent-blue text-white flex items-center justify-center text-xs font-bold">1</span>
                         Contact
@@ -25,10 +30,14 @@ export default function CheckoutForm() {
                             <label htmlFor="newsletter" className="text-sm text-gray-600">Email me with news and offers</label>
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* 2. Shipping Address */}
-                <div>
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                >
                     <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                         <span className="w-6 h-6 rounded-full bg-accent-blue text-white flex items-center justify-center text-xs font-bold">2</span>
                         Shipping
@@ -72,10 +81,14 @@ export default function CheckoutForm() {
                             <input type="tel" placeholder="Phone" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors" />
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* 3. Shipping Method */}
-                <div>
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                >
                     <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                         <span className="w-6 h-6 rounded-full bg-accent-blue text-white flex items-center justify-center text-xs font-bold">3</span>
                         Delivery Method
@@ -104,10 +117,14 @@ export default function CheckoutForm() {
                             <span className="font-bold text-sm text-gray-900">$35.00</span>
                         </label>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* 4. Payment */}
-                <div>
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                >
                     <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
                         <span className="w-6 h-6 rounded-full bg-accent-blue text-white flex items-center justify-center text-xs font-bold">4</span>
                         Payment
@@ -139,7 +156,7 @@ export default function CheckoutForm() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </form>
         </div>
     );

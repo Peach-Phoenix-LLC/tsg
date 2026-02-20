@@ -1,5 +1,6 @@
 "use client";
 import React from 'react';
+import { motion } from 'framer-motion';
 import { cartMockData } from '@/data/cartMockData';
 import Link from 'next/link';
 
@@ -15,8 +16,14 @@ export default function CartItems() {
 
             {/* Item List */}
             <div className="divide-y divide-gray-100">
-                {cartMockData.items.map((item) => (
-                    <div key={item.id} className="py-8 flex flex-col sm:flex-row gap-6">
+                {cartMockData.items.map((item, index) => (
+                    <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.4, delay: index * 0.1 }}
+                        key={item.id}
+                        className="py-8 flex flex-col sm:flex-row gap-6"
+                    >
 
                         {/* Image */}
                         <div className="w-full sm:w-32 md:w-40 h-40 md:h-48 bg-gray-50 rounded-xl overflow-hidden flex-shrink-0">
@@ -57,7 +64,7 @@ export default function CartItems() {
                                 <button className="text-gray-400 hover:text-accent-blue transition-colors focus:outline-none p-1"><span className="material-symbols-outlined text-[16px]">add</span></button>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
 
