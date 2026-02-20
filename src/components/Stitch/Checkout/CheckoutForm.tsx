@@ -1,14 +1,80 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useCartStore } from '@/lib/store';
+import { createOrderAction } from '@/app/actions/order';
 
 export default function CheckoutForm() {
+    const { items, clearCart } = useCartStore();
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState(false);
+    const [orderId, setOrderId] = useState<string | null>(null);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (items.length === 0) {
+            setError("Your cart is empty.");
+            return;
+        }
+
+        setIsSubmitting(true);
+        setError(null);
+
+        try {
+            // In a real app, you would pass the form data (shipping/billing) here as well
+            const formData = new FormData(e.target as HTMLFormElement);
+            const result = await createOrderAction(formData, items);
+
+            if (result.success) {
+                setSuccess(true);
+                setOrderId(result.orderId || null);
+                clearCart();
+            } else {
+                setError(result.error || "An error occurred during checkout.");
+            }
+        } catch (err) {
+            setError("An unexpected error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    if (success) {
+        return (
+            <div className="flex-1 lg:pr-12 xl:pr-16 text-center py-20">
+                <motion.div
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <span className="material-symbols-outlined text-green-600 text-4xl">check_circle</span>
+                    </div>
+                    <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-4">Order Confirmed!</h1>
+                    <p className="text-gray-600 mb-8">Thank you for your purchase. Your order #{orderId?.substring(0, 8)} is being processed.</p>
+                    <a href="/" className="inline-block bg-accent-blue hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all shadow-md hover:shadow-lg">
+                        Return to Home
+                    </a>
+                </motion.div>
+            </div>
+        );
+    }
+
     return (
         <div className="flex-1 lg:pr-12 xl:pr-16">
 
             <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-8">Secure Checkout</h1>
 
-            <form className="space-y-12">
+            {error && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg flex items-start gap-3">
+                    <span className="material-symbols-outlined text-[20px]">error</span>
+                    <p className="text-sm font-medium">{error}</p>
+                </div>
+            )}
+
+            <form className="space-y-12" onSubmit={handleSubmit}>
 
                 {/* 1. Contact Information */}
                 <motion.div
@@ -157,6 +223,15 @@ export default function CheckoutForm() {
                         </div>
                     </div>
                 </motion.div>
+
+                {/* Submit Buttom block since we are managing it here now due to form context */}
+                <button
+                    type="submit"
+                    disabled={isSubmitting || items.length === 0}
+                    className={`w-full block text-center text-white py-4 md:py-5 rounded-xl font-bold uppercase tracking-widest text-sm transition-all shadow-[0_4px_15px_rgba(17,17,212,0.3)] ${isSubmitting || items.length === 0 ? 'bg-gray-400 cursor-not-allowed shadow-none' : 'bg-accent-blue hover:bg-blue-800 hover:shadow-[0_6px_20px_rgba(17,17,212,0.4)] hover:-translate-y-0.5'}`}
+                >
+                    {isSubmitting ? 'Processing...' : 'Place Order & Pay'}
+                </button>
             </form>
         </div>
     );

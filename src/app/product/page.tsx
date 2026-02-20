@@ -5,8 +5,22 @@ import ProductGallery from '@/components/Stitch/Product/ProductGallery';
 import ProductInfo from '@/components/Stitch/Product/ProductInfo';
 import CompleteTheLook from '@/components/Stitch/Product/CompleteTheLook';
 import { pdpMockData } from '@/data/pdpMockData';
+import { prisma } from '@/lib/prisma';
 
-export default function ProductDetailPage() {
+export const dynamic = 'force-dynamic';
+
+export default async function ProductDetailPage() {
+    // For demo purposes, we'll fetch the first Transcendent product
+    const product = await prisma.product.findFirst({
+        where: {
+            category: 'Transcendent Collection',
+        }
+    });
+
+    if (!product) {
+        return <div>Product not found</div>;
+    }
+
     return (
         <main className="min-h-screen bg-white selection:bg-accent-blue/30 selection:text-white font-manrope">
             {/* Global Navbar */}
@@ -20,12 +34,13 @@ export default function ProductDetailPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
                     {/* Left: Interactive Gallery */}
                     <div className="lg:pr-8 border-r-0 lg:border-r border-gray-100">
+                        {/* We use the mock gallery images as Prisma only has one image_url for now */}
                         <ProductGallery images={pdpMockData.images} />
                     </div>
 
                     {/* Right: Product Details, Selection, Actions, Specs */}
                     <div>
-                        <ProductInfo />
+                        <ProductInfo product={product} />
                     </div>
                 </div>
 

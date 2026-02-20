@@ -1,7 +1,4 @@
-"use client";
-
 import React from 'react';
-import { motion } from 'framer-motion';
 import ModernNavbar from '@/components/Home/ModernNavbar';
 import Reviews from '@/components/Home/Reviews';
 import ModernFooter from '@/components/Home/ModernFooter';
@@ -9,55 +6,29 @@ import HoloHero from '@/components/Stitch/HoloHero';
 import HoloCategories from '@/components/Stitch/HoloCategories';
 import HoloPhilosophy from '@/components/Stitch/HoloPhilosophy';
 import HoloCollections from '@/components/Stitch/HoloCollections';
+import { prisma } from '@/lib/prisma';
+import PageAnimations from './PageAnimations'; // We will create this wrapper for client-side animations
 
-export default function Home() {
+export const dynamic = 'force-dynamic';
+
+export default async function Home() {
+  // Fetch live products from Supabase via Prisma
+  const products = await prisma.product.findMany({
+    take: 4, // Fetch top 4 core collections
+    orderBy: { createdAt: 'asc' },
+  });
+
   return (
     <main className="min-h-screen bg-background-light selection:bg-accent-purple/30 selection:text-white">
       <ModernNavbar />
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      >
+      <PageAnimations>
         <HoloHero />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1, ease: "easeOut" }}
-      >
         <HoloCategories />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-      >
         <HoloPhilosophy />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-      >
-        <HoloCollections />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-      >
+        <HoloCollections products={products} />
         <Reviews />
-      </motion.div>
+      </PageAnimations>
 
       <ModernFooter />
     </main>
