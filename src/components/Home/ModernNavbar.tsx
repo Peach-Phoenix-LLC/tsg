@@ -31,9 +31,11 @@ const ModernNavbar = () => {
 
                 {/* Logo (Centered) */}
                 <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group">
-                    <h1 className="text-2xl font-bold tracking-tighter text-slate-900 group-hover:text-primary transition-colors">
-                        tsgabrielle<span className="align-top text-[10px] font-normal">®</span>
-                    </h1>
+                    <img
+                        src="/images/logo-purple.png"
+                        alt="tsgabrielle logo"
+                        className="h-8 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                    />
                 </Link>
 
                 {/* Right Icons */}
