@@ -7,6 +7,7 @@ import CuratedCollections from '@/components/Home/CuratedCollections';
 import Reviews from '@/components/Home/Reviews';
 import ModernFooter from '@/components/Home/ModernFooter';
 
+// BUILD TRIGGER: 2026-02-20
 export default function Home() {
   return (
     <main className="min-h-screen bg-background-light selection:bg-primary/30">
