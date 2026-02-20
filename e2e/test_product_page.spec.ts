@@ -4,8 +4,8 @@ test('Iridescence Product Page loads and shows Add to Bag', async ({ page }) => 
     // Set viewport to ensure we are in desktop mode where the panel logic works reliably
     await page.setViewportSize({ width: 1280, height: 800 });
 
-    // Navigate to the Iridescence collection landing page
-    await page.goto('/collections/iridescence');
+    // Navigate to a real product page
+    await page.goto('/product/tsg-acc-001');
 
     // Trigger scroll to make the sticky panel appear
     // We'll scroll incrementally to simulate user behavior which might trigger the event listener better
@@ -24,7 +24,7 @@ test('Iridescence Product Page loads and shows Add to Bag', async ({ page }) => 
     await expect(addToBagBtn).toBeVisible({ timeout: 15000 });
 
     // Verify Title is present (anywhere on page, but implying context)
-    await expect(page.getByText('Luna Clutch').first()).toBeVisible();
+    await expect(page.getByText(/Holographic Silk Scarf/i).first()).toBeVisible();
 
     // Click the button
     await addToBagBtn.click();
