@@ -84,10 +84,10 @@ export default function Pride25Page() {
                             <p className="text-white/40 text-sm mb-8">{infoPanel.footer}</p>
                             <Link
                                 href="/cart"
-                                className="btn-high-vis-wrapper block w-full no-underline"
+                                className="btn-high-vis-wrapper"
                                 style={{ background: 'linear-gradient(45deg, #ff0000, #ffeb3b, #2196f3, #9c27b0)' }}
                             >
-                                <button className="btn-high-vis py-4 rounded-full uppercase tracking-widest text-xs hover:tracking-[0.2em] transition-all">
+                                <button className="btn-high-vis">
                                     {infoPanel.cta}
                                 </button>
                             </Link>

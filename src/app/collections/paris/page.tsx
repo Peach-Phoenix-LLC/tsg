@@ -84,10 +84,10 @@ export default function ParisPage() {
                             <p className="text-white/40 text-sm mb-8">{infoPanel.footer}</p>
                             <Link
                                 href="/cart"
-                                className="btn-high-vis-wrapper block w-full no-underline"
+                                className="btn-high-vis-wrapper"
                                 style={{ background: 'linear-gradient(45deg, #2c3e50, #3498db, #ecf0f1, #2c3e50)' }}
                             >
-                                <button className="btn-high-vis py-4 rounded-full uppercase tracking-widest text-xs hover:shadow-blue-500/50 transition-all">
+                                <button className="btn-high-vis">
                                     {infoPanel.cta}
                                 </button>
                             </Link>

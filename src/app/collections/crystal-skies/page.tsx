@@ -88,10 +88,10 @@ export default function CrystalSkiesPage() {
                             <p className="text-slate-400 text-sm mb-8">{infoPanel.footer}</p>
                             <Link
                                 href="/cart"
-                                className="btn-high-vis-wrapper block w-full no-underline"
+                                className="btn-high-vis-wrapper"
                                 style={{ background: 'linear-gradient(45deg, #e0f7fa, #80deea, #ffffff, #80deea)' }}
                             >
-                                <button className="btn-high-vis py-4 rounded-full uppercase tracking-widest text-xs bg-cyan-500 hover:bg-cyan-600 transition-all">
+                                <button className="btn-high-vis">
                                     {infoPanel.cta}
                                 </button>
                             </Link>

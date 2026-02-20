@@ -2,37 +2,38 @@ import React from 'react';
 
 const NewHero = () => {
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-white">
-            {/* Background Decoration */}
-            <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
-                <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-multiply filter blur-[128px] animate-float"></div>
-                <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-400 rounded-full mix-blend-multiply filter blur-[128px] animate-float" style={{ animationDelay: '2s' }}></div>
-            </div>
-
-            <div className="relative z-10 text-center px-6 max-w-5xl mx-auto flex flex-col items-center gap-8">
-                <h1 className="liquid-text bg-liquid-text text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none pb-4 font-display">
-                    Artistic<br />expression
-                </h1>
-                <p className="text-lg md:text-xl font-light text-slate-600 max-w-2xl leading-relaxed font-display">
-                    Fashion that empowers. Transcending boundaries through artistic expression and fluid design.
+        <section className="relative min-h-[90vh] flex flex-col items-center justify-center pt-32 pb-20 overflow-hidden bg-white">
+            <div className="relative z-10 text-center px-8 max-w-6xl mx-auto flex flex-col items-center gap-10">
+                <div className="space-y-4 animate-fade-in">
+                    <span className="text-[10px] uppercase tracking-[0.5em] text-accent font-medium">Paris — New York — Worldwide</span>
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-primary tracking-tight leading-[1.1]">
+                        The Art of<br />
+                        <span className="italic font-light">Refined Expression</span>
+                    </h1>
+                </div>
+                
+                <p className="text-sm md:text-base font-light text-primary/60 max-w-xl leading-relaxed tracking-wide animate-fade-in [animation-delay:200ms]">
+                    Fashion that transcends boundaries. Discover our signature collections designed for the confident, the artistic, and the international.
                 </p>
-                <div className="pt-8">
+
+                <div className="pt-6 animate-fade-in [animation-delay:400ms]">
                     <a
-                        href="#"
-                        className="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white transition-all duration-300 bg-primary rounded-full hover:shadow-2xl hover:shadow-primary/40 overflow-hidden hover:-translate-y-1"
+                        href="/collections"
+                        className="group relative inline-flex items-center justify-center px-12 py-4 text-[11px] uppercase tracking-[0.3em] font-medium text-white bg-primary transition-all duration-500 hover:bg-primary/90"
                     >
-                        <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-                        <span className="relative flex items-center gap-2">
-                            Explore now
-                            <span className="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                        </span>
+                        Explore Collection
+                        <span className="ml-4 material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">east</span>
                     </a>
                 </div>
             </div>
 
+            {/* Subtle Vignette */}
+            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(245,245,240,0.2)_100%)]"></div>
+
             {/* Scroll Indicator */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-slate-400">
-                <span className="material-symbols-outlined">keyboard_arrow_down</span>
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 opacity-30">
+                <span className="text-[9px] uppercase tracking-[0.3em] rotate-90 origin-left translate-x-1 translate-y-4">Scroll</span>
+                <div className="w-[1px] h-12 bg-primary"></div>
             </div>
         </section>
     );

@@ -36,20 +36,22 @@ const HotspotCampaign = () => {
     const [activeHotspot, setActiveHotspot] = useState<string | null>(null);
 
     return (
-        <section className="py-24 px-6 bg-white overflow-hidden">
+        <section className="py-32 px-8 bg-white overflow-hidden">
             <div className="max-w-[1400px] mx-auto">
-                <div className="mb-12">
-                    <h2 className="text-3xl font-bold tracking-tight text-slate-900">Discover the Look</h2>
-                    <p className="text-slate-500 mt-2">Tap the points to explore our signature silhouettes.</p>
+                <div className="mb-16 space-y-4">
+                    <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-medium">Interactive Experience</span>
+                    <h2 className="text-4xl md:text-5xl font-serif text-primary tracking-tight">Discover the Look</h2>
+                    <p className="text-sm font-light text-primary/60 max-w-md leading-relaxed tracking-wide">
+                        Explore segments of our meticulously crafted silhouettes. Tap to view details.
+                    </p>
                 </div>
 
-                <div className="relative aspect-[16/9] w-full rounded-3xl overflow-hidden group shadow-2xl">
+                <div className="relative aspect-[16/9] w-full overflow-hidden group">
                     <img
                         src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop"
-                        alt="High-fashion campaign image"
-                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                        alt="Luxury campaign"
+                        className="w-full h-full object-cover grayscale-[0.2] transition-transform duration-1000 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-black/10 transition-opacity duration-500 group-hover:bg-black/20"></div>
 
                     {hotspots.map((spot) => (
                         <div
@@ -58,29 +60,27 @@ const HotspotCampaign = () => {
                             style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
                         >
                             <div className="relative group/hotspot">
-                                {/* Invisible larger touch target for mobile */}
                                 <div
-                                    className="absolute -inset-4 z-10 cursor-pointer"
+                                    className="absolute -inset-6 z-10 cursor-pointer"
                                     onClick={() => setActiveHotspot(activeHotspot === spot.id ? null : spot.id)}
                                 />
                                 <button
-                                    className={`hotspot-point pointer-events-none ${activeHotspot === spot.id ? 'scale-125' : ''}`}
-                                    aria-label={`View ${spot.productName}`}
+                                    className={`w-3 h-3 rounded-full bg-accent border border-white/50 transition-all duration-500 gold-glow ${activeHotspot === spot.id ? 'scale-150 bg-white' : 'scale-100'}`}
                                 />
                             </div>
 
                             {activeHotspot === spot.id && (
-                                <div className="absolute top-8 left-1/2 -translate-x-1/2 z-30 animate-in fade-in zoom-in duration-300">
-                                    <div className="glass-card p-4 rounded-2xl min-w-[200px] shadow-xl border border-white/40">
-                                        <p className="text-xs font-bold text-primary uppercase tracking-widest mb-1">Featured</p>
-                                        <h3 className="text-sm font-bold text-slate-900 leading-tight">{spot.productName}</h3>
-                                        <p className="text-sm font-medium text-slate-500 mt-1">{spot.price}</p>
+                                <div className="absolute top-10 left-1/2 -translate-x-1/2 z-30 animate-fade-in">
+                                    <div className="bg-white p-6 min-w-[240px] border border-black/5 shadow-2xl relative">
+                                        <p className="text-[9px] uppercase tracking-[0.3em] text-accent mb-3">Signature Piece</p>
+                                        <h3 className="text-base font-serif text-primary mb-1">{spot.productName}</h3>
+                                        <p className="text-[11px] font-light text-primary/60 tracking-wider mb-6">{spot.price}</p>
                                         <Link
                                             href={`/product/${spot.productId}`}
-                                            className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline"
+                                            className="luxury-link text-[10px] uppercase tracking-[0.2em] font-medium text-primary inline-flex items-center group/btn"
                                         >
-                                            Shop Now
-                                            <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                                            View Details
+                                            <span className="ml-2 material-symbols-outlined text-[14px] group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
                                         </Link>
                                     </div>
                                 </div>

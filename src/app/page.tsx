@@ -1,4 +1,7 @@
+"use client";
+
 import React from 'react';
+import { motion } from 'framer-motion';
 import ModernNavbar from '@/components/Home/ModernNavbar';
 import NewHero from '@/components/Home/NewHero';
 import Narrative from '@/components/Home/Narrative';
@@ -7,16 +10,55 @@ import CuratedCollections from '@/components/Home/CuratedCollections';
 import Reviews from '@/components/Home/Reviews';
 import ModernFooter from '@/components/Home/ModernFooter';
 
-// BUILD TRIGGER: 2026-02-20
 export default function Home() {
   return (
-    <main className="min-h-screen bg-background-light selection:bg-primary/30">
+    <main className="min-h-screen bg-white selection:bg-accent/30 selection:text-white">
       <ModernNavbar />
-      <NewHero />
-      <Narrative />
-      <HotspotCampaign />
-      <CuratedCollections />
-      <Reviews />
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        <NewHero />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1, ease: "easeOut" }}
+      >
+        <Narrative />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
+        <HotspotCampaign />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
+        <CuratedCollections />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
+        <Reviews />
+      </motion.div>
+
       <ModernFooter />
     </main>
   );

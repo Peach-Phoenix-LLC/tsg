@@ -20,9 +20,11 @@ const Manifesto = () => {
                 <p className={styles.text}>
                     Be the first to know about new collections, exclusive offers, and behind-the-scenes stories from the world of tsgabrielle®.
                 </p>
-                <button className={styles.btn}>
-                    Sign Up
-                </button>
+                <div className="max-w-xs mx-auto mt-8">
+                    <button className="btn-high-vis">
+                        Sign Up
+                    </button>
+                </div>
             </div>
         </section>
     );

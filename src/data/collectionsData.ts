@@ -22,14 +22,14 @@ export const collections: Collection[] = [
         path: '/collections/paris'
     },
     {
-        title: 'Unicorn 🦄',
+        title: 'Unicorn',
         count: '15 pieces',
         image: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=800',
         description: 'Irridescent fabrics and mythical aesthetics.',
         path: '/collections/iridescence'
     },
     {
-        title: 'Arizona 🌵',
+        title: 'Arizona',
         count: '11 pieces',
         image: 'https://images.unsplash.com/photo-1469074062102-149f1ad63af7?auto=format&fit=crop&q=80&w=800',
         description: 'Desert tones meet high-tech utility.',
@@ -57,14 +57,14 @@ export const collections: Collection[] = [
         path: '/collections/transflower'
     },
     {
-        title: 'Flamant 🦩 Rose',
+        title: 'Flamant Rose',
         count: '16 pieces',
         image: 'https://images.unsplash.com/photo-1516589174184-c685ca30d274?auto=format&fit=crop&q=80&w=800',
         description: 'Vibrant pinks and lightweight summer layers.',
         path: '/collections/flamant-rose'
     },
     {
-        title: '🌌✨ Édition Spatiale • Cosmic Edition',
+        title: 'Édition Spatiale • Cosmic Edition',
         count: '20 pieces',
         image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800',
         description: 'Out-of-this-world textures and astronomical detail.',
@@ -78,7 +78,7 @@ export const collections: Collection[] = [
         path: '/collections/crystal-skies'
     },
     {
-        title: '🌈Pride 25',
+        title: 'Pride 25',
         count: '30 pieces',
         image: 'https://images.unsplash.com/photo-1541336032412-2048a678540d?auto=format&fit=crop&q=80&w=800',
         description: 'Vibrant, inclusive designs celebrating diversity.',
@@ -99,7 +99,7 @@ export const collections: Collection[] = [
         path: '/collections/made-in-usa'
     },
     {
-        title: '❄️ Glow in Winter 26',
+        title: 'Glow in Winter 26',
         count: '15 pieces',
         image: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?auto=format&fit=crop&q=80&w=800',
         description: 'Luminescent fabrics for the peak of winter.',

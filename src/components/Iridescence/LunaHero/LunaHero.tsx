@@ -62,8 +62,8 @@ export const LunaHero = () => {
                     </div>
                     <div className="w-full flex flex-col items-center gap-4">
                         <span className="text-3xl font-bold tracking-tight text-[#1a1a1a]">{LUNA_CLUTCH_DATA.price}</span>
-                        <div className="btn-high-vis-wrapper w-full">
-                            <button className="btn-high-vis py-4 rounded-full uppercase tracking-widest text-sm">
+                        <div className="btn-high-vis-wrapper">
+                            <button className="btn-high-vis">
                                 Add to bag
                             </button>
                         </div>

@@ -87,10 +87,10 @@ export default function Winter26Page() {
                             <p className="text-white/40 text-sm mb-8">{infoPanel.footer}</p>
                             <Link
                                 href="/cart"
-                                className="btn-high-vis-wrapper block w-full no-underline"
+                                className="btn-high-vis-wrapper"
                                 style={{ background: 'linear-gradient(45deg, #81d4fa, #e1f5fe, #4fc3f7, #81d4fa)' }}
                             >
-                                <button className="btn-high-vis py-4 rounded-full uppercase tracking-widest text-xs hover:shadow-cyan-500/50 transition-all">
+                                <button className="btn-high-vis">
                                     {infoPanel.cta}
                                 </button>
                             </Link>

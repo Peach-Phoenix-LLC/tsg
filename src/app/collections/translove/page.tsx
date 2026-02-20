@@ -84,10 +84,10 @@ export default function TransLovePage() {
                             <p className="text-slate-400 text-sm mb-8">{infoPanel.footer}</p>
                             <Link
                                 href="/cart"
-                                className="btn-high-vis-wrapper block w-full no-underline"
+                                className="btn-high-vis-wrapper"
                                 style={{ background: 'linear-gradient(45deg, #5bcefa, #f5abb9, #ffffff, #5bcefa)' }}
                             >
-                                <button className="btn-high-vis py-4 rounded-full uppercase tracking-widest text-xs bg-pink-400 hover:bg-pink-500 transition-all text-white">
+                                <button className="btn-high-vis">
                                     {infoPanel.cta}
                                 </button>
                             </Link>

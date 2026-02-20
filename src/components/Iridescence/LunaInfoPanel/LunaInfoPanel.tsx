@@ -41,8 +41,8 @@ export const LunaInfoPanel = () => {
                     </div>
                 </div>
 
-                <div className="btn-high-vis-wrapper w-full">
-                    <button className="btn-high-vis py-3 px-6 rounded-full uppercase tracking-widest text-sm w-full">
+                <div className="btn-high-vis-wrapper">
+                    <button className="btn-high-vis">
                         Add to bag
                     </button>
                 </div>

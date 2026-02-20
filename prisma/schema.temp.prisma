@@ -1,0 +1,72 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = "postgresql://postgres:P%40risAZ2026%2A@db.fsfrihuhqjwrkvftgkzj.supabase.co:6543/postgres?pgbouncer=true"
+  directUrl = "postgresql://postgres:P%40risAZ2026%2A@db.fsfrihuhqjwrkvftgkzj.supabase.co:5432/postgres?schema=public"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
+model Profile {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  full_name String?
+  email     String   @unique
+  role      Role     @default(USER)
+  createdAt DateTime @default(now()) @map("created_at")
+  orders    Order[]
+
+  @@map("profiles")
+}
+
+model Product {
+  id              String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name            String
+  description     String
+  price           Decimal     @db.Decimal(10, 2)
+  category        String
+  image_url       String?
+  stock           Int         @default(0)
+  seo_title       String?
+  seo_description String?
+  createdAt       DateTime    @default(now()) @map("created_at")
+  order_items     OrderItem[]
+
+  @@map("products")
+}
+
+model Order {
+  id              String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id         String?     @db.Uuid
+  total_amount    Decimal     @db.Decimal(10, 2)
+  status          OrderStatus @default(PENDING)
+  paypal_order_id String?     @unique
+  created_at      DateTime    @default(now())
+  profile         Profile?    @relation(fields: [user_id], references: [id])
+  items           OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id         String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  order_id   String  @db.Uuid
+  product_id String  @db.Uuid
+  quantity   Int
+  price      Decimal @db.Decimal(10, 2)
+  order      Order   @relation(fields: [order_id], references: [id])
+  product    Product @relation(fields: [product_id], references: [id])
+
+  @@map("order_items")
+}

@@ -21,42 +21,39 @@ const collections = [
 
 const CuratedCollections = () => {
     return (
-        <section className="py-24 px-6 bg-white">
+        <section className="py-32 px-8 bg-[#FDFCF8]">
             <div className="max-w-[1400px] mx-auto">
-                <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-                    <div>
-                        <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-2">Curated Collections</h2>
-                        <p className="text-slate-500">Discover the pieces that define the season.</p>
+                <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+                    <div className="space-y-4">
+                        <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-medium">Seasonal Curation</span>
+                        <h2 className="text-4xl md:text-5xl font-serif text-primary tracking-tight">Curated Collections</h2>
+                        <p className="text-sm font-light text-primary/60 max-w-md leading-relaxed tracking-wide">
+                            Discover the architectural pieces that define our current season of expression.
+                        </p>
                     </div>
-                    <a href="#" className="hidden md:inline-flex items-center gap-2 text-sm font-bold text-slate-900 hover:text-primary transition-colors">
-                        View all collections
-                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                    <a href="/collections" className="luxury-link text-[10px] uppercase tracking-[0.3em] font-medium text-primary inline-flex items-center group">
+                        View All Collections
+                        <span className="ml-4 material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">east</span>
                     </a>
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1">
                     {collections.map((item, index) => (
-                        <a key={index} href="#" className="group flex flex-col items-center gap-6">
-                            <div className="holographic-border p-1 transition-transform duration-300 group-hover:-translate-y-2">
-                                <div className="w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden">
-                                    <img
-                                        src={item.img}
-                                        alt={item.title}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                    />
-                                </div>
-                            </div>
-                            <div className="text-center">
-                                <h3 className="text-lg font-bold text-slate-900 group-hover:text-primary transition-colors">{item.title}</h3>
-                                <span className="text-sm text-slate-500 font-medium mt-1 block">Shop Now</span>
+                        <a key={index} href={`/collections/${item.title.toLowerCase()}`} className="group relative aspect-[3/4] overflow-hidden bg-white">
+                            <img
+                                src={item.img}
+                                alt={item.title}
+                                className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110 grayscale-[0.3] group-hover:grayscale-0"
+                            />
+                            <div className="absolute inset-0 bg-black/5 transition-opacity duration-700 group-hover:opacity-0"></div>
+
+                            <div className="absolute inset-x-0 bottom-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-700">
+                                <h3 className="text-xl font-serif text-white tracking-widest drop-shadow-lg">{item.title}</h3>
+                                <div className="mt-4 w-0 group-hover:w-full h-[1px] bg-white transition-all duration-700 origin-left"></div>
+                                <span className="text-[9px] uppercase tracking-[0.4em] text-white/70 mt-4 block opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">Shop Now</span>
                             </div>
                         </a>
                     ))}
-                </div>
-                <div className="mt-12 text-center md:hidden">
-                    <a href="#" className="inline-flex items-center gap-2 text-sm font-bold text-slate-900 hover:text-primary transition-colors">
-                        View all collections
-                        <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                    </a>
                 </div>
             </div>
         </section>

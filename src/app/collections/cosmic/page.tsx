@@ -62,8 +62,8 @@ export default function CosmicLandingPage() {
                     </div>
                     <div className="w-full flex flex-col items-center gap-4">
                         <span className="text-4xl font-bold tracking-tighter text-white">{COSMIC_EDITION_DATA.price}</span>
-                        <div className="btn-high-vis-wrapper w-full" style={{ padding: '2px', background: 'linear-gradient(135deg, #00d4ff, #6a0dad, #ff00cc, #00d4ff)' }}>
-                            <button className="btn-high-vis py-4 px-12 rounded-full uppercase tracking-widest text-sm bg-[#100811] hover:bg-transparent transition-all">
+                        <div className="btn-high-vis-wrapper">
+                            <button className="btn-high-vis">
                                 Reserve for orbit
                             </button>
                         </div>

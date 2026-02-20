@@ -23,37 +23,39 @@ const reviews = [
 
 const Reviews = () => {
     return (
-        <section className="py-24 px-6 relative bg-slate-50 overflow-hidden">
-            {/* Background gradient blobs */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-200/40 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-pink-200/40 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-            </div>
-
+        <section className="py-32 px-8 relative bg-white overflow-hidden">
             <div className="max-w-[1400px] mx-auto relative z-10">
-                <div className="flex items-center gap-2 mb-10">
-                    <span className="material-symbols-outlined text-primary">verified</span>
-                    <h2 className="text-2xl font-bold text-slate-900">Trusted by You</h2>
+                <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                    <div className="space-y-4">
+                        <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-medium">Testimonials</span>
+                        <h2 className="text-4xl md:text-5xl font-serif text-primary tracking-tight">The Gabrielle Experience</h2>
+                    </div>
+                    <div className="flex items-center gap-2 pb-2 border-b border-black/5">
+                        <span className="material-symbols-outlined text-accent text-[20px]">verified</span>
+                        <span className="text-[10px] uppercase tracking-[0.2em] text-primary/60 font-medium">Verified by Our Community</span>
+                    </div>
                 </div>
 
-                <div className="flex gap-6 overflow-x-auto no-scrollbar pb-8 snap-x snap-mandatory">
+                <div className="flex gap-1 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory">
                     {reviews.map((review, index) => (
-                        <div key={index} className="min-w-[300px] md:min-w-[400px] glass-card p-8 rounded-3xl snap-center transition-transform hover:-translate-y-1">
-                            <div className="flex gap-1 text-amber-400 mb-4">
+                        <div key={index} className="min-w-[320px] md:min-w-[450px] bg-[#FDFCF8] p-10 snap-center border border-black/5 hover:border-accent/20 transition-colors duration-500">
+                            <div className="flex gap-1 text-accent mb-8">
                                 {[...Array(5)].map((_, i) => (
-                                    <span key={i} className="material-symbols-outlined text-lg fill-current">
+                                    <span key={i} className="material-symbols-outlined text-[16px] fill-current">
                                         {i < Math.floor(review.rating) ? 'star' : (review.rating % 1 !== 0 && i === Math.floor(review.rating) ? 'star_half' : 'star_outline')}
                                     </span>
                                 ))}
                             </div>
-                            <p className="text-slate-700 font-light italic mb-6">{review.text}</p>
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
+                            <p className="text-base md:text-lg text-primary/80 font-light leading-relaxed tracking-wide italic mb-10">
+                                {review.text}
+                            </p>
+                            <div className="flex items-center gap-4 pt-6 border-t border-black/5">
+                                <div className="w-12 h-12 rounded-full overflow-hidden grayscale">
                                     <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-bold text-slate-900">{review.name}</p>
-                                    <p className="text-xs text-slate-500">Verified Buyer</p>
+                                    <p className="text-xs font-serif text-primary tracking-widest uppercase">{review.name}</p>
+                                    <p className="text-[10px] text-primary/40 uppercase tracking-tighter mt-1">Connoisseur</p>
                                 </div>
                             </div>
                         </div>

@@ -129,10 +129,10 @@ export default function PeachPhoenixPage() {
                             <div className="space-y-6 relative z-10">
                                 <Link
                                     href="/cart"
-                                    className="btn-high-vis-wrapper block w-full no-underline"
+                                    className="btn-high-vis-wrapper"
                                     style={{ background: 'linear-gradient(45deg, #FF7043, #FFD54F, #FFAB91, #FF7043)' }}
                                 >
-                                    <button className="btn-high-vis py-4 rounded-full uppercase tracking-widest text-xs hover:tracking-[0.2em] transition-all">
+                                    <button className="btn-high-vis">
                                         {infoPanel.cta}
                                     </button>
                                 </Link>

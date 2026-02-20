@@ -3,74 +3,70 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-}
-
-model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  role      Role     @default(CUSTOMER)
-  googleId  String?  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  orders    Order[]
-}
-
-model Product {
-  id          String           @id @default(cuid())
-  name        String
-  description String
-  price       Float
-  category    String
-  imageUrl    String?
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
-  orderItems  OrderItem[]
-  variants    ProductVariant[]
-}
-
-model ProductVariant {
-  id        String   @id @default(cuid())
-  sku       String   @unique
-  color     String?
-  size      String?
-  stock     Int      @default(0)
-  price     Float?
-  productId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  product   Product  @relation(fields: [productId], references: [id])
-}
-
-model Order {
-  id         String      @id @default(cuid())
-  userId     String?
-  status     String      @default("PENDING")
-  total      Float
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  address    String?
-  city       String?
-  firstName  String?
-  guestEmail String?
-  lastName   String?
-  zipCode    String?
-  user       User?       @relation(fields: [userId], references: [id])
-  items      OrderItem[]
-}
-
-model OrderItem {
-  id        String  @id @default(cuid())
-  orderId   String
-  productId String
-  quantity  Int
-  price     Float
-  order     Order   @relation(fields: [orderId], references: [id])
-  product   Product @relation(fields: [productId], references: [id])
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 enum Role {
-  CUSTOMER
+  USER
   ADMIN
+}
+
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+}
+
+model Profile {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  full_name String?
+  email     String   @unique
+  role      Role     @default(USER)
+  createdAt DateTime @default(now()) @map("created_at")
+  orders    Order[]
+
+  @@map("profiles")
+}
+
+model Product {
+  id              String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name            String
+  description     String
+  price           Decimal     @db.Decimal(10, 2)
+  category        String
+  image_url       String?
+  stock           Int         @default(0)
+  seo_title       String?
+  seo_description String?
+  createdAt       DateTime    @default(now()) @map("created_at")
+  order_items     OrderItem[]
+
+  @@map("products")
+}
+
+model Order {
+  id              String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id         String?     @db.Uuid
+  total_amount    Decimal     @db.Decimal(10, 2)
+  status          OrderStatus @default(PENDING)
+  paypal_order_id String?     @unique
+  created_at      DateTime    @default(now())
+  profile         Profile?    @relation(fields: [user_id], references: [id])
+  items           OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id         String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  order_id   String  @db.Uuid
+  product_id String  @db.Uuid
+  quantity   Int
+  price      Decimal @db.Decimal(10, 2)
+  order      Order   @relation(fields: [order_id], references: [id])
+  product    Product @relation(fields: [product_id], references: [id])
+
+  @@map("order_items")
 }

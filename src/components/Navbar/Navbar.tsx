@@ -21,16 +21,16 @@ const Navbar = () => {
                                 <Image
                                     src="/images/logo-white.png"
                                     alt="tsgabrielle® white logo"
-                                    width={120}
-                                    height={30}
+                                    width={160}
+                                    height={40}
                                     className={styles.logoWhite}
                                     priority
                                 />
                                 <Image
                                     src="/images/logo-purple.png"
                                     alt="tsgabrielle® purple logo"
-                                    width={120}
-                                    height={30}
+                                    width={160}
+                                    height={40}
                                     className={styles.logoPurple}
                                     priority
                                 />

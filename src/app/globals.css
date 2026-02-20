@@ -1,436 +1,112 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&family=Manrope:wght@200;300;400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap');
+@theme {
+    --color-primary: #121212;
+    /* Deep Black */
+    --color-secondary: #F5F5F0;
+    /* Warm White / Bone */
+    --color-accent: #C5A059;
+    /* Subtle Gold */
+    --color-beige-light: #FDFCF8;
+    --color-bg-main: #FFFFFF;
 
-:root {
-  /* Colors */
-  --primary: #a932bd;
-  --primary-dark: #8a209b;
-  --brand-yellow: #fef08a;
-  --brand-yellow-hover: #fde047;
-  --secondary: #5e6c84;
-  --background-light: #f7f6f8;
-  --background-dark: #100811;
-  /* More premium dark */
-  --foreground-light: #171717;
-  --foreground-dark: #ededed;
+    --font-serif: "Playfair Display", serif;
+    --font-sans: "Manrope", sans-serif;
 
-  --brand-gray: #e7e7e7;
-  --accent-purple: #a932bd;
-  --holo-pink: #ffb6ff;
-  --holo-cyan: #b3ffff;
-  --holo-silver: #f0f0f0;
+    --radius-DEFAULT: 0px;
+    --radius-sm: 2px;
 
-  /* Gradients */
-  --holo-gradient: linear-gradient(135deg, #a932bd 0%, #ffb6ff 50%, #b3ffff 100%);
-  --holo-gradient-intense: linear-gradient(45deg, #a932bd, #ff00ff, #00ffff, #a932bd);
-  --holo-border: linear-gradient(135deg, #a932bd, #b3ffff, #ffb6ff, #a932bd);
-  --holo-divider: linear-gradient(90deg, transparent, #ffb6ff, #b3ffff, #a932bd, transparent);
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-
-  /* Shadows */
-  --shadow-holo: 0 4px 15px -3px rgba(169, 50, 189, 0.3), 0 0 20px -5px rgba(179, 255, 255, 0.4);
-  --shadow-holo-hover: 0 10px 25px -3px rgba(169, 50, 189, 0.5), 0 0 30px -5px rgba(179, 255, 255, 0.6);
+    --animate-fade-in: fade-in 1s ease-out;
+    --animate-slide-up: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-[data-theme='dark'],
-:root {
-  --background: var(--background-dark);
-  --foreground: var(--foreground-dark);
-  --color-scheme: dark;
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
-[data-theme='light'] {
-  --background: var(--background-light);
-  --foreground: var(--foreground-light);
-  --color-scheme: light;
+@keyframes slide-up {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+:root {
+    --background: #FFFFFF;
+    --foreground: #121212;
+    --accent-gold: #C5A059;
+    --warm-white: #F5F5F0;
 }
 
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: 'Manrope', 'Lato', sans-serif;
-  scroll-behavior: smooth;
+    max-width: 100vw;
+    overflow-x: hidden;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Manrope', sans-serif;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
 }
 
-body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Typography */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
 }
 
-/* Animations */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%) skewX(-25deg);
-  }
-
-  50% {
-    transform: translateX(200%) skewX(-25deg);
-  }
-
-  100% {
-    transform: translateX(200%) skewX(-25deg);
-  }
+.luxury-link {
+    @apply relative overflow-hidden;
 }
 
-@keyframes holo-text {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+.luxury-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[1px] bg-current scale-x-0 transition-transform duration-500 origin-right;
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
-
-  100% {
-    transform: translateY(0px);
-  }
+.luxury-link:hover::after {
+    @apply scale-x-100 origin-left;
 }
 
-/* Utility Classes */
-.holo-gradient {
-  background: var(--holo-gradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  background-size: 200% auto;
-  animation: holo-text 5s ease infinite;
-}
+@layer components {
+    .btn-high-vis {
+        @apply py-4 px-8 rounded-sm uppercase tracking-widest text-[11px] border border-[#121212] bg-[#121212] text-white hover:bg-transparent hover:text-[#121212] transition-colors duration-500 w-full flex items-center justify-center font-bold text-center;
+    }
 
-.glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--glass-border);
-}
-
-/* Iridescence Design System Tokens */
-:root {
-  --primary: #ab2fc1;
-  --secondary: #a932bd;
-  --nav-dark: #32304d;
-  --glass: rgba(255, 255, 255, 0.4);
-  --glass-border: rgba(255, 255, 255, 0.5);
+    .btn-high-vis-wrapper {
+        @apply block w-full no-underline mt-4;
+    }
 }
 
 @layer utilities {
-  .liquid-text {
-    background-image: var(--liquid-bg, url("https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop"));
-    background-size: 200% auto;
-    background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-    animation: liquid-shimmer 8s linear infinite alternate;
-  }
-
-  @keyframes liquid-shimmer {
-    0% {
-      background-position: 0% center;
+    .glass-dark {
+        @apply bg-black/5 backdrop-blur-sm border border-black/10;
     }
 
-    100% {
-      background-position: 100% center;
+    .gold-glow {
+        box-shadow: 0 0 20px rgba(197, 160, 89, 0.15);
     }
-  }
-
-  .holo-button {
-    @apply relative overflow-hidden bg-white border-2 border-slate-200 transition-all duration-300 shadow-md;
-  }
-
-  .holo-button::before {
-    content: '';
-    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    background: linear-gradient(135deg, rgba(169, 50, 189, 0.1), rgba(0, 212, 255, 0.1));
-  }
-
-  .holo-button:hover::before {
-    @apply opacity-100;
-  }
-
-  .hotspot-point {
-    @apply w-4 h-4 rounded-full bg-white/40 border border-white cursor-pointer relative z-20 transition-all duration-300;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(169, 50, 189, 0.4);
-  }
-
-  .hotspot-point::after {
-    content: '';
-    @apply absolute inset-0 rounded-full bg-white animate-ping opacity-75;
-  }
-
-  .btn-high-vis {
-    @apply bg-[var(--brand-purple)] text-white font-bold relative z-[60] overflow-hidden w-full transition-all duration-300;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 10px 15px -3px rgba(169, 50, 189, 0.3);
-  }
-
-  .btn-high-vis-wrapper {
-    @apply relative z-50 p-[2px] rounded-full;
-    background: linear-gradient(45deg, #a932bd, #00d4ff, #ff00cc, #a932bd);
-    background-size: 200% 200%;
-    animation: border-rotate 3s linear infinite;
-  }
-
-  @keyframes border-rotate {
-    0% {
-      background-position: 0% 50%;
-    }
-
-    50% {
-      background-position: 100% 50%;
-    }
-
-    100% {
-      background-position: 0% 50%;
-    }
-  }
-
-  .holo-circle {
-    @apply relative rounded-full bg-white z-[1];
-  }
-
-  .holo-circle::before {
-    content: "";
-    @apply absolute -inset-[3px] -z-[1] rounded-inherit opacity-60 transition-opacity duration-300;
-    background: linear-gradient(135deg, #bf12de, #00d4ff, #ff00cc, #bf12de);
-    background-size: 300% 300%;
-    animation: border-rotate 4s linear infinite;
-  }
-
-  /* Cosmic Collection Tokens */
-  .nebula-gradient {
-    background: radial-gradient(circle at top right, rgba(106, 13, 173, 0.2), transparent),
-      radial-gradient(circle at bottom left, rgba(0, 212, 255, 0.1), transparent),
-      #100811;
-  }
-
-  @keyframes orbital-float {
-    0% {
-      transform: translateY(0) rotate(0deg);
-    }
-
-    50% {
-      transform: translateY(-20px) rotate(2deg);
-    }
-
-    100% {
-      transform: translateY(0) rotate(0deg);
-    }
-  }
-
-  .orbital-animation {
-    animation: orbital-float 10s ease-in-out infinite;
-  }
-
-  /* Phoenix Collection Tokens */
-  .phoenix-gradient {
-    background: linear-gradient(135deg, #FF7043 0%, #FFAB91 50%, #FFD54F 100%);
-  }
-
-  .phoenix-glow {
-    box-shadow: 0 0 30px rgba(255, 112, 67, 0.4);
-    border: 1px solid rgba(255, 171, 145, 0.3);
-  }
-
-  @keyframes ember-rise {
-    0% {
-      transform: translateY(0) scale(1);
-      opacity: 0;
-    }
-
-    50% {
-      opacity: 0.6;
-    }
-
-    100% {
-      transform: translateY(-100px) scale(0.2);
-      opacity: 0;
-    }
-  }
-
-  .ember {
-    position: absolute;
-    width: 4px;
-    height: 4px;
-    background: #FFD54F;
-    border-radius: 50%;
-    filter: blur(1px);
-    pointer-events: none;
-    animation: ember-rise 3s ease-in infinite;
-  }
-
-  /* Batch 2: Paris, Arizona, Crystal Skies */
-  .paris-gradient {
-    background: linear-gradient(135deg, #2c3e50 0%, #3498db 50%, #ecf0f1 100%);
-  }
-
-  .paris-glow {
-    box-shadow: 0 0 30px rgba(52, 152, 219, 0.3);
-    border: 1px solid rgba(236, 240, 241, 0.2);
-  }
-
-  .arizona-gradient {
-    background: linear-gradient(135deg, #d35400 0%, #f39c12 50%, #16a085 100%);
-  }
-
-  .arizona-glow {
-    box-shadow: 0 0 30px rgba(211, 84, 0, 0.4);
-    border: 1px solid rgba(22, 160, 133, 0.2);
-  }
-
-  .crystal-gradient {
-    background: linear-gradient(135deg, #e0f7fa 0%, #80deea 50%, #ffffff 100%);
-  }
-
-  .crystal-glow {
-    box-shadow: 0 0 40px rgba(128, 222, 234, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-  }
-
-  @keyframes crystal-pulse {
-
-    0%,
-    100% {
-      opacity: 0.4;
-      transform: scale(1);
-    }
-
-    50% {
-      opacity: 0.8;
-      transform: scale(1.05);
-    }
-  }
-
-  .crystal-decoration {
-    animation: crystal-pulse 4s ease-in-out infinite;
-  }
-
-  /* Batch 3: Womanizer, TransLove, TransFLOWer, Flamant Rose */
-  .womanizer-gradient {
-    background: linear-gradient(135deg, #1a0101 0%, #ff0000 50%, #000000 100%);
-  }
-
-  .power-glow {
-    box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
-    border: 1px solid rgba(255, 0, 0, 0.2);
-  }
-
-  .translove-gradient {
-    background: linear-gradient(45deg, #5bcefa, #f5abb9, #ffffff, #f5abb9, #5bcefa);
-    background-size: 200% 200%;
-    animation: border-rotate 6s linear infinite;
-  }
-
-  .love-pulse {
-    animation: crystal-pulse 5s ease-in-out infinite;
-  }
-
-  .transflower-gradient {
-    background: linear-gradient(135deg, #27ae60 0%, #f1c40f 50%, #e91e63 100%);
-  }
-
-  @keyframes bloom-float {
-
-    0%,
-    100% {
-      transform: translateY(0) scale(1);
-    }
-
-    50% {
-      transform: translateY(-10px) scale(1.05);
-    }
-  }
-
-  .bloom-animation {
-    animation: bloom-float 8s ease-in-out infinite;
-  }
-
-  .flamant-gradient {
-    background: linear-gradient(135deg, #ff8a80 0%, #ff5252 50%, #ff1744 100%);
-  }
-
-  .coastal-glow {
-    box-shadow: 0 0 30px rgba(255, 23, 68, 0.3);
-  }
-
-  /* Batch 4: Pride, Good Vibes, USA, Winter '26 */
-  .pride-gradient {
-    background: linear-gradient(45deg, #ff0000, #ff8c00, #ffeb3b, #4caf50, #2196f3, #9c27b0);
-    background-size: 300% 300%;
-    animation: border-rotate 5s linear infinite;
-  }
-
-  .vibes-gradient {
-    background: linear-gradient(135deg, #fbc02d 0%, #fff176 50%, #ffffff 100%);
-  }
-
-  .usa-gradient {
-    background: linear-gradient(135deg, #b22234 0%, #ffffff 50%, #3c3b6e 100%);
-  }
-
-  .winter-glow {
-    box-shadow: 0 0 30px rgba(129, 212, 250, 0.4);
-    border: 1px solid rgba(129, 212, 250, 0.2);
-  }
-
-  @keyframes aurora-pulse {
-
-    0%,
-    100% {
-      opacity: 0.3;
-      filter: blur(20px);
-    }
-
-    50% {
-      opacity: 0.6;
-      filter: blur(40px);
-    }
-  }
-
-  .aurora-bg {
-    background: radial-gradient(circle at center, rgba(129, 212, 250, 0.2), transparent);
-    animation: aurora-pulse 10s ease-in-out infinite;
-  }
 }
