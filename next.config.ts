@@ -15,14 +15,16 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'grainy-gradients.vercel.app',
       },
-      // @ts-ignore
-      eslint: {
-        ignoreDuringBuilds: true,
-      },
-      // @ts-ignore
-      typescript: {
-        ignoreBuildErrors: true,
-      }
+    ],
+  },
+  // @ts-ignore
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  // @ts-ignore
+  typescript: {
+    ignoreBuildErrors: true,
+  }
 };
 
-  export default nextConfig;
+export default nextConfig;

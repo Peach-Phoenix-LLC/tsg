@@ -3,16 +3,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import ModernNavbar from '@/components/Home/ModernNavbar';
-import NewHero from '@/components/Home/NewHero';
-import Narrative from '@/components/Home/Narrative';
-import HotspotCampaign from '@/components/Home/HotspotCampaign';
-import CuratedCollections from '@/components/Home/CuratedCollections';
 import Reviews from '@/components/Home/Reviews';
 import ModernFooter from '@/components/Home/ModernFooter';
+import HoloHero from '@/components/Stitch/HoloHero';
+import HoloCategories from '@/components/Stitch/HoloCategories';
+import HoloPhilosophy from '@/components/Stitch/HoloPhilosophy';
+import HoloCollections from '@/components/Stitch/HoloCollections';
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-white selection:bg-accent/30 selection:text-white">
+    <main className="min-h-screen bg-background-light selection:bg-accent-purple/30 selection:text-white">
       <ModernNavbar />
 
       <motion.div
@@ -20,7 +20,7 @@ export default function Home() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <NewHero />
+        <HoloHero />
       </motion.div>
 
       <motion.div
@@ -29,7 +29,7 @@ export default function Home() {
         viewport={{ once: true }}
         transition={{ duration: 1, ease: "easeOut" }}
       >
-        <Narrative />
+        <HoloCategories />
       </motion.div>
 
       <motion.div
@@ -38,7 +38,7 @@ export default function Home() {
         viewport={{ once: true }}
         transition={{ duration: 1 }}
       >
-        <HotspotCampaign />
+        <HoloPhilosophy />
       </motion.div>
 
       <motion.div
@@ -47,7 +47,7 @@ export default function Home() {
         viewport={{ once: true }}
         transition={{ duration: 1 }}
       >
-        <CuratedCollections />
+        <HoloCollections />
       </motion.div>
 
       <motion.div
