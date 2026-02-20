@@ -1,230 +1,80 @@
-"use client";
-
-import React, { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useCart } from '@/context/CartContext';
-import Navbar from '@/components/Navbar/Navbar';
-import styles from './Checkout.module.css';
+import React from 'react';
+import ModernNavbar from '@/components/Home/ModernNavbar';
+import ModernFooter from '@/components/Home/ModernFooter';
+import CheckoutForm from '@/components/Stitch/Checkout/CheckoutForm';
+import { cartMockData } from '@/data/cartMockData';
 
 export default function CheckoutPage() {
-    const { cart, totalPrice } = useCart();
-    const router = useRouter();
-
-    // State
-    const [step, setStep] = useState(1); // 1: Shipping, 2: Payment
-    const [isProcessing, setIsProcessing] = useState(false);
-    const [error, setError] = useState('');
-    const [formData, setFormData] = useState({
-        email: '',
-        firstName: '',
-        lastName: '',
-        address: '',
-        apartment: '',
-        city: '',
-        zipCode: ''
-    });
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
-        if (error) setError('');
-    };
-
-    console.log('Checkout Form Data:', formData);
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log('handleSubmit called. Current Step:', step);
-        console.log('Validation Check:', {
-            email: !formData.email,
-            first: !formData.firstName,
-            last: !formData.lastName,
-            addr: !formData.address,
-            city: !formData.city,
-            zip: !formData.zipCode
-        });
-
-        if (step === 1) {
-            // Validate shipping step
-            if (!formData.email || !formData.firstName || !formData.lastName || !formData.address || !formData.city || !formData.zipCode) {
-                console.error("VALIDATION FAILED", formData);
-                setError("Please fill in all required fields.");
-                return;
-            }
-            console.log("Validation Passed. Setting step 2.");
-            setStep(2);
-        } else {
-            // Payment Step
-            setIsProcessing(true);
-            try {
-                const response = await fetch('/api/orders', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        items: cart,
-                        total: totalPrice,
-                        shipping: formData
-                    })
-                });
-
-                if (response.ok) {
-                    window.location.href = '/thank-you';
-                } else {
-                    const data = await response.json();
-                    console.error("API ERROR DETAILS:", data);
-                    setError(data.error || 'Order failed. Please try again.');
-                    setIsProcessing(false);
-                }
-            } catch (error) {
-                console.error('Checkout error:', error);
-                setError('Connection error. Please try again.');
-                setIsProcessing(false);
-            }
-        }
-    };
-
     return (
-        <main className={styles.main}>
-            <Navbar />
-
-            <div className={styles.background}>
-                <div className={styles.orb}></div>
-                <div className={styles.grid}></div>
+        <main className="min-h-screen bg-white selection:bg-accent-blue/30 selection:text-white font-manrope">
+            {/* Global Navbar */}
+            <div className="bg-white shadow-sm pb-1 relative z-50">
+                <ModernNavbar />
             </div>
 
-            <div className={styles.container}>
-                <div className={styles.glassperspective}>
-                    <div className={`${styles.glassCard} ${step === 2 ? styles.flipped : ''}`}>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
 
-                        {/* Front Face: Shipping */}
-                        <div className={styles.faceFront}>
-                            <h1 className={styles.title}>Shipping</h1>
-                            <form onSubmit={handleSubmit} className={styles.form} noValidate>
-                                <div className={styles.inputGroup}>
-                                    <input
-                                        name="email"
-                                        type="email"
-                                        placeholder="Email"
-                                        required
-                                        className={styles.input}
-                                        onChange={handleChange}
-                                        value={formData.email}
-                                    />
-                                </div>
-                                <div className={styles.row}>
-                                    <input
-                                        name="firstName"
-                                        type="text"
-                                        placeholder="First Name"
-                                        required
-                                        className={styles.input}
-                                        onChange={handleChange}
-                                        value={formData.firstName}
-                                    />
-                                    <input
-                                        name="lastName"
-                                        type="text"
-                                        placeholder="Last Name"
-                                        required
-                                        className={styles.input}
-                                        onChange={handleChange}
-                                        value={formData.lastName}
-                                    />
-                                </div>
-                                <div className={styles.inputGroup}>
-                                    <input
-                                        name="address"
-                                        type="text"
-                                        placeholder="Address"
-                                        required
-                                        className={styles.input}
-                                        onChange={handleChange}
-                                        value={formData.address}
-                                    />
-                                </div>
-                                <div className={styles.inputGroup}>
-                                    <input
-                                        name="apartment"
-                                        type="text"
-                                        placeholder="Apartment, suite, etc."
-                                        className={styles.input}
-                                        onChange={handleChange}
-                                        value={formData.apartment}
-                                    />
-                                </div>
-                                <div className={styles.row}>
-                                    <input
-                                        name="city"
-                                        type="text"
-                                        placeholder="City"
-                                        required
-                                        className={styles.input}
-                                        onChange={handleChange}
-                                        value={formData.city}
-                                    />
-                                    <input
-                                        name="zipCode"
-                                        type="text"
-                                        placeholder="Zip Code"
-                                        required
-                                        className={styles.input}
-                                        onChange={handleChange}
-                                        value={formData.zipCode}
-                                    />
-                                </div>
-                                {error && <div style={{ color: '#ff4d4d', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>{error}</div>}
-                                <button type="submit" className={styles.primaryBtn}>
-                                    Continue to Payment
-                                </button>
-                            </form>
-                            <div className={styles.steps}>
-                                <span className={`${styles.step} ${styles.active}`}>1</span>
-                                <span className={styles.line}></span>
-                                <span className={styles.step}>2</span>
-                            </div>
-                        </div>
-                    </div>
+                <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16">
 
-                    {/* Payment Overlay */}
-                    {step === 2 && (
-                        <div className={styles.paymentOverlay}>
-                            <div className={styles.paymentGlass}>
-                                <h1 className={styles.title}>Payment</h1>
-                                <div className={styles.creditCard}>
-                                    <div className={styles.cardChip}></div>
-                                    <input type="text" placeholder="0000 0000 0000 0000" className={styles.cardInput} readOnly />
-                                    <div className={styles.cardRow}>
-                                        <input type="text" placeholder="MM/YY" className={styles.cardInputSmall} readOnly />
-                                        <input type="text" placeholder="CVC" className={styles.cardInputSmall} readOnly />
+                    {/* Left Column: Checkout Form */}
+                    <CheckoutForm />
+
+                    {/* Right Column: Order Summary (Condensed for Checkout) */}
+                    <div className="w-full lg:w-[400px] xl:w-[450px] flex-shrink-0">
+                        <div className="bg-gray-50 rounded-2xl p-6 md:p-8 sticky top-24">
+                            <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight">In Your Bag</h2>
+
+                            {/* Condensed Items */}
+                            <div className="space-y-6 mb-8 pb-6 border-b border-gray-200">
+                                {cartMockData.items.map((item) => (
+                                    <div key={item.id} className="flex gap-4">
+                                        <div className="relative w-16 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0 border border-gray-200">
+                                            <img src={item.image} alt={item.title} className="w-full h-full object-cover mix-blend-multiply" />
+                                            <span className="absolute -top-2 -right-2 w-5 h-5 bg-gray-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
+                                                {item.quantity}
+                                            </span>
+                                        </div>
+                                        <div className="flex-1">
+                                            <h3 className="text-sm font-bold text-gray-900 leading-tight mb-1">{item.title}</h3>
+                                            <p className="text-xs text-gray-500 mb-2">{item.details}</p>
+                                            <p className="text-sm font-semibold text-gray-900">{item.price}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                {error && <div style={{ color: '#ff4d4d', marginBottom: '1rem', fontSize: '0.9rem', textAlign: 'center' }}>{error}</div>}
-                                <button onClick={handleSubmit} className={styles.payBtn} disabled={isProcessing}>
-                                    {isProcessing ? 'Processing...' : `Pay $${totalPrice.toFixed(2)}`}
-                                </button>
-                                <button onClick={() => setStep(1)} className={styles.backBtn}>Back</button>
+                                ))}
                             </div>
+
+                            <div className="space-y-3 text-gray-600 font-medium text-sm pb-6 border-b border-gray-200">
+                                <div className="flex justify-between">
+                                    <span>Subtotal</span>
+                                    <span className="text-gray-900">{cartMockData.summary.subtotal}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span>Shipping</span>
+                                    <span className="text-gray-900">{cartMockData.summary.shipping}</span>
+                                </div>
+                                <div className="flex justify-between">
+                                    <span>Estimated Tax</span>
+                                    <span className="text-gray-900">{cartMockData.summary.taxes}</span>
+                                </div>
+                            </div>
+
+                            <div className="py-6 flex justify-between items-center">
+                                <span className="text-lg font-bold text-gray-900">Total</span>
+                                <span className="text-2xl font-black text-gray-900 tracking-tight">{cartMockData.summary.total}</span>
+                            </div>
+
+                            <button className="w-full bg-accent-blue hover:bg-blue-800 text-white py-4 md:py-5 rounded-xl font-bold uppercase tracking-widest text-sm transition-all shadow-[0_4px_15px_rgba(17,17,212,0.3)] hover:shadow-[0_6px_20px_rgba(17,17,212,0.4)] hover:-translate-y-0.5">
+                                Place Order
+                            </button>
                         </div>
-                    )}
+                    </div>
+
                 </div>
 
-                {/* Order Summary */}
-                <div className={styles.summary}>
-                    <h3>Order Summary</h3>
-                    {cart.map(item => (
-                        <div key={item.id} className={styles.summaryItem}>
-                            <span>{item.name} x{item.quantity}</span>
-                            <span>${(item.price * item.quantity).toFixed(2)}</span>
-                        </div>
-                    ))}
-                    <div className={styles.total}>
-                        <span>Total</span>
-                        <span>${totalPrice.toFixed(2)}</span>
-                    </div>
-                </div>
             </div>
+
+            {/* Global Footer */}
+            <ModernFooter />
         </main>
     );
 }
