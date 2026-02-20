@@ -173,5 +173,4 @@
             - /url: "#"
   - button "Open Next.js Dev Tools" [ref=e168] [cursor=pointer]:
     - img [ref=e169]
-  - alert [ref=e172]
 ```

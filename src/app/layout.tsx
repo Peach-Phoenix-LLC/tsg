@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Discover the new era of fashion at tsgabrielle® USA.",
 };
 
+import { MaintenanceCheck } from "@/components/MaintenanceCheck";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -18,7 +20,9 @@ export default function RootLayout({
       <body>
         <AuthProvider>
           <CartProvider>
-            {children}
+            <MaintenanceCheck>
+              {children}
+            </MaintenanceCheck>
           </CartProvider>
         </AuthProvider>
       </body>

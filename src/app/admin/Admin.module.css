@@ -147,6 +147,34 @@
     border-top: 1px solid #f0ebfd;
 }
 
+.maintenanceToggle {
+    padding: 16px;
+    border-top: 1px solid #f0ebfd;
+    margin-top: auto;
+}
+
+.toggleLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 11px;
+    color: #8b8baa;
+}
+
+.toggleLabel input {
+    accent-color: #7c3aed;
+}
+
+.toggleText {
+    transition: color 0.2s ease;
+}
+
+.toggleLabel input:checked+.toggleText {
+    color: #7c3aed;
+    font-weight: 600;
+}
+
 .userAvatar {
     position: relative;
     width: 34px;

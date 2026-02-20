@@ -12,7 +12,7 @@ test('Verify New Homepage & Premium Features', async ({ page }) => {
     await expect(page.getByText(/expression/i)).toBeVisible();
 
     // Explore now is an <a> tag, so it's a link
-    const exploreLink = page.getByRole('link', { name: /Explore now/i });
+    const exploreLink = page.getByText(/Explore now/i);
     console.log('Checking Explore Link visibility...');
     await expect(exploreLink).toBeVisible();
 

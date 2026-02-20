@@ -54,8 +54,16 @@ export default function AdminDashboard() {
     const [searchQuery, setSearchQuery] = useState('');
 
     const [orders, setOrders] = useState<any[]>([]);
+    const [stats, setStats] = useState<any>(null);
+    const [customers, setCustomers] = useState<any[]>([]);
 
     useEffect(() => {
+        if (activeTab === 'dashboard') {
+            fetch('/api/analytics')
+                .then(r => r.json())
+                .then(data => setStats(data))
+                .catch(err => console.error(err));
+        }
         if (activeTab === 'products') {
             setLoadingProducts(true);
             fetch('/api/products')
@@ -67,6 +75,12 @@ export default function AdminDashboard() {
             fetch('/api/orders')
                 .then(r => r.json())
                 .then(data => setOrders(data))
+                .catch(err => console.error(err));
+        }
+        if (activeTab === 'customers') {
+            fetch('/api/customers')
+                .then(r => r.json())
+                .then(data => setCustomers(data))
                 .catch(err => console.error(err));
         }
     }, [activeTab]);
@@ -127,6 +141,23 @@ export default function AdminDashboard() {
                         <span className={styles.userRole}>Admin</span>
                     </div>
                 </div>
+
+                {/* Maintenance Mode Toggle */}
+                <div className={styles.maintenanceToggle}>
+                    <label className={styles.toggleLabel}>
+                        <input
+                            type="checkbox"
+                            onChange={(e) => {
+                                fetch('/api/settings', {
+                                    method: 'POST',
+                                    headers: { 'Content-Type': 'application/json' },
+                                    body: JSON.stringify({ enabled: e.target.checked })
+                                });
+                            }}
+                        />
+                        <span className={styles.toggleText}>Maintenance Mode</span>
+                    </label>
+                </div>
             </aside>
 
             {/* ── MAIN CONTENT ─────────────────────── */}
@@ -164,26 +195,26 @@ export default function AdminDashboard() {
                                     <div className={styles.kpiCard}>
                                         <div className={styles.kpiTopRow}>
                                             <div className={`${styles.kpiIconBox} ${styles.kpiIconPurple}`}>💳</div>
-                                            <span className={styles.kpiDelta}>+12.5%</span>
+                                            <span className={styles.kpiDelta}>+{stats?.growth || 0}%</span>
                                         </div>
                                         <div className={styles.kpiLabel}>Total Sales</div>
-                                        <div className={`${styles.kpiValue} ${styles.kpiValuePurple}`}>$124,500</div>
+                                        <div className={`${styles.kpiValue} ${styles.kpiValuePurple}`}>${stats?.totalSales?.toLocaleString() || '0'}</div>
                                     </div>
                                     <div className={styles.kpiCard}>
                                         <div className={styles.kpiTopRow}>
                                             <div className={`${styles.kpiIconBox} ${styles.kpiIconBlue}`}>👥</div>
-                                            <span className={styles.kpiDelta}>+5.2%</span>
+                                            <span className={styles.kpiDelta}>Live</span>
                                         </div>
-                                        <div className={styles.kpiLabel}>New Customers</div>
-                                        <div className={styles.kpiValue}>1,240</div>
+                                        <div className={styles.kpiLabel}>Total Customers</div>
+                                        <div className={styles.kpiValue}>{stats?.totalCustomers || '0'}</div>
                                     </div>
                                     <div className={styles.kpiCard}>
                                         <div className={styles.kpiTopRow}>
                                             <div className={`${styles.kpiIconBox} ${styles.kpiIconGreen}`}>📦</div>
-                                            <span className={styles.kpiDelta}>+8.4%</span>
+                                            <span className={styles.kpiDelta}>Live</span>
                                         </div>
-                                        <div className={styles.kpiLabel}>Order Volume</div>
-                                        <div className={styles.kpiValue}>856</div>
+                                        <div className={styles.kpiLabel}>Total Orders</div>
+                                        <div className={styles.kpiValue}>{stats?.totalOrders || '0'}</div>
                                     </div>
                                 </div>
 
@@ -336,8 +367,61 @@ export default function AdminDashboard() {
                     </div>
                 )}
 
-                {/* ── COLLECTIONS, CUSTOMERS, ANALYTICS ─ */}
-                {['collections', 'customers', 'analytics'].includes(activeTab) && (
+                {activeTab === 'customers' && (
+                    <div className={styles.tabContent}>
+                        <header className={styles.pageHeader}>
+                            <div className={styles.pageTitle}><h1>Customers</h1><p>Manage your user base.</p></div>
+                        </header>
+                        <div className={styles.panel}>
+                            <div className={styles.panelHeader}><h3>All Customers <span className={styles.count}>{customers.length}</span></h3></div>
+                            <table className={styles.table}>
+                                <thead>
+                                    <tr><th>NAME</th><th>EMAIL</th><th>LAST ACTIVE</th><th>ACTIONS</th></tr>
+                                </thead>
+                                <tbody>
+                                    {customers.map(c => (
+                                        <tr key={c.id}>
+                                            <td>
+                                                <div className={styles.customerCell}>
+                                                    <span className={styles.miniAvatar}>{c.name[0]}</span>
+                                                    {c.name}
+                                                </div>
+                                            </td>
+                                            <td>{c.email}</td>
+                                            <td className={styles.dateCell}>{new Date(c.lastOrder).toLocaleDateString()}</td>
+                                            <td><button className={styles.editBtn}>View Profile</button></td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                )}
+
+                {activeTab === 'analytics' && (
+                    <div className={styles.tabContent}>
+                        <header className={styles.pageHeader}>
+                            <div className={styles.pageTitle}><h1>Analytics</h1><p>Performance insights from Supabase.</p></div>
+                        </header>
+                        <div className={styles.dashboardLayout}>
+                            <div className={styles.panel}>
+                                <div className={styles.panelHeader}><h3>Sales Performance</h3></div>
+                                <div className={styles.kpiRow}>
+                                    <div className={styles.kpiCard}>
+                                        <div className={styles.kpiLabel}>Recent Sales (30d)</div>
+                                        <div className={styles.kpiValue}>${stats?.recentSales?.toLocaleString() || '0'}</div>
+                                    </div>
+                                    <div className={styles.kpiCard}>
+                                        <div className={styles.kpiLabel}>Avg. Order Value</div>
+                                        <div className={styles.kpiValue}>${stats?.totalOrders ? (stats.totalSales / stats.totalOrders).toFixed(2) : '0'}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {['collections'].includes(activeTab) && (
                     <div className={styles.tabContent}>
                         <header className={styles.pageHeader}>
                             <div className={styles.pageTitle}>
