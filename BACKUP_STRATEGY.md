@@ -22,4 +22,4 @@ In the event of a critical failure:
 2. **Supabase Restore:** Utilize the Supabase Dashboard to restore the latest healthy snapshot.
 3. **Environment Sync:** Re-run `npx prisma generate` in the production environment to ensure client compatibility.
 
-*Maintained by: Antigravity Automation Agent*
+Maintained by: Antigravity Automation Agent
