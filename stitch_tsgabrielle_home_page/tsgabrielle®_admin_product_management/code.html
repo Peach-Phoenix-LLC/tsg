@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>tsgabrielle® Admin Product Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#a932bd",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#1d131f",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                    backgroundImage: {
+                        'holographic': 'linear-gradient(135deg, #a932bd 0%, #00d4ff 50%, #ff00c3 100%)',
+                        'iridescent': 'linear-gradient(120deg, rgba(255,255,255,0.4), rgba(255,255,255,0.1) 40%, rgba(255,255,255,0.4))',
+                        'glass': 'linear-gradient(145deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%)'
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom styles for specific effects requested */
+        .liquid-text {
+            background: linear-gradient(90deg, #a932bd, #ff00c3, #00d4ff, #a932bd);
+            background-size: 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: liquid-flow 8s ease infinite;
+        }
+
+        @keyframes liquid-flow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .holographic-border {
+            position: relative;
+            background: #fff;
+            background-clip: padding-box;
+            border: 1px solid transparent;
+            border-radius: 0.75rem;
+        }
+        
+        .holographic-border::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            z-index: -1;
+            margin: -1px;
+            border-radius: inherit;
+            background: linear-gradient(to right, #a932bd, #00d4ff, #ff00c3);
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(169, 50, 189, 0.1);
+        }
+
+        .iridescent-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 
+                inset 0 0 20px rgba(255, 255, 255, 0.5),
+                0 4px 15px rgba(169, 50, 189, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .iridescent-btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%);
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .iridescent-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(169, 50, 189, 0.3);
+        }
+
+        .iridescent-btn:hover::before {
+            opacity: 0.3;
+        }
+
+        .table-row-hover:hover {
+            background-color: rgba(169, 50, 189, 0.03);
+        }
+
+        .iridescent-frame {
+            padding: 2px;
+            background: linear-gradient(45deg, #a932bd, #00d4ff, #ff00c3);
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-hidden">
+<div class="flex h-screen w-full overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 hidden md:flex flex-col z-20">
+<div class="h-full flex flex-col justify-between p-4">
+<div class="flex flex-col gap-6">
+<!-- Brand -->
+<div class="flex items-center gap-3 px-2">
+<div class="bg-center bg-no-repeat bg-cover rounded-full h-10 w-10 ring-2 ring-primary/20" data-alt="Abstract fashion pattern logo" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuByPVMjfjSI20VNbCnD-Gsnc0CdJ_BtJUWSjl0tVSmuRu9ZWks53rZdmb2F3JBLupJJrpCT16HFcvqzUbn-ksON0hTNNoCSD7S2yxXitxwMwSqu3AV6OCrZW9VoqHScEY0SxiAl21tGYJy0s_l0-6iZeaZpBpsNwY45YpQ3FHZi-N4Ssbma2CFoP--6kVa1cUv07ijoFjI9OVRjkN1aI3FIdEdNsbCPQtCBO1an2SY08QhbhLEZMEWGq7A1sKmX7sum6OCviNuksAkQ");'></div>
+<div class="flex flex-col">
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-none tracking-tight">tsgabrielle®</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium mt-1">Admin Panel</p>
+</div>
+</div>
+<!-- Menu Items -->
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary dark:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+<span class="text-sm font-bold">Product Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">shopping_bag</span>
+<span class="text-sm font-medium">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">group</span>
+<span class="text-sm font-medium">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">bar_chart</span>
+<span class="text-sm font-medium">Analytics</span>
+</a>
+</nav>
+</div>
+<!-- Bottom Settings -->
+<div class="flex flex-col gap-2 border-t border-slate-100 dark:border-slate-800 pt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col h-full overflow-hidden relative">
+<!-- Background Decorative Elements -->
+<div class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-primary/10 rounded-full blur-[100px] pointer-events-none z-0"></div>
+<div class="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-cyan-400/10 rounded-full blur-[80px] pointer-events-none z-0"></div>
+<div class="flex-1 overflow-y-auto z-10 p-6 md:p-10">
+<div class="max-w-7xl mx-auto flex flex-col gap-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="flex flex-col gap-2">
+<h2 class="text-4xl md:text-5xl font-black tracking-tight liquid-text pb-1">Product Inventory</h2>
+<p class="text-slate-500 text-sm md:text-base font-normal">Manage your high-end fashion catalog with precision.</p>
+</div>
+<div class="flex items-center gap-3">
+<!-- Bulk Actions Dropdown -->
+<div class="relative group">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg glass-panel text-slate-700 text-sm font-semibold hover:bg-white/80 transition-all">
+<span>Bulk Actions</span>
+<span class="material-symbols-outlined text-[18px]">expand_more</span>
+</button>
+<!-- Dropdown Content (Hidden by default, shown on hover/focus logic generally, here just visually placed) -->
+</div>
+<!-- Add New Product Button -->
+<button class="iridescent-btn flex items-center gap-2 px-6 py-2.5 rounded-lg text-slate-900 text-sm font-bold tracking-wide">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Add New Product</span>
+</button>
+</div>
+</div>
+<!-- Search and Filters Bar -->
+<div class="flex flex-col md:flex-row gap-4 items-center justify-between">
+<div class="holographic-border w-full md:max-w-xl shadow-sm">
+<div class="flex items-center px-4 py-3 bg-white rounded-[0.7rem]">
+<span class="material-symbols-outlined text-primary/60 mr-3">search</span>
+<input class="w-full bg-transparent border-none p-0 text-slate-800 placeholder-slate-400 focus:ring-0 text-base" placeholder="Search by name, SKU, or tag..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-2 self-end md:self-auto">
+<button class="p-2.5 rounded-lg glass-panel text-slate-600 hover:text-primary transition-colors" title="Filter">
+<span class="material-symbols-outlined">tune</span>
+</button>
+<button class="p-2.5 rounded-lg glass-panel text-slate-600 hover:text-primary transition-colors" title="Sort">
+<span class="material-symbols-outlined">sort</span>
+</button>
+<button class="p-2.5 rounded-lg glass-panel text-slate-600 hover:text-primary transition-colors" title="Export">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="glass-panel rounded-xl overflow-hidden shadow-lg border border-white/60">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-slate-200/60 bg-white/40">
+<th class="p-5 text-xs font-bold text-slate-500 uppercase tracking-wider">Image</th>
+<th class="p-5 text-xs font-bold text-slate-500 uppercase tracking-wider">Product Name</th>
+<th class="p-5 text-xs font-bold text-slate-500 uppercase tracking-wider">SKU</th>
+<th class="p-5 text-xs font-bold text-slate-500 uppercase tracking-wider">Category</th>
+<th class="p-5 text-xs font-bold text-slate-500 uppercase tracking-wider">Price</th>
+<th class="p-5 text-xs font-bold text-slate-500 uppercase tracking-wider">Stock Level</th>
+<th class="p-5 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-sm divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="table-row-hover transition-colors group">
+<td class="p-4 pl-5">
+<div class="iridescent-frame w-12 h-12 inline-block">
+<div class="w-full h-full rounded-full bg-cover bg-center border-2 border-white" data-alt="Silk evening gown thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDhsg3J3xXiCU9kBPR-07lVi4TbQuT_sB1ZmAZShMAGsHNI9qdws-QwyiAzT2BEt66OBKIyIKNgfXgIQcnlyxKCqalycFkG-lArbS0NZSFLyVQCemQRD4XBdY85aLzv6iXst6bbhHSUloG1vd8v28TTmg1G7G4u5A0aHQHGb3TqevaInRcU_ShynRi2CDe1MEFhnDhf2OJqO4E24yy58L8M6k7nLxs3r9CETlCqhyeIeCEwMn83kRCvRI99JIs66BmmYXsQoVRG7RD7');"></div>
+</div>
+</td>
+<td class="p-4 font-bold text-slate-800">
+                                            Silk Evening Gown
+                                            <span class="block text-xs font-normal text-slate-500 mt-0.5">Summer Collection '24</span>
+</td>
+<td class="p-4 text-slate-500 font-mono">TSG-DRS-001</td>
+<td class="p-4">
+<span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200">Dresses</span>
+</td>
+<td class="p-4 font-medium text-slate-800">$1,200.00</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-primary font-bold">In Stock</span>
+<span class="text-slate-400 text-xs ml-1">(42)</span>
+</div>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="table-row-hover transition-colors group">
+<td class="p-4 pl-5">
+<div class="iridescent-frame w-12 h-12 inline-block">
+<div class="w-full h-full rounded-full bg-cover bg-center border-2 border-white" data-alt="Leather tote bag thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfnU6gXt_KshEsltezSlrW4AqM7gVO28lLiZD2JAaQac3QBwy9b40_kF6W1hFQ5uZLCO2CXWDUJ40mAbWaxZHtg997La_k4PTjfTEYemOwpBaRsdJaFbHFwhrqrm3zl7HAmj-6_68DxvzJ66eZUOS3aCwz3ZPbuCTTlZyL8aoL_Oy1_IVGP-rdfHMDwkE8bWTYsKmFJikEFzekg9tMywOPmY2WR5CGLpLrKUBIAcD96apMMqeNogE602LldU4A4P0cXh5v_s7fOeoe');"></div>
+</div>
+</td>
+<td class="p-4 font-bold text-slate-800">
+                                            Leather Structured Tote
+                                            <span class="block text-xs font-normal text-slate-500 mt-0.5">Essentials</span>
+</td>
+<td class="p-4 text-slate-500 font-mono">TSG-ACC-002</td>
+<td class="p-4">
+<span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200">Accessories</span>
+</td>
+<td class="p-4 font-medium text-slate-800">$850.00</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-amber-400"></span>
+<span class="text-amber-600 font-bold">Low Stock</span>
+<span class="text-slate-400 text-xs ml-1">(3)</span>
+</div>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="table-row-hover transition-colors group">
+<td class="p-4 pl-5">
+<div class="iridescent-frame w-12 h-12 inline-block">
+<div class="w-full h-full rounded-full bg-cover bg-center border-2 border-white" data-alt="Cashmere scarf thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAwM-gsQ6FC5zc4JwKqQrTTEJqGNz08S2FdERIWhnq869ZUwExJyfWgjBOX19mkpOUNXUQ7uJAQUi7zZqkn-MtjEubBrWZZuRVYk8UDwD0Y8V9yFQEngntXunB0uzcSfn13w4fBQFW8qdymRn89yV6RYZEODDwBOprCcRAv9_0L7l3BXpkZ22DzQ5NdVAS2niQRmWDX3vTQJDm6HZPvCYyZzLLTUibA1a0JzolTKU6VL6-CKlDd13J3fsGbo3q8SXkv3ncoaUsAl8t8');"></div>
+</div>
+</td>
+<td class="p-4 font-bold text-slate-800">
+                                            Cashmere Oversized Scarf
+                                            <span class="block text-xs font-normal text-slate-500 mt-0.5">Winter Collection</span>
+</td>
+<td class="p-4 text-slate-500 font-mono">TSG-ACC-003</td>
+<td class="p-4">
+<span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200">Winter</span>
+</td>
+<td class="p-4 font-medium text-slate-800">$250.00</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-slate-300"></span>
+<span class="text-slate-400 font-medium">Out of Stock</span>
+</div>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="table-row-hover transition-colors group">
+<td class="p-4 pl-5">
+<div class="iridescent-frame w-12 h-12 inline-block">
+<div class="w-full h-full rounded-full bg-cover bg-center border-2 border-white" data-alt="Velvet blazer thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB0L_RfYl5FNHDWGg0nfnssclKwRLv7pykpiaw7hDJV26cQjo_sziULIIoCBUqpiLaWVfFL2AJbPXYphI413ITEdRgdqNezGxjC6GZFMO5LwPNDEUXtTNStLWdvHDLGfoXiYv5rDXlc_lrj0n_cQfCHOsV04-gwJeG8Og2yBPJGZVPTLrBKB-7OaGNAhKv4hm9e6ojGTKTCQ2GdWeXBPStQuN-bev0R5ouic8N2rpI_DuBBeQ8kqHFrY88rPUxeeP6oicvHgZUXi-yP');"></div>
+</div>
+</td>
+<td class="p-4 font-bold text-slate-800">
+                                            Midnight Velvet Blazer
+                                            <span class="block text-xs font-normal text-slate-500 mt-0.5">Formal Wear</span>
+</td>
+<td class="p-4 text-slate-500 font-mono">TSG-OUT-004</td>
+<td class="p-4">
+<span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200">Outerwear</span>
+</td>
+<td class="p-4 font-medium text-slate-800">$1,500.00</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-primary font-bold">In Stock</span>
+<span class="text-slate-400 text-xs ml-1">(12)</span>
+</div>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="table-row-hover transition-colors group">
+<td class="p-4 pl-5">
+<div class="iridescent-frame w-12 h-12 inline-block">
+<div class="w-full h-full rounded-full bg-cover bg-center border-2 border-white" data-alt="Crystal earrings thumbnail" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPy1tDCyLTHeDxEPLOKLsOmwck-_XM0vNIaLJ3jRKXhMG3s4g8tbboGUiKTousqHByO2UNE4EyajUY5ivPxUy6tEohdicbZXalvYsLnjpBiRkqdRxykWfy9Db1vNYjPkYfztGQySLljtNotoGZDBr-Fgn7bcBBn2c1iV1M4zRqEoQEyCqPLmL7yuiSZEiMCZUWIs_N8QF1AIQyZM6oa8jhxBPOWH2b_KfHZhew-nL4TldI0jwT563KQRYYvR35czM3kH7IlhBbLBbB');"></div>
+</div>
+</td>
+<td class="p-4 font-bold text-slate-800">
+                                            Crystal Drop Earrings
+                                            <span class="block text-xs font-normal text-slate-500 mt-0.5">Jewelry</span>
+</td>
+<td class="p-4 text-slate-500 font-mono">TSG-JWL-005</td>
+<td class="p-4">
+<span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-medium border border-slate-200">Jewelry</span>
+</td>
+<td class="p-4 font-medium text-slate-800">$450.00</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-primary font-bold">In Stock</span>
+<span class="text-slate-400 text-xs ml-1">(8)</span>
+</div>
+</td>
+<td class="p-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors" title="Edit">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button class="p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors" title="Delete">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-slate-200/50 bg-white/30 flex items-center justify-between">
+<span class="text-xs text-slate-500">Showing 1-5 of 124 products</span>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-white shadow-sm border border-slate-200 text-slate-400 hover:text-primary disabled:opacity-50">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-white shadow-md shadow-primary/30 text-xs font-bold">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-white shadow-sm border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-primary text-xs font-medium transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-white shadow-sm border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-primary text-xs font-medium transition-colors">3</button>
+<span class="text-slate-400 text-xs px-1">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-white shadow-sm border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-primary text-xs font-medium transition-colors">12</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-white shadow-sm border border-slate-200 text-slate-600 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

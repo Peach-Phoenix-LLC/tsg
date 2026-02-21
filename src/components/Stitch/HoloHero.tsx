@@ -49,7 +49,7 @@ export default function HoloHero() {
                     transition={{ delay: 0.8, duration: 0.8 }}
                 >
                     <Link
-                        href="/product"
+                        href="/shop"
                         className="group relative inline-flex items-center justify-center px-10 py-4 font-light text-sm tracking-[0.1em] uppercase shadow-[0_4px_15px_rgba(169,50,189,0.4)] hover:shadow-[0_0_30px_rgba(169,50,189,0.9),0_0_20px_rgba(168,192,255,0.7),inset_0_0_20px_rgba(255,255,255,0.4)] border border-white/50 hover:border-white/90 rounded-sm mt-4 text-white overflow-hidden transition-all duration-300 hover:scale-105"
                         style={{
                             background: 'linear-gradient(90deg, #a932bd 0%, #8a209b 20%, #7a6fab 40%, #a8c0ff 60%, #a932bd 80%, #d8a6e6 100%)',

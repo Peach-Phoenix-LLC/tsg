@@ -2,48 +2,102 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useCartStore } from '@/lib/store';
-import { createOrderAction } from '@/app/actions/order';
+import { createPayPalOrderAction, capturePayPalOrderAction } from '@/app/actions/paypal';
+import { PayPalScriptProvider, PayPalButtons } from '@paypal/react-paypal-js';
+import { useGrowthTracking } from '@/components/Analytics/GrowthTracker';
 
 export default function CheckoutForm() {
     const { items, clearCart } = useCartStore();
+    const { trackEvent } = useGrowthTracking();
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState(false);
     const [orderId, setOrderId] = useState<string | null>(null);
     const [mounted, setMounted] = useState(false);
+    const [userId, setUserId] = useState<string | null>(null);
 
     useEffect(() => {
         setMounted(true);
+
+        if (items.length > 0) {
+            trackEvent('begin_checkout', {
+                value: items.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0),
+                currency: 'USD'
+            });
+        }
+
+        // Fetch current user session to attach to order
+        import('@/lib/supabase').then(({ supabase }) => {
+            supabase.auth.getSession().then(({ data: { session } }) => {
+                if (session && session.user) {
+                    setUserId(session.user.id);
+                }
+            });
+        });
     }, []);
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-
+    const handleCreateOrder = async () => {
         if (items.length === 0) {
             setError("Your cart is empty.");
-            return;
+            return "";
         }
 
         setIsSubmitting(true);
         setError(null);
 
         try {
-            // In a real app, you would pass the form data (shipping/billing) here as well
-            const formData = new FormData(e.target as HTMLFormElement);
-            const result = await createOrderAction(formData, items);
+            const result = await createPayPalOrderAction(items, userId);
 
-            if (result.success) {
-                setSuccess(true);
-                setOrderId(result.orderId || null);
-                clearCart();
+            if (result.success && result.paypalOrderId) {
+                // Store the Prisma Order ID in state so the capture hook can access it
+                setOrderId(result.prismaOrderId || null);
+                return result.paypalOrderId; // Return PayPal ID to the SDK
             } else {
-                setError(result.error || "An error occurred during checkout.");
+                setError(result.error || "Failed to initialize PayPal.");
+                return "";
             }
         } catch (err) {
             setError("An unexpected error occurred. Please try again.");
+            return "";
         } finally {
             setIsSubmitting(false);
         }
+    };
+
+    const handleApprove = async (data: any, actions: any) => {
+        if (!orderId) {
+            setError("Session mismatch. Please refresh.");
+            return;
+        }
+
+        setIsSubmitting(true);
+        try {
+            const result = await capturePayPalOrderAction(data.orderID, orderId);
+
+            if (result.success) {
+                trackEvent('purchase', {
+                    item_id: orderId,
+                    value: items.reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0),
+                    currency: 'USD'
+                });
+                setSuccess(true);
+                clearCart();
+            } else {
+                setError(result.error || "Payment was not approved.");
+            }
+        } catch (err) {
+            setError("An unexpected error occurred during capture.");
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    // The PayPal Client ID can be passed in standard or sandbox formats.
+    // Ensure you match the Sandbox Client ID in `.env.local`.
+    const initialOptions = {
+        "clientId": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "test",
+        "currency": "USD",
+        "intent": "capture",
     };
 
     if (success) {
@@ -54,12 +108,12 @@ export default function CheckoutForm() {
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <span className="material-symbols-outlined text-green-600 text-4xl">check_circle</span>
+                    <div className="w-20 h-20 bg-green-900/40 border border-green-500/50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-[0_0_20px_rgba(34,197,94,0.2)]">
+                        <span className="material-symbols-outlined text-green-400 text-4xl">check_circle</span>
                     </div>
-                    <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-4">Order Confirmed!</h1>
-                    <p className="text-gray-600 mb-8">Thank you for your purchase. Your order #{orderId?.substring(0, 8)} is being processed.</p>
-                    <a href="/" className="inline-block bg-accent-blue hover:bg-blue-800 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest text-sm transition-all shadow-md hover:shadow-lg">
+                    <h1 className="text-3xl font-light text-white tracking-[0.2em] uppercase mb-4">Order Confirmed</h1>
+                    <p className="text-slate-400 mb-8 font-light tracking-widest text-[11px] uppercase">Thank you. Your order #{orderId?.substring(0, 8)} is being processed.</p>
+                    <a href="/" className="inline-block bg-[#a932bd] hover:brightness-110 text-white px-8 py-4 rounded-none font-bold uppercase tracking-[0.3em] text-[11px] transition-all shadow-[0_4px_15px_rgba(169,50,189,0.3)]">
                         Return to Home
                     </a>
                 </motion.div>
@@ -70,8 +124,8 @@ export default function CheckoutForm() {
     if (!mounted) {
         return (
             <div className="flex-1 lg:pr-12 xl:pr-16">
-                <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-8">Secure Checkout</h1>
-                <div className="text-gray-500 py-4">Loading checkout...</div>
+                <h1 className="text-3xl font-light text-white tracking-[0.2em] uppercase mb-8">Secure Checkout</h1>
+                <div className="text-slate-400 font-light text-sm uppercase tracking-widest py-4">Loading checkout...</div>
             </div>
         );
     }
@@ -79,174 +133,145 @@ export default function CheckoutForm() {
     return (
         <div className="flex-1 lg:pr-12 xl:pr-16">
 
-            <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-8">Secure Checkout</h1>
+            <h1 className="text-3xl font-light text-white tracking-[0.2em] uppercase mb-8">Secure Checkout</h1>
 
             {error && (
-                <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg flex items-start gap-3">
-                    <span className="material-symbols-outlined text-[20px]">error</span>
-                    <p className="text-sm font-medium">{error}</p>
+                <div className="mb-6 p-4 bg-red-900/10 border border-red-500/20 text-red-200 rounded-none flex items-start gap-3">
+                    <span className="material-symbols-outlined text-[20px]">error_outline</span>
+                    <p className="text-[10px] uppercase tracking-widest font-light">{error}</p>
                 </div>
             )}
 
-            <form className="space-y-12" onSubmit={handleSubmit}>
+            <div className="space-y-12">
 
                 {/* 1. Contact Information */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
+                    transition={{ duration: 0.35, delay: 0.1 }}
                 >
-                    <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                        <span className="w-6 h-6 rounded-full bg-accent-blue text-white flex items-center justify-center text-xs font-bold">1</span>
-                        Contact
+                    <h2 className="text-lg font-light text-white mb-6 tracking-[0.2em] uppercase flex items-center gap-3">
+                        <span className="w-6 h-6 border border-white/20 text-white flex items-center justify-center text-[10px] font-light">01</span>
+                        Identity
                     </h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="md:col-span-2">
-                            <input type="email" placeholder="Email Address" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors" />
+                            <input type="email" placeholder="Identity@domain.com" className="w-full px-4 py-4 bg-transparent border border-white/10 rounded-none text-white focus:outline-none focus:border-[#a932bd] transition-colors placeholder:text-white/20 font-light text-[11px] tracking-widest uppercase" />
                         </div>
                         <div className="md:col-span-2 flex items-center gap-3 mt-2">
-                            <input type="checkbox" id="newsletter" className="w-4 h-4 text-accent-blue border-gray-300 rounded focus:ring-accent-blue" defaultChecked />
-                            <label htmlFor="newsletter" className="text-sm text-gray-600">Email me with news and offers</label>
+                            <input type="checkbox" id="newsletter" className="w-4 h-4 accent-[#a932bd] bg-transparent border-white/20 rounded-none" defaultChecked />
+                            <label htmlFor="newsletter" className="text-[10px] uppercase tracking-widest text-white/40 font-light">Acknowledge updates & exclusive access</label>
                         </div>
                     </div>
                 </motion.div>
 
                 {/* 2. Shipping Address */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
+                    transition={{ duration: 0.35, delay: 0.2 }}
                 >
-                    <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                        <span className="w-6 h-6 rounded-full bg-accent-blue text-white flex items-center justify-center text-xs font-bold">2</span>
-                        Shipping
+                    <h2 className="text-lg font-light text-white mb-6 tracking-[0.2em] uppercase flex items-center gap-3">
+                        <span className="w-6 h-6 border border-white/20 text-white flex items-center justify-center text-[10px] font-light">02</span>
+                        Location
                     </h2>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <select className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors appearance-none" defaultValue="US">
-                                <option value="US">United States</option>
-                                <option value="UK">United Kingdom</option>
-                                <option value="FR">France</option>
-                                <option value="IT">Italy</option>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="md:col-span-2">
+                            <select className="w-full px-4 py-4 bg-transparent border border-white/10 rounded-none text-white focus:outline-none focus:border-[#a932bd] transition-colors appearance-none font-light text-[11px] tracking-widest uppercase" defaultValue="US">
+                                <option value="US" className="bg-[#0a0a0a]">United States</option>
+                                <option value="FR" className="bg-[#0a0a0a]">France</option>
+                                <option value="JP" className="bg-[#0a0a0a]">Japan</option>
+                                <option value="UK" className="bg-[#0a0a0a]">United Kingdom</option>
                             </select>
                         </div>
-                        <div className="hidden md:block"></div>
-
                         <div>
-                            <input type="text" placeholder="First Name" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors" />
+                            <input type="text" placeholder="First Name" className="w-full px-4 py-4 bg-transparent border border-white/10 rounded-none text-white focus:outline-none focus:border-[#a932bd] transition-colors placeholder:text-white/20 font-light text-[11px] tracking-widest uppercase" />
                         </div>
                         <div>
-                            <input type="text" placeholder="Last Name" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors" />
+                            <input type="text" placeholder="Last Name" className="w-full px-4 py-4 bg-transparent border border-white/10 rounded-none text-white focus:outline-none focus:border-[#a932bd] transition-colors placeholder:text-white/20 font-light text-[11px] tracking-widest uppercase" />
                         </div>
                         <div className="md:col-span-2">
-                            <input type="text" placeholder="Address" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors" />
-                        </div>
-                        <div className="md:col-span-2">
-                            <input type="text" placeholder="Apartment, suite, etc. (optional)" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors" />
+                            <input type="text" placeholder="Street Address" className="w-full px-4 py-4 bg-transparent border border-white/10 rounded-none text-white focus:outline-none focus:border-[#a932bd] transition-colors placeholder:text-white/20 font-light text-[11px] tracking-widest uppercase" />
                         </div>
                         <div>
-                            <input type="text" placeholder="City" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors" />
+                            <input type="text" placeholder="City" className="w-full px-4 py-4 bg-transparent border border-white/10 rounded-none text-white focus:outline-none focus:border-[#a932bd] transition-colors placeholder:text-white/20 font-light text-[11px] tracking-widest uppercase" />
                         </div>
                         <div className="grid grid-cols-2 gap-4">
-                            <select className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors appearance-none" defaultValue="NY">
-                                <option value="NY">New York</option>
-                                <option value="CA">California</option>
-                                <option value="TX">Texas</option>
-                            </select>
-                            <input type="text" placeholder="ZIP Code" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors" />
-                        </div>
-                        <div className="md:col-span-2">
-                            <input type="tel" placeholder="Phone" className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors" />
+                            <input type="text" placeholder="State" className="w-full px-4 py-4 bg-transparent border border-white/10 rounded-none text-white focus:outline-none focus:border-[#a932bd] transition-colors placeholder:text-white/20 font-light text-[11px] tracking-widest uppercase" />
+                            <input type="text" placeholder="Zip Code" className="w-full px-4 py-4 bg-transparent border border-white/10 rounded-none text-white focus:outline-none focus:border-[#a932bd] transition-colors placeholder:text-white/20 font-light text-[11px] tracking-widest uppercase" />
                         </div>
                     </div>
                 </motion.div>
 
                 {/* 3. Shipping Method */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
+                    transition={{ duration: 0.35, delay: 0.3 }}
                 >
-                    <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                        <span className="w-6 h-6 rounded-full bg-accent-blue text-white flex items-center justify-center text-xs font-bold">3</span>
-                        Delivery Method
+                    <h2 className="text-lg font-light text-white mb-6 tracking-[0.2em] uppercase flex items-center gap-3">
+                        <span className="w-6 h-6 border border-white/20 text-white flex items-center justify-center text-[10px] font-light">03</span>
+                        Flow
                     </h2>
 
-                    <div className="space-y-3">
-                        <label className="flex items-center justify-between p-4 border border-accent-blue bg-accent-blue/5 rounded-xl cursor-pointer">
-                            <div className="flex items-center gap-3">
-                                <input type="radio" name="shipping_method" className="w-4 h-4 text-accent-blue focus:ring-accent-blue border-gray-300" defaultChecked />
+                    <div className="space-y-4">
+                        <label className="flex items-center justify-between p-5 border border-[#a932bd] bg-[#a932bd]/5 rounded-none cursor-pointer">
+                            <div className="flex items-center gap-5">
+                                <input type="radio" name="shipping_method" className="w-4 h-4 accent-[#a932bd]" defaultChecked />
                                 <div>
-                                    <p className="font-bold text-sm text-gray-900">Complimentary Express</p>
-                                    <p className="text-xs text-gray-500 mt-0.5">2 - 3 Business Days</p>
+                                    <p className="text-[11px] text-white tracking-[0.15em] uppercase font-light">Maison Express Delivery</p>
+                                    <p className="text-[9px] text-white/40 mt-1 uppercase tracking-widest font-light">2-3 Business Cycles</p>
                                 </div>
                             </div>
-                            <span className="font-bold text-sm text-gray-900">Free</span>
-                        </label>
-
-                        <label className="flex items-center justify-between p-4 border border-gray-200 rounded-xl cursor-pointer hover:border-gray-300 transition-colors">
-                            <div className="flex items-center gap-3">
-                                <input type="radio" name="shipping_method" className="w-4 h-4 text-accent-blue focus:ring-accent-blue border-gray-300" />
-                                <div>
-                                    <p className="font-bold text-sm text-gray-900">Next Day Delivery</p>
-                                    <p className="text-xs text-gray-500 mt-0.5">Order before 2 PM PST</p>
-                                </div>
-                            </div>
-                            <span className="font-bold text-sm text-gray-900">$35.00</span>
+                            <span className="text-[11px] text-[#a932bd] tracking-widest uppercase">COMPLIMENTARY</span>
                         </label>
                     </div>
                 </motion.div>
 
                 {/* 4. Payment */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
+                    initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 }}
+                    transition={{ duration: 0.35, delay: 0.4 }}
                 >
-                    <h2 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-3">
-                        <span className="w-6 h-6 rounded-full bg-accent-blue text-white flex items-center justify-center text-xs font-bold">4</span>
-                        Payment
+                    <h2 className="text-lg font-light text-white mb-6 tracking-[0.2em] uppercase flex items-center gap-3">
+                        <span className="w-6 h-6 border border-white/20 text-white flex items-center justify-center text-[10px] font-light">04</span>
+                        Transfer
                     </h2>
-                    <p className="text-gray-500 text-sm mb-4">All transactions are secure and encrypted.</p>
+                    <p className="text-white/40 font-light text-[10px] uppercase tracking-widest mb-8">SECURE ENCRYPTED TRANSFER VIA PAYPAL AUTHORITY.</p>
 
-                    <div className="border border-gray-200 rounded-xl overflow-hidden bg-gray-50">
-                        <div className="p-4 border-b border-gray-200 flex justify-between items-center bg-white">
-                            <label className="flex items-center gap-3 font-bold text-sm text-gray-900 cursor-pointer">
-                                <input type="radio" name="payment_method" className="w-4 h-4 text-accent-blue focus:ring-accent-blue border-gray-300" defaultChecked />
-                                Credit Card
-                            </label>
-                            <div className="flex gap-2">
-                                <span className="material-symbols-outlined text-gray-600 text-[20px]">credit_card</span>
+                    <div className="p-8 border border-white/10 bg-[#121212] flex flex-col justify-center min-h-[250px] relative overflow-hidden">
+                        {/* Animated Holographic Border Effect for Payment Area */}
+                        <div className="absolute inset-0 p-[1px] bg-gradient-to-br from-[#a932bd] via-[#667eea] to-[#f093fb] opacity-20 pointer-events-none"></div>
+
+                        <div className="relative z-10">
+                            {/* Security Shield Header */}
+                            <div className="flex items-center justify-center gap-3 mb-8 pb-8 border-b border-white/5">
+                                <span className="material-symbols-outlined text-[#a932bd] text-sm">enhanced_encryption</span>
+                                <p className="text-[8px] font-bold tracking-[0.3em] uppercase text-white/60">
+                                    Secure Maison Portal — Authenticated by PayPal Authority
+                                </p>
                             </div>
-                        </div>
-                        <div className="p-4 grid grid-cols-2 gap-4">
-                            <div className="col-span-2">
-                                <input type="text" placeholder="Card Number" className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors font-mono text-sm" />
-                            </div>
-                            <div className="col-span-2">
-                                <input type="text" placeholder="Name on Card" className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors" />
-                            </div>
-                            <div>
-                                <input type="text" placeholder="Expiration (MM/YY)" className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors font-mono text-sm" />
-                            </div>
-                            <div>
-                                <input type="text" placeholder="Security Code" className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl focus:outline-none focus:ring-1 focus:ring-accent-blue focus:border-accent-blue transition-colors font-mono text-sm" />
-                            </div>
+
+                            <PayPalScriptProvider options={initialOptions}>
+                                <PayPalButtons
+                                    createOrder={() => handleCreateOrder()}
+                                    onApprove={(data, actions) => handleApprove(data, actions)}
+                                    disabled={isSubmitting || items.length === 0}
+                                    style={{
+                                        layout: "vertical",
+                                        color: "gold",
+                                        shape: "rect",
+                                        label: "paypal"
+                                    }}
+                                />
+                            </PayPalScriptProvider>
                         </div>
                     </div>
                 </motion.div>
-
-                {/* Submit Buttom block since we are managing it here now due to form context */}
-                <button
-                    type="submit"
-                    disabled={isSubmitting || items.length === 0}
-                    className={`w-full block text-center text-white py-4 md:py-5 rounded-xl font-bold uppercase tracking-widest text-sm transition-all shadow-[0_4px_15px_rgba(17,17,212,0.3)] ${isSubmitting || items.length === 0 ? 'bg-gray-400 cursor-not-allowed shadow-none' : 'bg-accent-blue hover:bg-blue-800 hover:shadow-[0_6px_20px_rgba(17,17,212,0.4)] hover:-translate-y-0.5'}`}
-                >
-                    {isSubmitting ? 'Processing...' : 'Place Order & Pay'}
-                </button>
-            </form>
+            </div>
         </div>
     );
 }

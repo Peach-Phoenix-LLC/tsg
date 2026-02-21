@@ -27,18 +27,18 @@ const Footer = () => {
                     <div className={styles.column}>
                         <h4>Info</h4>
                         <ul>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Instagram</a></li>
+                            <li><Link href="/contact">Contact</Link></li>
+                            <li><Link href="/about">About</Link></li>
+                            <li><a href="https://www.instagram.com/tsgabrielle3/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
                         </ul>
                     </div>
 
                     <div className={styles.column}>
                         <h4>Discover</h4>
                         <ul>
-                            <li><a href="#">New Arrivals</a></li>
-                            <li><a href="#">Best Sellers</a></li>
-                            <li><a href="#">Collections</a></li>
+                            <li><Link href="/collections/new-arrivals">New Arrivals</Link></li>
+                            <li><Link href="/shop">Best Sellers</Link></li>
+                            <li><Link href="/collections">Collections</Link></li>
                         </ul>
                     </div>
 
@@ -61,15 +61,14 @@ const Footer = () => {
 
                 <div className={styles.bottom}>
                     <div className={styles.socials}>
-                        <a href="#" className={styles.socialLink}>IG</a>
-                        <a href="#" className={styles.socialLink}>FB</a>
-                        <a href="#" className={styles.socialLink}>TW</a>
+                        <a href="https://www.instagram.com/tsgabrielle3/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>IG</a>
+                        <a href="https://www.facebook.com/tsgabrielle/" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>FB</a>
                     </div>
                     <div>
                         <p>© 2023 tsgabrielle®. Designed in France with Love.</p>
                         <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', marginTop: '0.5rem' }}>
-                            <a href="#" style={{ color: 'white' }}>Privacy</a>
-                            <a href="#" style={{ color: 'white' }}>Terms</a>
+                            <Link href="/privacy" style={{ color: 'white' }}>Privacy</Link>
+                            <Link href="/terms" style={{ color: 'white' }}>Terms</Link>
                             <Link href="/admin" style={{ color: 'rgba(255,255,255,0.05)', fontSize: '0.6rem', marginLeft: 'auto' }}>Admin</Link>
                         </div>
                     </div>

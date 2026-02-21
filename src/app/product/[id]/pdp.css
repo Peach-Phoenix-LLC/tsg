@@ -1,0 +1,40 @@
+.custom-gallery-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #a932bd #222;
+}
+
+.custom-gallery-scroll::-webkit-scrollbar {
+    width: 3px;
+}
+
+.custom-gallery-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-gallery-scroll::-webkit-scrollbar-thumb {
+    background: #a932bd;
+}
+
+details>summary {
+    list-style: none;
+}
+
+details>summary::-webkit-details-marker {
+    display: none;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hover-glow {
+    transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 15px rgba(169, 50, 189, 0.4);
+    border-color: rgba(169, 50, 189, 0.6);
+}

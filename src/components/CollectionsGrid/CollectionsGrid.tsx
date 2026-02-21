@@ -60,24 +60,17 @@ const CollectionsGrid = () => {
                     </motion.div>
                 )}
 
-                <motion.div layout className={styles.grid}>
+                <motion.div layout className={`${styles.grid} entrance-stagger`}>
                     <AnimatePresence>
                         {filteredCollections.map((collection, index) => {
                             const content = (
                                 <motion.div
                                     layout
-                                    initial={{ opacity: 0, scale: 0.95 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 0.95 }}
-                                    transition={{ duration: 0.2 }}
-                                    className={styles.card}
+                                    className={`${styles.card} holographic-card`}
                                 >
                                     <div className={styles.imageContainer}>
                                         <div className={styles.innerImage}>
                                             <img src={collection.image} alt={collection.title} />
-                                            <div className={styles.overlay}>
-                                                <span className={styles.overlayText}>{collection.title}</span>
-                                            </div>
                                         </div>
                                     </div>
                                     <h3 className={styles.cardTitle}>{collection.title}</h3>

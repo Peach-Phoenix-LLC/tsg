@@ -13,9 +13,9 @@ export default function CheckoutSummary() {
     if (!isMounted) {
         return (
             <div className="w-full lg:w-[400px] xl:w-[450px] flex-shrink-0">
-                <div className="bg-gray-50 rounded-2xl p-6 md:p-8 sticky top-24">
-                    <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight">In Your Bag</h2>
-                    <div className="text-gray-500 py-4 text-center">Loading your bag...</div>
+                <div className="bg-[#111] rounded-none p-6 md:p-8 sticky top-24 border border-white/5">
+                    <h2 className="text-xl font-light text-white mb-6 uppercase tracking-[0.2em]">In Your Bag</h2>
+                    <div className="text-slate-400 font-light py-4 text-center tracking-widest uppercase text-[11px]">Loading your bag...</div>
                 </div>
             </div>
         );
@@ -28,49 +28,59 @@ export default function CheckoutSummary() {
 
     return (
         <div className="w-full lg:w-[400px] xl:w-[450px] flex-shrink-0">
-            <div className="bg-gray-50 rounded-2xl p-6 md:p-8 sticky top-24">
-                <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight">In Your Bag</h2>
+            <div className="bg-[#121212] rounded-none p-8 sticky top-32 border border-white/5 shadow-2xl">
+                <h2 className="text-xl font-light text-white mb-8 uppercase tracking-[0.25em] flex items-center gap-4">
+                    Bag
+                    <span className="w-px h-6 bg-white/10"></span>
+                    <span className="text-[10px] text-white/40 tracking-[0.4em] font-light">{items.reduce((acc, item) => acc + item.quantity, 0)} PIECES</span>
+                </h2>
 
                 {/* Condensed Items */}
-                <div className="space-y-6 mb-8 pb-6 border-b border-gray-200">
+                <div className="space-y-8 mb-10 pb-10 border-b border-white/10">
                     {items.map((item) => (
-                        <div key={item.id} className="flex gap-4">
-                            <div className="relative w-16 h-20 bg-gray-100 rounded-lg overflow-hidden flex-shrink-0 border border-gray-200">
-                                <img src={item.image} alt={item.name} className="w-full h-full object-cover mix-blend-multiply" />
-                                <span className="absolute -top-2 -right-2 w-5 h-5 bg-gray-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center shadow-sm">
+                        <div key={item.id} className="flex gap-6 items-center">
+                            <div className="relative w-20 h-24 bg-[#0a0a0a] rounded-none overflow-hidden flex-shrink-0 group">
+                                <img src={item.image} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                                <span className="absolute top-2 left-2 w-5 h-5 bg-[#a932bd] text-white text-[9px] font-bold rounded-none flex items-center justify-center shadow-lg">
                                     {item.quantity}
                                 </span>
                             </div>
                             <div className="flex-1">
-                                <h3 className="text-sm font-bold text-gray-900 leading-tight mb-1">{item.name}</h3>
-                                <p className="text-xs text-gray-500 mb-2">{item.color} {item.size}</p>
-                                <p className="text-sm font-semibold text-gray-900">${item.price.toFixed(2)}</p>
+                                <h3 className="text-[11px] font-light text-white tracking-[0.15em] leading-relaxed mb-1 uppercase">{item.name}</h3>
+                                <p className="text-[9px] text-white/30 mb-2 uppercase tracking-[0.2em] font-light">{item.color} // {item.size}</p>
+                                <p className="text-[11px] font-light text-[#a932bd] tracking-[0.2em]">${item.price.toFixed(2)}</p>
                             </div>
                         </div>
                     ))}
                     {items.length === 0 && (
-                        <p className="text-sm text-gray-500 italic">Your cart is currently empty.</p>
+                        <p className="text-[11px] text-white/20 italic tracking-widest uppercase font-light">BAG IS CURRENTLY EMPTY / NULL</p>
                     )}
                 </div>
 
-                <div className="space-y-3 text-gray-600 font-medium text-sm pb-6 border-b border-gray-200">
+                <div className="space-y-4 text-white/40 font-light text-[10px] pb-10 border-b border-white/10 tracking-[0.2em] uppercase">
                     <div className="flex justify-between">
-                        <span>Subtotal</span>
-                        <span className="text-gray-900">${subtotal.toFixed(2)}</span>
+                        <span>Original Value</span>
+                        <span className="text-white">${subtotal.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span>Shipping</span>
-                        <span className="text-gray-900">${shipping.toFixed(2)}</span>
+                        <span>Physical Transfer</span>
+                        <span className="text-white">${shipping.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span>Estimated Tax</span>
-                        <span className="text-gray-900">${taxes.toFixed(2)}</span>
+                        <span>Regulatory Fee</span>
+                        <span className="text-white">${taxes.toFixed(2)}</span>
                     </div>
                 </div>
 
-                <div className="py-6 flex justify-between items-center">
-                    <span className="text-lg font-bold text-gray-900">Total</span>
-                    <span className="text-2xl font-black text-gray-900 tracking-tight">${total.toFixed(2)}</span>
+                <div className="py-8 flex justify-between items-center text-[10px] tracking-[0.3em] uppercase">
+                    <span className="font-light text-white/40">Total Acquisition</span>
+                    <span className="text-2xl font-light text-white tracking-widest">${total.toFixed(2)}</span>
+                </div>
+
+                <div className="mt-4 pt-4 border-t border-white/5">
+                    <p className="text-[8px] text-white/20 tracking-[0.3em] uppercase leading-relaxed text-center font-light">
+                        AUTHENTIC // IDENTITY-FORWARD // TSGABRIELLE®
+                    </p>
                 </div>
 
             </div>

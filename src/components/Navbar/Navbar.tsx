@@ -39,10 +39,10 @@ const Navbar = () => {
                     </div>
 
                     <div className={styles.links}>
-                        <Link href="/categories" className={styles.link}>Categories</Link>
-                        <Link href="/clothing" className={styles.link}>Clothing</Link>
-                        <Link href="/collections/iridescence" className={styles.link}>Iridescence</Link>
+                        <Link href="/shop" className={styles.link}>Shop</Link>
                         <Link href="/collections" className={styles.link}>Collections</Link>
+                        <Link href="/exclusive" className={styles.link}>Exclusive</Link>
+                        <Link href="/sale" className={styles.link}>✨SALE</Link>
                     </div>
 
                     <div className={styles.actions}>

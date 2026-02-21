@@ -6,15 +6,15 @@ import CheckoutSummary from '@/components/Stitch/Checkout/CheckoutSummary';
 
 export default function CheckoutPage() {
     return (
-        <main className="min-h-screen bg-white selection:bg-accent-blue/30 selection:text-white font-manrope">
+        <main className="min-h-screen bg-[#0a0a0a] text-[#e7e7e7] font-lato selection:bg-[#a932bd]/30 selection:text-white">
             {/* Global Navbar */}
-            <div className="bg-white shadow-sm pb-1 relative z-50">
+            <div className="bg-[#0a0a0a] relative z-50">
                 <ModernNavbar />
             </div>
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
 
-                <div className="flex flex-col-reverse lg:flex-row gap-12 lg:gap-16">
+                <div className="flex flex-col-reverse lg:flex-row gap-20 lg:gap-32">
 
                     {/* Left Column: Checkout Form */}
                     <CheckoutForm />

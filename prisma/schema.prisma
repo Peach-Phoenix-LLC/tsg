@@ -17,6 +17,8 @@ enum Role {
 enum OrderStatus {
   PENDING
   PAID
+  SHIPPED
+  DELIVERED
   CANCELLED
 }
 
@@ -27,6 +29,7 @@ model Profile {
   role      Role     @default(USER)
   createdAt DateTime @default(now()) @map("created_at")
   orders    Order[]
+  wishlist  WishlistItem[]
 
   @@map("profiles")
 }
@@ -46,7 +49,9 @@ model Product {
   seo_title       String?
   seo_description String?
   createdAt       DateTime    @default(now()) @map("created_at")
+  variants        ProductVariant[]
   order_items     OrderItem[]
+  wishlist_items  WishlistItem[]
 
   @@map("products")
 }
@@ -74,4 +79,34 @@ model OrderItem {
   product    Product @relation(fields: [product_id], references: [id])
 
   @@map("order_items")
+}
+
+model WishlistItem {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user_id    String   @db.Uuid
+  product_id String   @db.Uuid
+  created_at DateTime @default(now())
+  profile    Profile  @relation(fields: [user_id], references: [id])
+  product    Product  @relation(fields: [product_id], references: [id])
+
+  @@unique([user_id, product_id])
+  @@map("wishlist_items")
+}
+model GlobalSetting {
+  key   String @id
+  value String
+
+  @@map("global_settings")
+}
+
+model ProductVariant {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  product_id String   @db.Uuid
+  sku        String   @unique
+  size       String?
+  color      String?
+  stock      Int      @default(0)
+  product    Product  @relation(fields: [product_id], references: [id])
+
+  @@map("product_variants")
 }

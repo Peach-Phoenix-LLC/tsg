@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '@/components/Navbar/Navbar';
-import Footer from '@/components/Footer/Footer';
+import ModernNavbar from '@/components/Home/ModernNavbar';
+import ModernFooter from '@/components/Home/ModernFooter';
 import CollectionsGrid from '@/components/CollectionsGrid/CollectionsGrid';
 
 export const metadata = {
@@ -10,12 +10,12 @@ export const metadata = {
 
 export default function CollectionsPage() {
     return (
-        <main>
-            <Navbar />
-            <div style={{ paddingTop: '80px', background: '#fff' }}>
+        <main className="min-h-screen bg-[#050406] text-white font-sans">
+            <ModernNavbar />
+            <div className="pt-20">
                 <CollectionsGrid />
             </div>
-            <Footer />
+            <ModernFooter />
         </main>
     );
 }

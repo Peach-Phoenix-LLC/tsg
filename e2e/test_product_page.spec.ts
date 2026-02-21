@@ -5,7 +5,7 @@ test('Iridescence Product Page loads and shows Add to Bag', async ({ page }) => 
     await page.setViewportSize({ width: 1280, height: 800 });
 
     // Navigate to a real product page
-    await page.goto('/product/tsg-acc-001');
+    await page.goto('/product/8ccaa6e2-017f-4d74-abff-1c8cfd172516');
 
     // Trigger scroll to make the sticky panel appear
     // We'll scroll incrementally to simulate user behavior which might trigger the event listener better
@@ -20,11 +20,11 @@ test('Iridescence Product Page loads and shows Add to Bag', async ({ page }) => 
     // Wait for "Add to bag" button to become visible.
     // This is the most critical actionable element.
     // We give it a generous timeout because of animations.
-    const addToBagBtn = page.getByRole('button', { name: /add to bag/i });
+    const addToBagBtn = page.getByRole('button', { name: /acquire for collection/i });
     await expect(addToBagBtn).toBeVisible({ timeout: 15000 });
 
-    // Verify Title is present (anywhere on page, but implying context)
-    await expect(page.getByText(/Holographic Silk Scarf/i).first()).toBeVisible();
+    // Verify Title is present
+    await expect(page.getByText(/Structured Wool Trench Coat/i).first()).toBeVisible();
 
     // Click the button
     await addToBagBtn.click();

@@ -6,9 +6,9 @@ import OrderSummary from '@/components/Stitch/Checkout/OrderSummary';
 
 export default function ShoppingBagPage() {
     return (
-        <main className="min-h-screen bg-white selection:bg-accent-blue/30 selection:text-white font-manrope">
+        <main className="min-h-screen bg-[#050406] text-slate-100 font-sans selection:bg-[#a932bd]/30 selection:text-white">
             {/* Global Navbar */}
-            <div className="bg-white shadow-sm pb-1 relative z-50">
+            <div className="bg-[#050406] shadow-sm pb-1 relative z-50">
                 <ModernNavbar />
             </div>
 

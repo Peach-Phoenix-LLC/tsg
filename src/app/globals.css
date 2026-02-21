@@ -1,52 +1,54 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary: #121212;
-    /* Deep Black */
-    --color-secondary: #F5F5F0;
-    /* Warm White / Bone */
-    --color-accent: #C5A059;
-    /* Subtle Gold */
-    --color-beige-light: #FDFCF8;
-    --color-bg-main: #FFFFFF;
+    /* Amethyst Era Design System */
+    --color-bg-primary: #0a0a0a;
+    --color-bg-surface: #121212;
+    --color-text-primary: #e7e7e7;
+    --color-text-muted: #bdbdbd;
+    --color-accent-primary: #a932bd;
+    --color-border-subtle: rgba(255, 255, 255, 0.08);
 
-    --font-serif: "Playfair Display", serif;
-    --font-sans: "Manrope", sans-serif;
+    --font-lato: "Lato", sans-serif;
 
-    --radius-DEFAULT: 0px;
-    --radius-sm: 2px;
-
-    --animate-fade-in: fade-in 1s ease-out;
-    --animate-slide-up: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    --animate-fade-in-up: fade-in-up 0.35s ease-out forwards;
+    --animate-holographic: holographic-motion 12s linear infinite;
 }
 
-@keyframes fade-in {
+@keyframes fade-in-up {
     from {
         opacity: 0;
+        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
-    }
-}
-
-@keyframes slide-up {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-
-    to {
         transform: translateY(0);
-        opacity: 1;
+    }
+}
+
+@keyframes holographic-motion {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
     }
 }
 
 :root {
-    --background: #FFFFFF;
-    --foreground: #121212;
-    --accent-gold: #C5A059;
-    --warm-white: #F5F5F0;
+    --bg-primary: #0a0a0a;
+    --bg-surface: #121212;
+    --text-primary: #e7e7e7;
+    --text-muted: #bdbdbd;
+    --accent-primary: #a932bd;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --holo-border: linear-gradient(135deg, #a932bd, #667eea, #f093fb, #a932bd);
 }
 
 * {
@@ -59,9 +61,11 @@ html,
 body {
     max-width: 100vw;
     overflow-x: hidden;
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: 'Manrope', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    /* Lato Light */
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
 }
@@ -72,41 +76,84 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 400;
-    letter-spacing: -0.01em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
 }
 
-.luxury-link {
-    @apply relative overflow-hidden;
+.label-caps {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
 }
 
-.luxury-link::after {
+/* --- Holographic Card Style --- */
+.holographic-card {
+    position: relative;
+    background: var(--bg-surface);
+    border-radius: 4px;
+    /* Minimal radius */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.holographic-card::before {
     content: '';
-    @apply absolute bottom-0 left-0 w-full h-[1px] bg-current scale-x-0 transition-transform duration-500 origin-right;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    padding: 1.2px;
+    /* Border thickness */
+    background: var(--holo-border);
+    background-size: 300% 300%;
+    animation: holographic-motion 12s linear infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
 }
 
-.luxury-link:hover::after {
-    @apply scale-x-100 origin-left;
+.holographic-card:hover {
+    transform: translateY(-4px) scale(1.015);
+    box-shadow: 0 10px 30px -10px rgba(169, 50, 189, 0.2);
 }
 
-@layer components {
-    .btn-high-vis {
-        @apply py-4 px-8 rounded-sm uppercase tracking-widest text-[11px] border border-[#121212] bg-[#121212] text-white hover:bg-transparent hover:text-[#121212] transition-colors duration-500 w-full flex items-center justify-center font-bold text-center;
-    }
-
-    .btn-high-vis-wrapper {
-        @apply block w-full no-underline mt-4;
-    }
+.holographic-card:hover::before {
+    opacity: 1;
 }
 
-@layer utilities {
-    .glass-dark {
-        @apply bg-black/5 backdrop-blur-sm border border-black/10;
-    }
+.entrance-stagger>* {
+    opacity: 0;
+    animation: fade-in-up 0.35s ease-out forwards;
+}
 
-    .gold-glow {
-        box-shadow: 0 0 20px rgba(197, 160, 89, 0.15);
-    }
+.entrance-stagger>*:nth-child(1) {
+    animation-delay: 0.08s;
+}
+
+.entrance-stagger>*:nth-child(2) {
+    animation-delay: 0.16s;
+}
+
+.entrance-stagger>*:nth-child(3) {
+    animation-delay: 0.24s;
+}
+
+.entrance-stagger>*:nth-child(4) {
+    animation-delay: 0.32s;
+}
+
+.entrance-stagger>*:nth-child(5) {
+    animation-delay: 0.40s;
+}
+
+.entrance-stagger>*:nth-child(6) {
+    animation-delay: 0.48s;
 }

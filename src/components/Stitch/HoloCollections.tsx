@@ -55,7 +55,7 @@ export default function HoloCollections({ products }: HoloCollectionsProps) {
                             viewport={{ once: true, margin: "-50px" }}
                             transition={{ duration: 0.6, delay: index * 0.15 }}
                         >
-                            <Link href={`/product`} className="flex flex-col items-center group cursor-pointer">
+                            <Link href={`/product/${product.id}`} className="flex flex-col items-center group cursor-pointer">
                                 {/* Holographic Border Container */}
                                 <div className="relative p-[3px] rounded-full bg-[linear-gradient(135deg,rgba(255,255,255,0.4),rgba(169,50,189,0.4),rgba(255,255,255,0.8),rgba(0,255,255,0.25),rgba(255,0,255,0.3))] bg-[length:300%_300%] animate-[holo-border-shimmer_4s_ease_infinite] shadow-[0_0_20px_rgba(169,50,189,0.25)] w-60 h-60 md:w-64 md:h-64 transition-transform duration-500 group-hover:-translate-y-2">
                                     {/* Inner Rotating Glow */}

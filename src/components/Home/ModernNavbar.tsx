@@ -23,31 +23,31 @@ const ModernNavbar = () => {
     }, []);
 
     return (
-        <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-white/80 backdrop-blur-md border-b border-black/5 py-4' : 'bg-transparent py-6'}`}>
+        <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-[#050406]/90 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
             <div className="max-w-[1400px] mx-auto px-8 flex items-center justify-between">
                 {/* Desktop Nav Links (Left) */}
                 <nav className="hidden lg:flex items-center gap-12">
-                    <Link href="/collections" className="luxury-link text-[11px] uppercase tracking-[0.2em] font-medium text-primary">Shop</Link>
-                    <Link href="/collections" className="luxury-link text-[11px] uppercase tracking-[0.2em] font-medium text-primary">Collections</Link>
-                    <Link href="/about" className="luxury-link text-[11px] uppercase tracking-[0.2em] font-medium text-primary">Our Story</Link>
+                    <Link href="/shop" className="luxury-link text-[11px] uppercase tracking-[0.2em] font-medium text-white">Shop</Link>
+                    <Link href="/collections" className="luxury-link text-[11px] uppercase tracking-[0.2em] font-medium text-white">Collections</Link>
+                    <Link href="/about" className="luxury-link text-[11px] uppercase tracking-[0.2em] font-medium text-white">Our Story</Link>
                 </nav>
 
                 {/* Logo (Centered) */}
                 <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group">
-                    <h1 className="text-2xl tracking-[0.3em] font-serif text-primary group-hover:opacity-70 transition-opacity">
+                    <h1 className="text-2xl tracking-[0.3em] font-serif text-white group-hover:opacity-70 transition-opacity">
                         tsgabrielle
                     </h1>
                 </Link>
 
                 {/* Right Icons */}
                 <div className="flex items-center gap-8">
-                    <button className="p-2 text-primary hover:opacity-50 transition-opacity">
+                    <button className="p-2 text-white hover:opacity-50 transition-opacity">
                         <span className="material-symbols-outlined text-[20px]">search</span>
                     </button>
-                    <Link href="/cart" className="p-2 text-primary hover:opacity-50 transition-opacity relative flex items-center justify-center">
+                    <Link href="/cart" className="p-2 text-white hover:opacity-50 transition-opacity relative flex items-center justify-center">
                         <span className="material-symbols-outlined text-[20px]">shopping_bag</span>
                         {mounted && itemCount > 0 && (
-                            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent-blue text-[9px] font-bold text-white">
+                            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#a932bd] text-[9px] font-bold text-white">
                                 {itemCount}
                             </span>
                         )}
@@ -55,19 +55,19 @@ const ModernNavbar = () => {
 
                     {/* Auth Status */}
                     {status === 'loading' ? (
-                        <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
+                        <div className="w-8 h-8 rounded-full border-2 border-white/20 border-t-white animate-spin" />
                     ) : session ? (
-                        <Link href="/profile" className="p-2 text-primary hover:opacity-50 transition-opacity flex items-center justify-center">
+                        <Link href="/profile" className="p-2 text-white hover:opacity-50 transition-opacity flex items-center justify-center">
                             <span className="material-symbols-outlined text-[20px]">person</span>
                         </Link>
                     ) : (
-                        <button onClick={() => signIn('google')} className="luxury-link text-[11px] uppercase tracking-[0.2em] font-medium text-primary hidden lg:block">
+                        <button onClick={() => signIn('google')} className="luxury-link text-[11px] uppercase tracking-[0.2em] font-medium text-white hidden lg:block">
                             Sign In
                         </button>
                     )}
 
                     {/* Mobile Menu Trigger */}
-                    <button className="lg:hidden p-2 text-primary">
+                    <button className="lg:hidden p-2 text-white">
                         <span className="material-symbols-outlined">menu</span>
                     </button>
                 </div>

@@ -123,9 +123,9 @@ const ProductGrid = () => {
     return (
         <section className={styles.section}>
             <div className={styles.container}>
-                <div className={styles.grid}>
+                <div className={`${styles.grid} entrance-stagger`}>
                     {products.map((product) => (
-                        <div key={product.id} className={styles.card}>
+                        <div key={product.id} className={`${styles.card} holographic-card`}>
                             <div className={styles.imageContainer}>
                                 <div className={styles.badge}>NEW ERA</div>
                                 <img src={product.imageUrl || '/images/placeholder.jpg'} alt={product.name} />
@@ -135,7 +135,7 @@ const ProductGrid = () => {
                                 <h3 className={styles.title}>{product.name}</h3>
                                 <button className={styles.btn} onClick={() => addToCart(product)}>
                                     <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>shopping_bag</span>
-                                    Add to Cart
+                                    Add to Bag
                                 </button>
                             </div>
                         </div>

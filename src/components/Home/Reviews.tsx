@@ -23,39 +23,39 @@ const reviews = [
 
 const Reviews = () => {
     return (
-        <section className="py-32 px-8 relative bg-white overflow-hidden">
+        <section className="py-32 px-8 relative bg-[#050406] overflow-hidden border-t border-white/5">
             <div className="max-w-[1400px] mx-auto relative z-10">
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                     <div className="space-y-4">
-                        <span className="text-[10px] uppercase tracking-[0.4em] text-accent font-medium">Testimonials</span>
-                        <h2 className="text-4xl md:text-5xl font-serif text-primary tracking-tight">The Gabrielle Experience</h2>
+                        <span className="text-[10px] uppercase tracking-[0.4em] text-[#a932bd] font-medium">Testimonials</span>
+                        <h2 className="text-4xl md:text-5xl font-serif text-white tracking-tight">The Gabrielle Experience</h2>
                     </div>
-                    <div className="flex items-center gap-2 pb-2 border-b border-black/5">
-                        <span className="material-symbols-outlined text-accent text-[20px]">verified</span>
-                        <span className="text-[10px] uppercase tracking-[0.2em] text-primary/60 font-medium">Verified by Our Community</span>
+                    <div className="flex items-center gap-2 pb-2 border-b border-white/10">
+                        <span className="material-symbols-outlined text-[#a932bd] text-[20px]">verified</span>
+                        <span className="text-[10px] uppercase tracking-[0.2em] text-white/40 font-medium">Verified by Our Community</span>
                     </div>
                 </div>
 
                 <div className="flex gap-1 overflow-x-auto no-scrollbar pb-12 snap-x snap-mandatory">
                     {reviews.map((review, index) => (
-                        <div key={index} className="min-w-[320px] md:min-w-[450px] bg-[#FDFCF8] p-10 snap-center border border-black/5 hover:border-accent/20 transition-colors duration-500">
-                            <div className="flex gap-1 text-accent mb-8">
+                        <div key={index} className="min-w-[320px] md:min-w-[450px] bg-white/5 p-10 snap-center border border-white/5 hover:border-[#a932bd]/20 transition-colors duration-500">
+                            <div className="flex gap-1 text-[#a932bd] mb-8">
                                 {[...Array(5)].map((_, i) => (
                                     <span key={i} className="material-symbols-outlined text-[16px] fill-current">
                                         {i < Math.floor(review.rating) ? 'star' : (review.rating % 1 !== 0 && i === Math.floor(review.rating) ? 'star_half' : 'star_outline')}
                                     </span>
                                 ))}
                             </div>
-                            <p className="text-base md:text-lg text-primary/80 font-light leading-relaxed tracking-wide italic mb-10">
+                            <p className="text-base md:text-lg text-white/80 font-light leading-relaxed tracking-wide italic mb-10">
                                 {review.text}
                             </p>
-                            <div className="flex items-center gap-4 pt-6 border-t border-black/5">
-                                <div className="w-12 h-12 rounded-full overflow-hidden grayscale">
+                            <div className="flex items-center gap-4 pt-6 border-t border-white/5">
+                                <div className="w-12 h-12 rounded-full overflow-hidden grayscale opacity-80 group-hover:opacity-100 transition-opacity">
                                     <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" />
                                 </div>
                                 <div>
-                                    <p className="text-xs font-serif text-primary tracking-widest uppercase">{review.name}</p>
-                                    <p className="text-[10px] text-primary/40 uppercase tracking-tighter mt-1">Connoisseur</p>
+                                    <p className="text-xs font-serif text-white tracking-widest uppercase">{review.name}</p>
+                                    <p className="text-[10px] text-white/40 uppercase tracking-tighter mt-1">Connoisseur</p>
                                 </div>
                             </div>
                         </div>

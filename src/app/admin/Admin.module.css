@@ -830,3 +830,197 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* ─── MODALS & FORMS ──────────────────── */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modalContent {
+    background: white;
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.modalHeader {
+    padding: 24px 30px;
+    border-bottom: 1px solid #f0ebfd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modalHeader h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.closeBtn {
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #b0b0c8;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modalBody {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.formGroupFull {
+    grid-column: span 2;
+}
+
+.formGroup label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #4a4a6a;
+}
+
+.input,
+.textarea,
+.select {
+    padding: 12px 16px;
+    border: 1.5px solid #ede8fb;
+    border-radius: 10px;
+    font-size: 14px;
+    color: #1a1a2e;
+    outline: none;
+    transition: border-color 0.2s;
+    font-family: inherit;
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+    border-color: #7c3aed;
+}
+
+.textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.variantSection {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #f0ebfd;
+}
+
+.variantRow {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.variantRow .input {
+    flex: 1;
+}
+
+.removeVariantBtn {
+    background: #fef2f2;
+    color: #ef4444;
+    border: none;
+    width: 42px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.addVariantBtn {
+    background: #f5f0fe;
+    color: #7c3aed;
+    border: 1px dashed #7c3aed;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modalFooter {
+    padding: 24px 30px;
+    border-top: 1px solid #f0ebfd;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.saveBtn {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.saveBtn:hover {
+    background: #6d28d9;
+}
+
+.cancelBtn {
+    background: #f5f0fe;
+    color: #7c3aed;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.deleteBtnSecondary {
+    background: transparent;
+    color: #ef4444;
+    border: 1px solid #fee2e2;
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.statusOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}

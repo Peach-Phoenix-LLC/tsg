@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>tsgabrielle® Checkout</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#a932bd",
+                        "primary-dark": "#8a249b",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#1d131f",
+                        "glass-border": "rgba(255, 255, 255, 0.4)",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    backgroundImage: {
+                        'holographic': 'linear-gradient(135deg, #FF9DCD 0%, #a932bd 50%, #4D96FF 100%)',
+                        'iridescent-border': 'linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%)',
+                        'glass-gradient': 'linear-gradient(145deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.3) 100%)',
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(169, 50, 189, 0.1)',
+                        'glow': '0 0 15px rgba(169, 50, 189, 0.2)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-text-mask {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .input-wrapper:focus-within {
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(45deg, #FF9DCD, #a932bd, #4D96FF) border-box;
+            border: 1px solid transparent;
+            border-radius: 0.5rem;
+        }
+
+        /* Custom Scrollbar for a premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d8b4e2; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a932bd; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col items-center justify-center py-8 relative overflow-x-hidden">
+<!-- Ambient Background Elements -->
+<div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[120px] pointer-events-none z-0"></div>
+<!-- Main Container: Simulating a Mobile Device on Desktop -->
+<div class="relative z-10 w-full max-w-[480px] flex flex-col min-h-[850px] shadow-glass rounded-2xl overflow-hidden glass-panel">
+<!-- Header -->
+<header class="flex items-center justify-between px-6 py-5 border-b border-white/40 bg-white/50 backdrop-blur-md sticky top-0 z-20">
+<div class="flex items-center gap-3">
+<button class="text-slate-900 dark:text-slate-100 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">diamond</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold tracking-tight">tsgabrielle®</h2>
+</div>
+</div>
+<button class="relative p-2 rounded-lg hover:bg-white/50 transition-colors group">
+<span class="material-symbols-outlined text-slate-900 dark:text-slate-100 group-hover:text-primary transition-colors">shopping_bag</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+</header>
+<!-- Main Content Scrollable Area -->
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Page Title with Liquid Effect -->
+<div class="px-6 pt-8 pb-4 text-center">
+<h1 class="text-[32px] font-extrabold leading-tight tracking-tight liquid-text-mask">
+                    Checkout
+                </h1>
+</div>
+<!-- Progress Bar -->
+<div class="px-6 mb-8">
+<div class="flex justify-between mb-2 text-xs font-semibold tracking-wide text-primary">
+<span>Shipping</span>
+<span class="text-slate-400">Payment</span>
+<span class="text-slate-400">Review</span>
+</div>
+<div class="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full w-1/3 bg-holographic shadow-[0_0_10px_rgba(169,50,189,0.5)]"></div>
+</div>
+</div>
+<!-- Collapsible Order Summary -->
+<div class="px-4 mb-6">
+<details class="group bg-white/60 dark:bg-slate-800/60 rounded-xl border border-white/50 shadow-sm overflow-hidden transition-all duration-300 open:pb-4">
+<summary class="flex cursor-pointer items-center justify-between px-4 py-3 select-none hover:bg-white/40 transition-colors list-none">
+<div class="flex items-center gap-2 text-sm font-semibold text-slate-800 dark:text-slate-200">
+<span class="material-symbols-outlined text-primary text-[20px]">shopping_cart</span>
+                            Order Summary <span class="text-slate-500 font-normal ml-1">($895.00)</span>
+</div>
+<span class="material-symbols-outlined text-slate-500 transition-transform duration-300 group-open:rotate-180">expand_more</span>
+</summary>
+<div class="px-4 pt-2 border-t border-slate-100 dark:border-slate-700 animate-fadeIn">
+<div class="flex gap-4 items-center">
+<div class="relative w-16 h-16 rounded-lg overflow-hidden border border-white/50 shadow-sm shrink-0">
+<div class="absolute inset-0 bg-gradient-to-tr from-pink-100 to-blue-50 opacity-50 mix-blend-overlay z-10"></div>
+<img alt="Close up of high fashion glass heel shoe with iridescent finish" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkOs6p63Gv1MktvpfdCvEPFHc2IIURpexhbYMjXa1YVTvf7wCXieFB1493IwJsWs4M9-b6cd9Oi6RyS67lPXOpqHzjgAH3UtAfGEO9DIuFPSglpxIEbd7rToCD2pVE7EhdCmfnuGfG8mKPIAAW76Mpx1YFE67UeRuvPNDrohv7UUC2ifzEHPX-c9fQ8ZM31cnVwT_1s9YruXuQ1cxRT7YQTGv_ybsTt8V96u8XHNAW0v6NEdnKQk7TpvovYWblW2XhRHCle26m0tY8"/>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="text-slate-900 dark:text-white font-bold text-sm truncate">The Glass Heel</h3>
+<p class="text-slate-500 text-xs mt-0.5">Size: 39 EU • Crystal Clear</p>
+</div>
+<div class="text-right">
+<p class="text-slate-900 dark:text-white font-bold text-sm">$895.00</p>
+</div>
+</div>
+<div class="mt-4 space-y-2 pt-3 border-t border-dashed border-slate-200 dark:border-slate-700">
+<div class="flex justify-between text-xs text-slate-500">
+<span>Subtotal</span>
+<span>$895.00</span>
+</div>
+<div class="flex justify-between text-xs text-slate-500">
+<span>Shipping</span>
+<span class="text-primary font-medium">Calculated next step</span>
+</div>
+</div>
+</div>
+</details>
+</div>
+<!-- Form Fields -->
+<form class="px-6 space-y-6">
+<!-- Contact Section -->
+<div class="space-y-4">
+<div class="flex items-center gap-2 mb-1">
+<h3 class="text-base font-bold text-slate-800 dark:text-slate-100">Contact Information</h3>
+</div>
+<div class="input-wrapper relative rounded-lg border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80 transition-all duration-200">
+<input class="peer w-full h-12 px-4 bg-transparent border-none rounded-lg focus:ring-0 text-slate-900 dark:text-white placeholder-transparent font-medium" id="email" placeholder=" " type="email" value="gabrielle@example.com"/>
+<label class="absolute left-4 top-3 text-xs text-slate-400 pointer-events-none transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-primary" for="email">
+                            Email Address
+                        </label>
+</div>
+<div class="flex items-center gap-2">
+<input class="w-4 h-4 text-primary bg-white border-slate-300 rounded focus:ring-primary/50 focus:ring-2" id="newsletter" type="checkbox"/>
+<label class="text-sm text-slate-600 dark:text-slate-400" for="newsletter">Keep me updated on new drops &amp; exclusive offers</label>
+</div>
+</div>
+<!-- Shipping Address Section -->
+<div class="space-y-4 pt-2">
+<h3 class="text-base font-bold text-slate-800 dark:text-slate-100">Shipping Address</h3>
+<div class="grid grid-cols-2 gap-3">
+<div class="input-wrapper relative rounded-lg border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80">
+<input class="peer w-full h-12 px-4 bg-transparent border-none rounded-lg focus:ring-0 text-slate-900 dark:text-white placeholder-transparent font-medium" id="fname" placeholder=" " type="text"/>
+<label class="absolute left-4 top-1 text-[10px] text-slate-400 pointer-events-none transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-primary" for="fname">First Name</label>
+</div>
+<div class="input-wrapper relative rounded-lg border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80">
+<input class="peer w-full h-12 px-4 bg-transparent border-none rounded-lg focus:ring-0 text-slate-900 dark:text-white placeholder-transparent font-medium" id="lname" placeholder=" " type="text"/>
+<label class="absolute left-4 top-1 text-[10px] text-slate-400 pointer-events-none transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-primary" for="lname">Last Name</label>
+</div>
+</div>
+<div class="input-wrapper relative rounded-lg border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80">
+<input class="peer w-full h-12 px-4 bg-transparent border-none rounded-lg focus:ring-0 text-slate-900 dark:text-white placeholder-transparent font-medium" id="address" placeholder=" " type="text"/>
+<label class="absolute left-4 top-1 text-[10px] text-slate-400 pointer-events-none transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-primary" for="address">Address</label>
+</div>
+<div class="input-wrapper relative rounded-lg border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80">
+<input class="peer w-full h-12 px-4 bg-transparent border-none rounded-lg focus:ring-0 text-slate-900 dark:text-white placeholder-transparent font-medium" id="city" placeholder=" " type="text"/>
+<label class="absolute left-4 top-1 text-[10px] text-slate-400 pointer-events-none transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-primary" for="city">City</label>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="input-wrapper relative rounded-lg border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80">
+<div class="absolute right-3 top-3 pointer-events-none text-slate-400">
+<span class="material-symbols-outlined text-sm">expand_more</span>
+</div>
+<select class="peer w-full h-12 px-4 bg-transparent border-none rounded-lg focus:ring-0 text-slate-900 dark:text-white font-medium appearance-none" id="country">
+<option>France</option>
+<option>United States</option>
+<option>United Kingdom</option>
+</select>
+<label class="absolute left-4 top-1 text-[10px] text-slate-400 pointer-events-none" for="country">Country</label>
+</div>
+<div class="input-wrapper relative rounded-lg border border-slate-200 dark:border-slate-700 bg-white/80 dark:bg-slate-800/80">
+<input class="peer w-full h-12 px-4 bg-transparent border-none rounded-lg focus:ring-0 text-slate-900 dark:text-white placeholder-transparent font-medium" id="zip" placeholder=" " type="text"/>
+<label class="absolute left-4 top-1 text-[10px] text-slate-400 pointer-events-none transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:top-1 peer-focus:text-[10px] peer-focus:text-primary" for="zip">Postal Code</label>
+</div>
+</div>
+</div>
+<!-- Shipping Method -->
+<div class="space-y-3 pt-2 pb-4">
+<h3 class="text-base font-bold text-slate-800 dark:text-slate-100">Shipping Method</h3>
+<label class="flex items-center justify-between p-4 rounded-xl border border-primary/30 bg-primary/5 cursor-pointer relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/5 group-hover:bg-primary/10 transition-colors"></div>
+<div class="relative flex items-center gap-3 z-10">
+<input checked="" class="w-5 h-5 text-primary border-slate-300 focus:ring-primary bg-white" name="shipping" type="radio"/>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Express Delivery</p>
+<p class="text-xs text-slate-500">1-3 Business Days</p>
+</div>
+</div>
+<span class="relative z-10 text-sm font-bold text-primary">$25.00</span>
+</label>
+<label class="flex items-center justify-between p-4 rounded-xl border border-slate-200 bg-white/50 cursor-pointer relative overflow-hidden group hover:border-slate-300">
+<div class="relative flex items-center gap-3 z-10">
+<input class="w-5 h-5 text-primary border-slate-300 focus:ring-primary bg-white" name="shipping" type="radio"/>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-white">Standard Delivery</p>
+<p class="text-xs text-slate-500">5-7 Business Days</p>
+</div>
+</div>
+<span class="relative z-10 text-sm font-bold text-slate-600">Free</span>
+</label>
+</div>
+</form>
+</main>
+<!-- Sticky Bottom Bar -->
+<div class="absolute bottom-0 left-0 w-full p-4 bg-white/80 backdrop-blur-xl border-t border-white/60 z-30">
+<button class="w-full h-14 bg-primary hover:bg-primary-dark active:scale-[0.98] transition-all duration-200 text-white rounded-xl font-bold text-lg shadow-lg shadow-primary/30 flex items-center justify-center gap-2 group">
+                Continue to Payment
+                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</body></html>

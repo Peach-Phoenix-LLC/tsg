@@ -14,22 +14,21 @@ const CategoriesGrid = () => {
                     <div className={styles.line}></div>
                 </div>
 
-                <div className={styles.grid}>
+                <div className={`${styles.grid} entrance-stagger`}>
                     {categories.map((category) => (
                         <Link
                             href={`/api/products?category=${category.title}`}
                             key={category.id}
-                            className={styles.card}
+                            className={`${styles.card} holographic-card`}
                             data-id={category.id}
                         >
                             <div className={styles.imageOverlay}>
-                                <div className={styles.grain}></div>
                                 <img src={category.image} alt={category.title} className={styles.image} />
-                                <div className={styles.content}>
-                                    <h3 className={styles.categoryTitle}>{category.title}</h3>
-                                    <p className={styles.description}>{category.description}</p>
-                                    <span className={styles.cta}>VIEW PRODUCTS →</span>
-                                </div>
+                            </div>
+                            <div className={styles.content}>
+                                <h3 className={styles.categoryTitle}>{category.title}</h3>
+                                <p className={styles.description}>{category.description}</p>
+                                <span className={styles.cta}>VIEW PRODUCTS →</span>
                             </div>
                         </Link>
                     ))}

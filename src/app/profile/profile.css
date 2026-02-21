@@ -1,0 +1,29 @@
+.sidebar-item-active {
+    color: #a932bd !important;
+    font-weight: 400;
+    position: relative;
+}
+
+.sidebar-item-active::after {
+    content: '';
+    position: absolute;
+    left: -1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 18px;
+    background-color: #a932bd;
+}
+
+/* Base text overrides for luxury feel tracking */
+.tracking-ultra {
+    letter-spacing: 0.3em;
+}
+
+/* Glass effect overrides */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}

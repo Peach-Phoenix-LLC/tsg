@@ -11,13 +11,13 @@ export const categories: Category[] = [
         id: 'accessories',
         title: 'Accessories',
         image: 'https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&q=80&w=800',
-        description: 'Finishing touches for the avant-garde.'
+        description: 'Finishing touches for the futuristic wardrobe.'
     },
     {
         id: 'hats',
         title: 'Hats',
         image: 'https://images.unsplash.com/photo-1514327605112-b887c0e61c0a?auto=format&fit=crop&q=80&w=800',
-        description: 'Structural headwear for modern silhouettes.'
+        description: 'Headwear designed for digital silhouettes.'
     },
     {
         id: 'home-decor',
@@ -29,7 +29,7 @@ export const categories: Category[] = [
         id: 'for-him',
         title: 'For Him 👔',
         image: 'https://images.unsplash.com/photo-1521341057461-6eb5f40b07ab?auto=format&fit=crop&q=80&w=800',
-        description: 'Precision-cut essentials for the masculine form.'
+        description: 'Controlled essentials for the masculine identity.'
     },
     {
         id: 'for-her',
@@ -47,6 +47,6 @@ export const categories: Category[] = [
         id: 'sale',
         title: '✨SALE',
         image: 'https://images.unsplash.com/photo-1607083206968-13611e3d76db?auto=format&fit=crop&q=80&w=800',
-        description: 'Unlock archive pieces at exceptional value.'
+        description: 'Identity-driven pieces at exceptional value.'
     }
 ];

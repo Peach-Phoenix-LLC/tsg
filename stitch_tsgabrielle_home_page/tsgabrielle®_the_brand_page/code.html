@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>tsgabrielle® - The Brand</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#bf12de",
+                        "primary-dark": "#900ea8",
+                        "background-light": "#ffffff",
+                        "background-dark": "#1f1022",
+                        "text-charcoal": "#1a1a1a",
+                        "text-light": "#f8f6f8",
+                    },
+                    fontFamily: {
+                        "display": ["Work Sans", "sans-serif"],
+                        "body": ["Lato", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'holographic': 'linear-gradient(90deg, #bf12de 0%, #00d4ff 50%, #bf12de 100%)',
+                        'brand-text': 'url("https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop")', 
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom Styles for Text Clip */
+        .text-clip-image {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Holographic Animation */
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .animate-shimmer {
+            background-size: 200% auto;
+            animation: shimmer 5s linear infinite;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-charcoal dark:text-text-light antialiased overflow-x-hidden">
+<div class="flex min-h-screen w-full flex-col">
+<!-- Top Navigation -->
+<header class="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-gray-100 dark:bg-background-dark/90 dark:border-white/10 transition-colors duration-300">
+<div class="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+<div class="flex items-center gap-4">
+<a class="flex items-center gap-2 group" href="#">
+<span class="material-symbols-outlined text-3xl text-primary transition-transform duration-300 group-hover:rotate-12">diamond</span>
+<h2 class="text-2xl font-black tracking-tighter text-text-charcoal dark:text-white">tsgabrielle®</h2>
+</a>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:text-primary transition-colors text-text-charcoal dark:text-gray-300" href="#">Shop</a>
+<a class="text-sm font-medium text-primary" href="#">Brand</a>
+<a class="text-sm font-medium hover:text-primary transition-colors text-text-charcoal dark:text-gray-300" href="#">Journal</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="relative p-2 text-text-charcoal hover:text-primary dark:text-white transition-colors">
+<span class="material-symbols-outlined text-2xl">search</span>
+</button>
+<button class="relative flex items-center justify-center h-10 w-10 rounded-full bg-gray-50 dark:bg-white/10 hover:bg-primary/10 hover:text-primary transition-all group">
+<span class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">shopping_bag</span>
+<span class="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-bold text-white flex items-center justify-center">2</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative w-full overflow-hidden pt-12 pb-20 lg:pt-24 lg:pb-32">
+<div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+<!-- Left: Typography & Intro -->
+<div class="flex flex-col gap-6 order-2 lg:order-1">
+<div class="relative">
+<!-- Dynamic Heading with Background Clip -->
+<h1 class="text-7xl lg:text-[10rem] font-black leading-[0.85] tracking-tighter uppercase text-clip-image bg-brand-text mb-4 select-none" data-alt="Abstract vibrant purple fluid texture pattern">
+                                    The<br/>Brand
+                                </h1>
+<p class="text-xl lg:text-2xl font-body font-light text-gray-600 dark:text-gray-300 max-w-lg mt-6 leading-relaxed">
+                                    Where heritage meets identity. <br/>
+<span class="text-primary font-bold">The French Trans Touch™.</span>
+</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 mt-8">
+<button class="h-12 px-8 rounded-full bg-primary text-white font-bold tracking-wide hover:bg-primary-dark transition-all transform hover:scale-105 shadow-lg shadow-primary/25 flex items-center justify-center gap-2">
+<span>Explore Collection</span>
+<span class="material-symbols-outlined text-lg">arrow_forward</span>
+</button>
+<button class="h-12 px-8 rounded-full border border-gray-200 dark:border-white/20 text-text-charcoal dark:text-white font-medium hover:bg-gray-50 dark:hover:bg-white/5 transition-colors">
+                                    Read Journal
+                                </button>
+</div>
+</div>
+<!-- Right: Hero Image -->
+<div class="relative order-1 lg:order-2">
+<div class="aspect-[3/4] w-full rounded-2xl overflow-hidden shadow-2xl relative group">
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply z-10 pointer-events-none"></div>
+<img alt="High fashion portrait of a model with confident expression in soft lighting" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="High fashion portrait of a model with confident expression in soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDerRuwUQqFaARpXQaulRI2BXC5xAf61N5_yngXx99jBlZjW36YXC6p5ynAnivW09FkyF8IemSVO-6ZEq9Cq4-5HhEouylkpcZZMn9RhIrssdm7F9ocGb4j2PNar7vwmz5ffo42nzyhhCGSDMkIWWh644ZZTh9MKeU6_41SjbLQJx_0yway2_7VWx80CU4yI18uwDAUSS79bRr8Lw2ovlM1knlaRG1A8tnTpUnmoIMqQD_oKd5jhlZmUOnLb83Z2gzhIBj7NeN58WcD"/>
+<!-- Floating Detail Card -->
+<div class="absolute bottom-6 left-6 right-6 p-6 bg-white/90 dark:bg-black/80 backdrop-blur-md rounded-xl shadow-lg z-20 border border-white/20">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-xs font-bold tracking-widest uppercase text-gray-500 dark:text-gray-400 mb-1">Founder</p>
+<p class="text-lg font-bold text-text-charcoal dark:text-white">Gabrielle</p>
+</div>
+<div class="h-10 w-10 rounded-full bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">auto_awesome</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative elements -->
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-primary/20 rounded-full blur-3xl -z-10"></div>
+<div class="absolute -bottom-10 -left-10 w-64 h-64 bg-cyan-400/20 rounded-full blur-3xl -z-10"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Holographic Separator -->
+<div class="w-full h-[2px] bg-holographic animate-shimmer mb-20"></div>
+<!-- Editorial Content Section -->
+<section class="py-20 bg-white dark:bg-background-dark">
+<div class="mx-auto max-w-5xl px-6 lg:px-8">
+<!-- Quote Block -->
+<div class="mb-24 text-center">
+<span class="material-symbols-outlined text-6xl text-primary/30 mb-6 block mx-auto">format_quote</span>
+<h2 class="text-3xl md:text-5xl font-bold leading-tight text-text-charcoal dark:text-white max-w-4xl mx-auto">
+                            "Fashion is not just about what you wear, it's about <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-cyan-400">reclaiming your narrative</span>."
+                        </h2>
+</div>
+<!-- Grid Layout for Story -->
+<div class="grid md:grid-cols-2 gap-16 items-start">
+<!-- Column 1: The French Trans Touch -->
+<div class="group">
+<div class="mb-6 overflow-hidden rounded-lg">
+<img alt="Close up of fabric texture and design details" class="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Close up of fabric texture and design details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaHRxflsvBT3QFaBsaitNlbZoOHeCKWRUj6ulewh5d5MTWXpnGQvTDw2SjtvUKKAHC9Fd0_lGr-xsK_EDlO_DynJhWdv1WeGYqKgH-uq7wlntXS00TY0J51xuidDz47PdfPx-FLC0O_fbp9j6cpyDNtSFHRBNcbjSS_woVQFrggSN4eh9JAn-XgeydoRosKNwSdeX-mOednSjK-bp4q_pUm15s2RMjBGf5TOvp0ziBTJvSzLzgoPIqUQtYYflT4tqrX4HOHPTlOgzr"/>
+</div>
+<h3 class="text-2xl font-bold text-text-charcoal dark:text-white mb-4 flex items-center gap-2">
+<span class="w-8 h-[2px] bg-primary block"></span>
+                                The French Trans Touch™
+                            </h3>
+<div class="font-body text-lg text-gray-600 dark:text-gray-300 leading-relaxed space-y-4">
+<p>
+                                    Born from the streets of Paris and the vibrant spirit of self-expression, tsgabrielle® merges classic French tailoring with bold, transformative aesthetics.
+                                </p>
+<p>
+                                    We believe in the power of visibility. Our designs are crafted not just to fit a body, but to celebrate a journey. It is a unique intersection of heritage and identity in high fashion, creating a silhouette that speaks before you do.
+                                </p>
+</div>
+</div>
+<!-- Column 2: Gabrielle's Vision -->
+<div class="group md:mt-24">
+<h3 class="text-2xl font-bold text-text-charcoal dark:text-white mb-4 flex items-center gap-2">
+<span class="w-8 h-[2px] bg-cyan-400 block"></span>
+                                Gabrielle's Vision
+                            </h3>
+<div class="font-body text-lg text-gray-600 dark:text-gray-300 leading-relaxed space-y-4 mb-6">
+<p>
+                                    Gabrielle envisioned a world where luxury fashion is accessible and affirming. Her vision transcends traditional binaries, offering fluidity in every stitch and seam.
+                                </p>
+<p>
+                                    "I wanted to create something that felt like home," she says. "A wardrobe that doesn't ask you to compromise who you are, but amplifies it."
+                                </p>
+</div>
+<div class="mb-6 overflow-hidden rounded-lg">
+<img alt="Fashion model walking away in a modern setting" class="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Fashion model walking away in a modern setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXRNLSVMgOacQrMtDE4N4uh8T_5TEKL6_XLA85UMqbdIyWn1VIXDl-sDwZsyQ3udcLnMWr6_o-BBVawrYj2AUXsuOGySJWf00yywS3Yy5XTup5neZjG1AOPOHRFLLK6oJSYEunK8ZA93NW6aJGimH35kGDPYvxOWPkIQwWgPGricHOt341TioGNTmnMinGmoE4PSdMBsoQ4mXtRkLqAfXjTO1QytFPj8ZXh67nP4qP1NYqKDXo0ZaosQdno8mix27Du7tYI7aqSBHb"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Values Section -->
+<section class="py-24 bg-gray-50 dark:bg-white/5 border-t border-gray-200 dark:border-white/10">
+<div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Value 1 -->
+<div class="bg-white dark:bg-white/5 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-white/10">
+<div class="h-12 w-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+</div>
+<h4 class="text-xl font-bold mb-3 text-text-charcoal dark:text-white">Unapologetic Luxury</h4>
+<p class="text-gray-600 dark:text-gray-400 font-body">Refining the standards of high fashion with materials that feel as good as they look.</p>
+</div>
+<!-- Value 2 -->
+<div class="bg-white dark:bg-white/5 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-white/10">
+<div class="h-12 w-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl">palette</span>
+</div>
+<h4 class="text-xl font-bold mb-3 text-text-charcoal dark:text-white">Expressive Artistry</h4>
+<p class="text-gray-600 dark:text-gray-400 font-body">Each piece is a canvas, designed to tell a story of transformation and beauty.</p>
+</div>
+<!-- Value 3 -->
+<div class="bg-white dark:bg-white/5 p-8 rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-white/10">
+<div class="h-12 w-12 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl">public</span>
+</div>
+<h4 class="text-xl font-bold mb-3 text-text-charcoal dark:text-white">Global Community</h4>
+<p class="text-gray-600 dark:text-gray-400 font-body">Building a worldwide movement that connects hearts through the language of style.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-white pt-20 pb-10">
+<div class="mx-auto max-w-7xl px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+<!-- Brand Column -->
+<div class="col-span-1 md:col-span-2 lg:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+<h2 class="text-2xl font-black tracking-tight">tsgabrielle®</h2>
+</div>
+<p class="text-white/80 font-body mb-6 max-w-xs">
+                            Experience the French Trans Touch™. A unique intersection of heritage and identity in high fashion.
+                        </p>
+<div class="flex gap-4">
+<a class="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white hover:text-primary transition-all" href="#">
+<!-- Twitter Icon using Material Symbols implies text, not brand logos, but using text for consistency -->
+<span class="font-bold text-sm">X</span>
+</a>
+<a class="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white hover:text-primary transition-all" href="#">
+<span class="font-bold text-sm">IG</span>
+</a>
+<a class="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white hover:text-primary transition-all" href="#">
+<span class="font-bold text-sm">TT</span>
+</a>
+</div>
+</div>
+<!-- Links Column 1 -->
+<div>
+<h3 class="text-lg font-bold mb-6">Shop</h3>
+<ul class="space-y-4 font-body text-white/80">
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">New Arrivals</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Best Sellers</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Accessories</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Gift Cards</a></li>
+</ul>
+</div>
+<!-- Links Column 2 -->
+<div>
+<h3 class="text-lg font-bold mb-6">Company</h3>
+<ul class="space-y-4 font-body text-white/80">
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Our Story</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Journal</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Careers</a></li>
+<li><a class="hover:text-white hover:translate-x-1 transition-all inline-block" href="#">Contact Us</a></li>
+</ul>
+</div>
+<!-- Newsletter -->
+<div>
+<h3 class="text-lg font-bold mb-6">Stay in the Know</h3>
+<p class="text-white/80 font-body mb-4 text-sm">Subscribe to receive updates, access to exclusive deals, and more.</p>
+<form class="flex flex-col gap-3">
+<input class="w-full h-12 rounded-lg bg-white/10 border border-white/20 text-white placeholder:text-white/50 px-4 focus:ring-2 focus:ring-white/50 focus:border-transparent outline-none transition-all" placeholder="Enter your email" type="email"/>
+<button class="w-full h-12 rounded-lg bg-white text-primary font-bold hover:bg-white/90 transition-colors">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/60 font-body">
+<p>© 2023 tsgabrielle®. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>
