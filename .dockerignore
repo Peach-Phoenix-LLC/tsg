@@ -1,0 +1,13 @@
+.next
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
+.git
+.gitignore
+.vercel
+README.md
+e2e
+tests
+playwright-report
+test-results
