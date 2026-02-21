@@ -5,14 +5,14 @@ export async function GET() {
     try {
         const totalSales = await prisma.order.aggregate({
             _sum: {
-                total: true
+                total_amount: true
             }
         });
 
         const totalOrders = await prisma.order.count();
-        const totalCustomers = await prisma.user.count({
+        const totalCustomers = await prisma.profile.count({
             where: {
-                role: 'CUSTOMER'
+                role: 'USER'
             }
         });
 
@@ -22,20 +22,20 @@ export async function GET() {
 
         const recentSales = await prisma.order.aggregate({
             where: {
-                createdAt: {
+                created_at: {
                     gte: thirtyDaysAgo
                 }
             },
             _sum: {
-                total: true
+                total_amount: true
             }
         });
 
         return NextResponse.json({
-            totalSales: totalSales._sum.total || 0,
+            totalSales: totalSales._sum.total_amount ? Number(totalSales._sum.total_amount) : 0,
             totalOrders,
             totalCustomers,
-            recentSales: recentSales._sum.total || 0,
+            recentSales: recentSales._sum.total_amount ? Number(recentSales._sum.total_amount) : 0,
             growth: 12.5 // Mock growth for now
         });
     } catch (error) {

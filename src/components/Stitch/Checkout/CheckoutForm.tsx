@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useCartStore } from '@/lib/store';
 import { createOrderAction } from '@/app/actions/order';
@@ -10,6 +10,11 @@ export default function CheckoutForm() {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState(false);
     const [orderId, setOrderId] = useState<string | null>(null);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -58,6 +63,15 @@ export default function CheckoutForm() {
                         Return to Home
                     </a>
                 </motion.div>
+            </div>
+        );
+    }
+
+    if (!mounted) {
+        return (
+            <div className="flex-1 lg:pr-12 xl:pr-16">
+                <h1 className="text-3xl font-black text-gray-900 tracking-tight mb-8">Secure Checkout</h1>
+                <div className="text-gray-500 py-4">Loading checkout...</div>
             </div>
         );
     }

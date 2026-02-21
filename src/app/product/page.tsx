@@ -21,6 +21,12 @@ export default async function ProductDetailPage() {
         return <div>Product not found</div>;
     }
 
+    // Serialize Decimal to satisfy Next.js Server-to-Client boundaries
+    const serializedProduct = {
+        ...product,
+        price: Number(product.price)
+    };
+
     return (
         <main className="min-h-screen bg-white selection:bg-accent-blue/30 selection:text-white font-manrope">
             {/* Global Navbar */}
@@ -40,7 +46,7 @@ export default async function ProductDetailPage() {
 
                     {/* Right: Product Details, Selection, Actions, Specs */}
                     <div>
-                        <ProductInfo product={product} />
+                        <ProductInfo product={serializedProduct as any} />
                     </div>
                 </div>
 

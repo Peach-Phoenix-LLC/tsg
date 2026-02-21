@@ -13,9 +13,6 @@ export async function GET(request: Request) {
                     mode: 'insensitive'
                 }
             } : {},
-            include: {
-                variants: true
-            },
             orderBy: {
                 createdAt: 'desc'
             }

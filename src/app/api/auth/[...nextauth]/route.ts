@@ -1,8 +1,8 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "@/lib/prisma";
 
-const handler = NextAuth({
+export const authOptions: NextAuthOptions = {
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -15,23 +15,22 @@ const handler = NextAuth({
 
             try {
                 const adminEmail = process.env.ADMIN_EMAIL?.trim();
-                const role = user.email === adminEmail ? 'ADMIN' : 'CUSTOMER';
+                const role = user.email === adminEmail ? 'ADMIN' : 'USER';
 
-                const existingUser = await prisma.user.findUnique({
+                const existingUser = await prisma.profile.findUnique({
                     where: { email: user.email },
                 });
 
                 if (!existingUser) {
-                    await prisma.user.create({
+                    await prisma.profile.create({
                         data: {
                             email: user.email,
-                            name: user.name,
-                            googleId: user.id,
+                            full_name: user.name,
                             role: role,
                         },
                     });
                 } else if (existingUser.role !== role) {
-                    await prisma.user.update({
+                    await prisma.profile.update({
                         where: { email: user.email },
                         data: { role: role },
                     });
@@ -46,7 +45,7 @@ const handler = NextAuth({
         async session({ session }) {
             if (session.user?.email) {
                 try {
-                    const dbUser = await prisma.user.findUnique({
+                    const dbUser = await prisma.profile.findUnique({
                         where: { email: session.user.email },
                     });
                     if (dbUser) {
@@ -60,6 +59,8 @@ const handler = NextAuth({
             return session;
         },
     },
-});
+};
+
+const handler = NextAuth(authOptions);
 
 export { handler as GET, handler as POST };

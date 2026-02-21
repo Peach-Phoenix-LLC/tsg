@@ -32,7 +32,7 @@ test('Verify all links on homepage are functional', async ({ page, request }) =>
                 }
                 return { link, status: response.status() };
             } catch (error) {
-                brokenLinks.push(`${link} (Error: ${error.message})`);
+                brokenLinks.push(`${link} (Error: ${(error as Error).message})`);
                 return { link, status: -1 };
             }
         })

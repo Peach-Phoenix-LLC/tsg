@@ -3,14 +3,14 @@ import { prisma } from '@/lib/prisma';
 
 export async function GET() {
     try {
-        const customers = await prisma.user.findMany({
+        const customers = await prisma.profile.findMany({
             where: {
-                role: 'CUSTOMER'
+                role: 'USER'
             },
             include: {
                 orders: {
                     orderBy: {
-                        createdAt: 'desc'
+                        created_at: 'desc'
                     },
                     take: 1
                 }
@@ -21,11 +21,11 @@ export async function GET() {
         });
 
         // Format for the admin table
-        const formattedCustomers = customers.map(user => ({
-            id: user.id,
-            name: user.name || 'Anonymous',
-            email: user.email,
-            lastOrder: user.orders[0]?.createdAt || user.createdAt,
+        const formattedCustomers = customers.map(profile => ({
+            id: profile.id,
+            name: profile.full_name || 'Anonymous',
+            email: profile.email,
+            lastOrder: profile.orders[0]?.created_at || profile.createdAt,
             totalSpent: 0 // Would require more complex aggregation
         }));
 

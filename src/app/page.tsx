@@ -18,6 +18,12 @@ export default async function Home() {
     orderBy: { createdAt: 'asc' },
   });
 
+  // Serialize Decimal to satisfy Next.js Server-to-Client boundaries
+  const serializedProducts = products.map(product => ({
+    ...product,
+    price: Number(product.price)
+  }));
+
   return (
     <main className="min-h-screen bg-background-light selection:bg-accent-purple/30 selection:text-white">
       <ModernNavbar />
@@ -26,7 +32,7 @@ export default async function Home() {
         <HoloHero />
         <HoloCategories />
         <HoloPhilosophy />
-        <HoloCollections products={products} />
+        <HoloCollections products={serializedProducts as any} />
         <Reviews />
       </PageAnimations>
 

@@ -1,6 +1,8 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
 export async function createOrderAction(formData: any, cartItems: any[]) {
     try {
@@ -15,16 +17,27 @@ export async function createOrderAction(formData: any, cartItems: any[]) {
         const tax = Number((subtotal * 0.08875).toFixed(2));
         const totalAmount = subtotal + shipping + tax;
 
+        // Get user session if available
+        const session = await getServerSession(authOptions);
+        let userId = null;
+        if (session?.user?.email) {
+            const profile = await prisma.profile.findUnique({
+                where: { email: session.user.email }
+            });
+            if (profile) userId = profile.id;
+        }
+
         // Create the order and nested order items in a single Prisma transaction
         const newOrder = await prisma.order.create({
             data: {
-                totalAmount: totalAmount,
+                user_id: userId,
+                total_amount: totalAmount,
                 status: "PENDING",
                 items: {
                     create: cartItems.map((item) => ({
                         product: { connect: { id: item.id } },
                         quantity: item.quantity,
-                        unitPrice: item.price,
+                        price: item.price,
                     }))
                 }
             }

@@ -1,15 +1,31 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCartStore } from '@/lib/store';
 import Link from 'next/link';
 
 export default function OrderSummary() {
     const { getSubtotal } = useCartStore();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     const subtotal = getSubtotal();
     const shipping = subtotal > 0 ? 35.00 : 0; // Flat rate shipping for demo
     const estimatedTax = subtotal * 0.08875; // NY Tax rate for demo
     const total = subtotal + shipping + estimatedTax;
+
+    if (!mounted) {
+        return (
+            <div className="w-full lg:w-[400px] xl:w-[450px] flex-shrink-0">
+                <div className="bg-gray-50 rounded-2xl p-6 md:p-8 sticky top-24">
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6 tracking-tight">Order Summary</h2>
+                    <div className="text-gray-500 py-4 text-center">Loading totals...</div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="w-full lg:w-[400px] xl:w-[450px] flex-shrink-0">

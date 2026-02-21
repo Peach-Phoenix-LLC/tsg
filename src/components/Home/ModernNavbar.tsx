@@ -2,11 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useCartStore } from '@/lib/store';
 
 const ModernNavbar = () => {
     const [scrolled, setScrolled] = useState(false);
+    const [mounted, setMounted] = useState(false);
+    const { items } = useCartStore();
+
+    const itemCount = items.reduce((total, item) => total + item.quantity, 0);
 
     useEffect(() => {
+        setMounted(true);
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
@@ -36,9 +42,13 @@ const ModernNavbar = () => {
                     <button className="p-2 text-primary hover:opacity-50 transition-opacity">
                         <span className="material-symbols-outlined text-[20px]">search</span>
                     </button>
-                    <Link href="/cart" className="p-2 text-primary hover:opacity-50 transition-opacity relative">
+                    <Link href="/cart" className="p-2 text-primary hover:opacity-50 transition-opacity relative flex items-center justify-center">
                         <span className="material-symbols-outlined text-[20px]">shopping_bag</span>
-                        <span className="absolute top-1 right-1 size-1 bg-accent rounded-full"></span>
+                        {mounted && itemCount > 0 && (
+                            <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-accent-blue text-[9px] font-bold text-white">
+                                {itemCount}
+                            </span>
+                        )}
                     </Link>
                     {/* Mobile Menu Trigger */}
                     <button className="lg:hidden p-2 text-primary">

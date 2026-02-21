@@ -1,11 +1,29 @@
 "use client";
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useCartStore } from '@/lib/store';
 import Link from 'next/link';
 
 export default function CartItems() {
     const { items, removeItem, updateQuantity } = useCartStore();
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return (
+            <div className="flex-1">
+                <div className="flex justify-between items-end mb-8 border-b border-gray-200 pb-4">
+                    <div>
+                        <h1 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Shopping Bag</h1>
+                        <p className="text-gray-500 mt-2 font-medium">Loading...</p>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="flex-1">
