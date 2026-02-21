@@ -1,13 +1,14 @@
 "use client";
 import React, { useState } from 'react';
-import { pdpMockData } from '@/data/pdpMockData';
 
-export default function ProductSpecs() {
+export default function ProductSpecs({ product }: { product?: any }) {
     const [openPanel, setOpenPanel] = useState<string | null>('details');
 
     const togglePanel = (panel: string) => {
         setOpenPanel(openPanel === panel ? null : panel);
     };
+
+    const detailsList = product?.details?.length > 0 ? product.details : ['Premium craftsmanship', 'Imported materials'];
 
     return (
         <div className="mt-12 border-t border-gray-100 pt-8 space-y-4">
@@ -28,7 +29,7 @@ export default function ProductSpecs() {
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${openPanel === 'details' ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}
                 >
                     <ul className="list-disc pl-5 text-gray-600 font-light space-y-2 text-sm">
-                        {pdpMockData.details.map((detail, idx) => (
+                        {detailsList.map((detail: string, idx: number) => (
                             <li key={idx} className="pl-2">{detail}</li>
                         ))}
                     </ul>
@@ -54,31 +55,31 @@ export default function ProductSpecs() {
                     className={`overflow-hidden transition-all duration-300 ease-in-out ${openPanel === 'ethics' ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}
                 >
                     <p className="text-gray-600 font-light text-sm leading-relaxed">
-                        {pdpMockData.ethics}
+                        {product?.sustainability || 'Committed to responsible sourcing and sustainable production methods.'}
                     </p>
                 </div>
             </div>
 
-            {/* Shipping Panel */}
+            {/* Composition Panel */}
             <div className="border-b border-gray-100 pb-4">
                 <button
-                    onClick={() => togglePanel('shipping')}
+                    onClick={() => togglePanel('composition')}
                     className="flex justify-between items-center w-full text-left font-medium text-gray-900 focus:outline-none"
                 >
                     <span className="text-lg tracking-wide uppercase font-semibold flex items-center gap-2">
-                        <span className="material-symbols-outlined text-gray-400 text-[18px]">local_shipping</span>
-                        Shipping & Returns
+                        <span className="material-symbols-outlined text-gray-400 text-[18px]">texture</span>
+                        Composition & Materials
                     </span>
-                    <span className="material-symbols-outlined text-gray-400 transition-transform duration-300" style={{ transform: openPanel === 'shipping' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
+                    <span className="material-symbols-outlined text-gray-400 transition-transform duration-300" style={{ transform: openPanel === 'composition' ? 'rotate(180deg)' : 'rotate(0deg)' }}>
                         expand_more
                     </span>
                 </button>
 
                 <div
-                    className={`overflow-hidden transition-all duration-300 ease-in-out ${openPanel === 'shipping' ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${openPanel === 'composition' ? 'max-h-96 opacity-100 mt-4' : 'max-h-0 opacity-0'}`}
                 >
                     <p className="text-gray-600 font-light text-sm leading-relaxed">
-                        {pdpMockData.shipping}
+                        {product?.composition || '100% Premium Quality Materials.'}
                     </p>
                 </div>
             </div>

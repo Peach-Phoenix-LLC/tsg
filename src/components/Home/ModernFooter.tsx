@@ -31,7 +31,7 @@ const ModernFooter = () => {
                     </div>
                     {/* Links Column */}
                     <div>
-                        <h3 className="text-[10px] uppercase tracking-[0.4em] mb-8 text-accent">Maison</h3>
+                        <h3 className="text-[10px] uppercase tracking-[0.4em] mb-8 text-accent">tsgabrielle</h3>
                         <ul className="flex flex-col gap-4">
                             <li><a href="/about" className="text-xs uppercase tracking-widest text-white/60 hover:text-white transition-colors">Our Story</a></li>
                             <li><a href="/contact" className="text-xs uppercase tracking-widest text-white/60 hover:text-white transition-colors">Contact</a></li>

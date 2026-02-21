@@ -38,6 +38,10 @@ model Product {
   price           Decimal     @db.Decimal(10, 2)
   category        String
   image_url       String?
+  images          String[]
+  details         String[]
+  composition     String?
+  sustainability  String?
   stock           Int         @default(0)
   seo_title       String?
   seo_description String?

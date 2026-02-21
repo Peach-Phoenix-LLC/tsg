@@ -4,7 +4,6 @@ import ModernFooter from '@/components/Home/ModernFooter';
 import ProductGallery from '@/components/Stitch/Product/ProductGallery';
 import ProductInfo from '@/components/Stitch/Product/ProductInfo';
 import CompleteTheLook from '@/components/Stitch/Product/CompleteTheLook';
-import { pdpMockData } from '@/data/pdpMockData';
 import { prisma } from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
@@ -27,6 +26,25 @@ export default async function ProductDetailPage() {
         price: Number(product.price)
     };
 
+    // Fetch related items 
+    const crossSellsData = await prisma.product.findMany({
+        where: {
+            NOT: { id: product.id }
+        },
+        take: 3
+    });
+
+    const serializedCrossSells = crossSellsData.map(item => ({
+        ...item,
+        price: Number(item.price)
+    }));
+
+    // If there's an images array use it, otherwise fallback to standard image_url
+    const p = product as any;
+    const galleryImages = (p.images && p.images.length > 0)
+        ? p.images
+        : (p.image_url ? [p.image_url] : []);
+
     return (
         <main className="min-h-screen bg-white selection:bg-accent-blue/30 selection:text-white font-manrope">
             {/* Global Navbar */}
@@ -40,8 +58,7 @@ export default async function ProductDetailPage() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
                     {/* Left: Interactive Gallery */}
                     <div className="lg:pr-8 border-r-0 lg:border-r border-gray-100">
-                        {/* We use the mock gallery images as Prisma only has one image_url for now */}
-                        <ProductGallery images={pdpMockData.images} />
+                        <ProductGallery images={galleryImages} />
                     </div>
 
                     {/* Right: Product Details, Selection, Actions, Specs */}
@@ -51,7 +68,7 @@ export default async function ProductDetailPage() {
                 </div>
 
                 {/* Cross-Sell Section */}
-                <CompleteTheLook />
+                <CompleteTheLook crossSells={serializedCrossSells as any[]} />
 
             </div>
 

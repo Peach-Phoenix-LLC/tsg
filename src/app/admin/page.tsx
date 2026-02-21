@@ -30,14 +30,6 @@ const NAV_ITEMS = [
     { id: 'analytics', label: 'Analytics', icon: '📊' },
 ];
 
-const MOCK_ORDERS = [
-    { id: '#ORD-7829', customer: 'Gabrielle S.', avatar: 'GS', product: 'Silk Evening Gown', date: 'Oct 24, 2023', total: '$340.00', status: 'Processing' },
-    { id: '#ORD-7828', customer: 'Alex M.', avatar: 'AM', product: 'Leather Tote Bag', date: 'Oct 24, 2023', total: '$120.00', status: 'Shipped' },
-    { id: '#ORD-7827', customer: 'Jordan K.', avatar: 'JK', product: "Pride '25 Bomber", date: 'Oct 23, 2023', total: '$850.00', status: 'Delivered' },
-    { id: '#ORD-7826', customer: 'Maya T.', avatar: 'MT', product: 'Crystal Corset Top', date: 'Oct 23, 2023', total: '$1,200.00', status: 'Processing' },
-    { id: '#ORD-7825', customer: 'Riley B.', avatar: 'RB', product: 'Paris Blazer', date: 'Oct 22, 2023', total: '$480.00', status: 'Shipped' },
-];
-
 const STATUS_BADGE: Record<string, string> = {
     Processing: styles.badgeProcessing,
     Shipped: styles.badgeShipped,
@@ -237,18 +229,18 @@ export default function AdminDashboard() {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {MOCK_ORDERS.map(order => (
+                                            {orders.slice(0, 5).map(order => (
                                                 <tr key={order.id}>
-                                                    <td className={styles.orderId}>{order.id}</td>
+                                                    <td className={styles.orderId}>#{order.id.slice(-6).toUpperCase()}</td>
                                                     <td>
                                                         <div className={styles.customerCell}>
-                                                            <span className={styles.miniAvatar}>{order.avatar}</span>
-                                                            {order.customer}
+                                                            <span className={styles.miniAvatar}>{(order.firstName?.[0] || order.guestEmail?.[0] || '?').toUpperCase()}</span>
+                                                            {order.firstName ? `${order.firstName} ${order.lastName || ''}` : (order.guestEmail || 'Guest')}
                                                         </div>
                                                     </td>
-                                                    <td>{order.product}</td>
-                                                    <td className={styles.dateCell}>{order.date}</td>
-                                                    <td className={styles.totalCell}>{order.total}</td>
+                                                    <td>{order.mainProductName}</td>
+                                                    <td className={styles.dateCell}>{new Date(order.createdAt).toLocaleDateString()}</td>
+                                                    <td className={styles.totalCell}>${order.total.toFixed(2)}</td>
                                                     <td>
                                                         <span className={`${styles.badge} ${STATUS_BADGE[order.status] ?? ''}`}>
                                                             {order.status}

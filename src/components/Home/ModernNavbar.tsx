@@ -2,9 +2,11 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useSession, signIn } from 'next-auth/react';
 import { useCartStore } from '@/lib/store';
 
 const ModernNavbar = () => {
+    const { data: session, status } = useSession();
     const [scrolled, setScrolled] = useState(false);
     const [mounted, setMounted] = useState(false);
     const { items } = useCartStore();
@@ -50,6 +52,20 @@ const ModernNavbar = () => {
                             </span>
                         )}
                     </Link>
+
+                    {/* Auth Status */}
+                    {status === 'loading' ? (
+                        <div className="w-8 h-8 rounded-full border-2 border-primary/20 border-t-primary animate-spin" />
+                    ) : session ? (
+                        <Link href="/profile" className="p-2 text-primary hover:opacity-50 transition-opacity flex items-center justify-center">
+                            <span className="material-symbols-outlined text-[20px]">person</span>
+                        </Link>
+                    ) : (
+                        <button onClick={() => signIn('google')} className="luxury-link text-[11px] uppercase tracking-[0.2em] font-medium text-primary hidden lg:block">
+                            Sign In
+                        </button>
+                    )}
+
                     {/* Mobile Menu Trigger */}
                     <button className="lg:hidden p-2 text-primary">
                         <span className="material-symbols-outlined">menu</span>

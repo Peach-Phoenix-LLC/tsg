@@ -39,7 +39,7 @@ export default function ProductInfo({ product }: { product: ProductType }) {
             {/* Headers */}
             <div className="mb-8">
                 <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">
-                    <span>Maison d'Artiste</span>
+                    <span>tsgabrielle®</span>
                     <span className="w-1 h-1 rounded-full bg-gray-300"></span>
                     <span className="text-accent-blue">{product.category}</span>
                 </div>

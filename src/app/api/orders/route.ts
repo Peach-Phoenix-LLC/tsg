@@ -1,64 +1,56 @@
 import { NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth/next';
+import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 import { prisma } from '@/lib/prisma';
-
-export async function POST(request: Request) {
-    try {
-        const body = await request.json();
-        const { items, shipping, total, userId } = body;
-
-        // Create the order and order items in a transaction
-        const order = await prisma.order.create({
-            data: {
-                userId: userId || undefined, // undefined allows it to be null if optional
-                guestEmail: shipping.email,
-                firstName: shipping.firstName,
-                lastName: shipping.lastName,
-                address: shipping.address,
-                city: shipping.city,
-                zipCode: shipping.zipCode,
-                total: parseFloat(total),
-                status: 'PENDING',
-                items: {
-                    create: items.map((item: any) => ({
-                        productId: item.id, // Assuming cart item has product id
-                        quantity: item.quantity,
-                        price: item.price
-                    }))
-                }
-            }
-        });
-
-        return NextResponse.json(order);
-    } catch (error: any) {
-        console.error('Error creating order:', error);
-        return NextResponse.json({ error: 'Failed to create order', details: error.message, stack: error.stack }, { status: 500 });
-    }
-}
 
 export async function GET(request: Request) {
     try {
+        const session = await getServerSession(authOptions);
+
+        // Security check: only allow ADMIN role
+        if (!session || (session.user as { role?: string }).role !== 'ADMIN') {
+            return new NextResponse('Unauthorized', { status: 401 });
+        }
+
+        // Fetch orders sorted by most recent
         const orders = await prisma.order.findMany({
-            orderBy: {
-                createdAt: 'desc'
-            },
+            orderBy: { created_at: 'desc' },
             include: {
+                profile: true,
                 items: {
                     include: {
                         product: true
                     }
-                },
-                user: {
-                    select: {
-                        name: true,
-                        email: true
-                    }
                 }
             }
         });
 
-        return NextResponse.json(orders);
+        // Map them into a flattened format friendly for the Admin UI Table
+        const formattedOrders = orders.map((o) => {
+            const leadingItem = o.items[0];
+            const itemCount = o.items.reduce((sum, item) => sum + item.quantity, 0);
+
+            return {
+                id: o.id,
+                total: o.total_amount,
+                status: o.status,
+                createdAt: o.created_at,
+                firstName: o.profile?.full_name?.split(' ')[0] || null,
+                lastName: o.profile?.full_name?.split(' ')[1] || null,
+                guestEmail: o.profile?.email || 'Unknown',
+
+                // For the "Product" column in the table
+                mainProductId: leadingItem?.product?.id,
+                mainProductName: itemCount > 1
+                    ? `${leadingItem?.product?.name} +${itemCount - 1} more`
+                    : leadingItem?.product?.name || 'Multiple Items'
+            };
+        });
+
+        return NextResponse.json(formattedOrders);
+
     } catch (error) {
-        console.error('Error fetching orders:', error);
-        return NextResponse.json({ error: 'Failed to fetch orders' }, { status: 500 });
+        console.error('[API_ORDERS_GET]', error);
+        return new NextResponse('Internal Error', { status: 500 });
     }
 }

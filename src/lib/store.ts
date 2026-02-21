@@ -68,7 +68,7 @@ export const useCartStore = create<CartStore>()(
             }
         }),
         {
-            name: 'tsgabrielle-cart-storage', // unique name for localStorage
+            name: 'tsgabrielle-cart-storage-v2', // unique name for localStorage
         }
     )
 )

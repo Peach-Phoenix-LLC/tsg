@@ -11,7 +11,14 @@ export default function CheckoutSummary() {
     }, []);
 
     if (!isMounted) {
-        return null; // Avoid hydration errors
+        return (
+            <div className="w-full lg:w-[400px] xl:w-[450px] flex-shrink-0">
+                <div className="bg-gray-50 rounded-2xl p-6 md:p-8 sticky top-24">
+                    <h2 className="text-xl font-bold text-gray-900 mb-6 tracking-tight">In Your Bag</h2>
+                    <div className="text-gray-500 py-4 text-center">Loading your bag...</div>
+                </div>
+            </div>
+        );
     }
 
     const subtotal = getSubtotal();

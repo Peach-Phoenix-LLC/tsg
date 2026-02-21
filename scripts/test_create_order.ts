@@ -37,7 +37,7 @@ async function main() {
 
     try {
         const order = await prisma.order.create({
-            data: orderData
+            data: orderData as any
         });
         console.log('✅ Order created successfully:', order);
     } catch (error) {
