@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 import { Lato } from 'next/font/google';
 import { MaintenanceCheck } from "@/components/MaintenanceCheck";
 import GrowthTracker from "@/components/Analytics/GrowthTracker";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const lato = Lato({
   subsets: ['latin'],
@@ -39,7 +38,6 @@ export default function RootLayout({
             </MaintenanceCheck>
           </CartProvider>
         </AuthProvider>
-        <SpeedInsights />
       </body>
     </html>
   );
