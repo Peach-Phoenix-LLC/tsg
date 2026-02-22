@@ -22,7 +22,7 @@ export default async function Home() {
     console.log(`Page: Fetched ${products?.length || 0} products`);
 
     // Serialize Decimal to satisfy Next.js Server-to-Client boundaries
-    const serializedProducts = products.map(product => ({
+    const serializedProducts = products.map((product: any) => ({
       ...product,
       price: Number(product.price)
     }));

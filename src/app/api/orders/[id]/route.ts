@@ -5,8 +5,9 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 export async function PATCH(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await params;
     try {
         const session = await getServerSession(authOptions);
         if (!session || (session.user as any).role !== 'ADMIN') {
@@ -17,7 +18,7 @@ export async function PATCH(
         const { status } = body;
 
         const updatedOrder = await prisma.order.update({
-            where: { id: params.id },
+            where: { id },
             data: { status },
             include: {
                 profile: true

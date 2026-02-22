@@ -34,7 +34,7 @@ export default async function ProductDetailPage() {
         take: 3
     });
 
-    const serializedCrossSells = crossSellsData.map(item => ({
+    const serializedCrossSells = crossSellsData.map((item: any) => ({
         ...item,
         price: Number(item.price)
     }));

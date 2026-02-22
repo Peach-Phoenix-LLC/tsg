@@ -26,9 +26,9 @@ export async function GET(request: Request) {
         });
 
         // Map them into a flattened format friendly for the Admin UI Table
-        const formattedOrders = orders.map((o) => {
+        const formattedOrders = orders.map((o: any) => {
             const leadingItem = o.items[0];
-            const itemCount = o.items.reduce((sum, item) => sum + item.quantity, 0);
+            const itemCount = o.items.reduce((sum: number, item: any) => sum + item.quantity, 0);
 
             return {
                 id: o.id,

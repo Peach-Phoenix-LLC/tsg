@@ -5,8 +5,9 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/route';
 
 export async function PATCH(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await params;
     try {
         const session = await getServerSession(authOptions);
         if (!session || (session.user as any).role !== 'ADMIN') {
@@ -18,7 +19,7 @@ export async function PATCH(
 
         // Perform update
         const product = await prisma.product.update({
-            where: { id: params.id },
+            where: { id },
             data: {
                 name,
                 description,
@@ -46,8 +47,9 @@ export async function PATCH(
 
 export async function DELETE(
     request: Request,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
+    const { id } = await params;
     try {
         const session = await getServerSession(authOptions);
         if (!session || (session.user as any).role !== 'ADMIN') {
@@ -56,11 +58,11 @@ export async function DELETE(
 
         // Delete variants first (or rely on cascade if configured, but manual is safer here)
         await prisma.productVariant.deleteMany({
-            where: { product_id: params.id }
+            where: { product_id: id }
         });
 
         await prisma.product.delete({
-            where: { id: params.id }
+            where: { id }
         });
 
         return NextResponse.json({ success: true });

@@ -10,15 +10,16 @@ import './pdp.css';
 
 export const dynamic = 'force-dynamic';
 
-export default async function ProductDetailPage({ params }: { params: { id: string } }) {
+export default async function ProductDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
     // Simple UUID regex check to prevent Prisma from blowing up on malformed IDs
     const uuidRegex = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
-    if (!uuidRegex.test(params.id)) {
+    if (!uuidRegex.test(id)) {
         notFound();
     }
 
     const product = await prisma.product.findUnique({
-        where: { id: params.id }
+        where: { id }
     });
 
     if (!product) {
@@ -204,7 +205,7 @@ export default async function ProductDetailPage({ params }: { params: { id: stri
                             <Link className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a932bd] hover:brightness-125 transition-all" href="/collections">Shop All</Link>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                            {crossSellsData.map((item) => {
+                            {crossSellsData.map((item: any) => {
                                 const crossImage = item.image_url || ((item.images && item.images.length > 0) ? item.images[0] : '');
                                 return (
                                     <Link href={`/product/${item.id}`} key={item.id} className="group cursor-pointer">

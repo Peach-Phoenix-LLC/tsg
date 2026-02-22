@@ -1,0 +1,16 @@
+﻿
+> social-link-verifier@1.0.0 start
+> ts-node verify-social-links.ts
+
+Verifying Social Media Links for tsgabrielle┬«...
+------------------------------------------------
+Γ£à [200] https://x.com/tsgabrielle3
+Γ£à [200] https://www.instagram.com/tsgabrielle3
+Γ£à [200] https://www.tiktok.com/@tsgabrielle3
+Γ¥î [400] https://www.facebook.com/tsgabrielle3
+Γ£à [200] https://www.youtube.com/@tsgabrielle3
+Γ£à [200] https://www.pinterest.com/tsgabrielle3/
+Γ£à [200] https://www.linkedin.com/company/tsgabrielle/
+Γ£à [200] https://www.snapchat.com/@tsgabrielle3
+------------------------------------------------
+Note: Social media platforms often block scripts. A 200, 301, or 302 usually indicates the link is valid.

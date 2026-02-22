@@ -1,0 +1,17 @@
+{
+    "name": "social-link-verifier",
+    "version": "1.0.0",
+    "main": "verify-social-links.ts",
+    "scripts": {
+        "start": "ts-node verify-social-links.ts",
+        "test-db": "ts-node verify-db.ts",
+        "verify-cloud-run": "ts-node verify-cloud-run.ts"
+    },
+    "dependencies": {
+        "pg": "^8.11.3",
+        "@types/pg": "^8.11.0",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3",
+        "@types/node": "^20.11.19"
+    }
+}

@@ -21,7 +21,7 @@ export async function GET() {
         });
 
         // Format for the admin table
-        const formattedCustomers = customers.map(profile => ({
+        const formattedCustomers = customers.map((profile: any) => ({
             id: profile.id,
             name: profile.full_name || 'Anonymous',
             email: profile.email,
