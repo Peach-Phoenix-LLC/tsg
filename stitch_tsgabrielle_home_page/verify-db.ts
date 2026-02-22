@@ -9,7 +9,8 @@ async function verifyDatabaseConnection() {
         database: 'tsgabrielle',
         password: 'X7f#9Lm$2qRz!666',
         // SSL is usually required for Cloud SQL public IP connections
-        ssl: { rejectUnauthorized: false }
+        ssl: { rejectUnauthorized: false },
+        connectionTimeoutMillis: 5000 // Fail fast (5s) if firewall blocks connection
     });
 
     try {

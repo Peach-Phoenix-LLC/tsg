@@ -7,8 +7,8 @@ WORKDIR /app
 COPY package.json ./
 RUN npm install
 
-# Copy the script
-COPY verify-social-links.ts ./
+# Copy all application files
+COPY . .
 
-# Run the script
-CMD ["npm", "start"]
+# Run the web server
+CMD ["npm", "run", "serve"]
