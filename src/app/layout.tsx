@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 import { Playfair_Display, Manrope } from 'next/font/google';
 import { MaintenanceCheck } from "@/components/MaintenanceCheck";
 import GrowthTracker from "@/components/Analytics/GrowthTracker";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -42,7 +43,9 @@ export default function RootLayout({
             </MaintenanceCheck>
           </CartProvider>
         </AuthProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
 }
+

@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const ModernFooter = () => {
     return (
@@ -8,7 +9,16 @@ const ModernFooter = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 mb-32">
                     {/* Brand Column */}
                     <div className="flex flex-col gap-10">
-                        <h2 className="text-3xl font-light tracking-[0.25em] uppercase text-white">tsgabrielle</h2>
+                        <Link href="/">
+                            <div className="relative w-48 h-12">
+                                <Image
+                                    src="/images/logo-white.png"
+                                    alt="tsgabrielle logo"
+                                    fill
+                                    className="object-contain"
+                                />
+                            </div>
+                        </Link>
                         <p className="text-white/40 font-light text-[11px] leading-relaxed tracking-[0.05em] max-w-xs uppercase">
                             Redefining luxury through the lens of identity and artistic expression. Parisian roots. Global vision. Amethyst Era.
                         </p>

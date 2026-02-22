@@ -2,10 +2,15 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useSession, signIn } from 'next-auth/react';
 import { useCartStore } from '@/lib/store';
 
-const ModernNavbar = () => {
+interface ModernNavbarProps {
+    theme?: 'light' | 'dark';
+}
+
+const ModernNavbar = ({ theme = 'dark' }: ModernNavbarProps) => {
     const { data: session, status } = useSession();
     const [scrolled, setScrolled] = useState(false);
     const [mounted, setMounted] = useState(false);
@@ -22,6 +27,11 @@ const ModernNavbar = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Determine which logo to use. 
+    // If the navbar is scrolled or explicitly dark, we use the white logo (since the scrolled bg is dark).
+    // If it's over a light background (not yet implemented but supported), we use purple.
+    const isDark = theme === 'dark' || scrolled;
+
     return (
         <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-[#050406]/90 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
             <div className="max-w-[1400px] mx-auto px-8 flex items-center justify-between">
@@ -34,9 +44,15 @@ const ModernNavbar = () => {
 
                 {/* Logo (Centered) */}
                 <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 group">
-                    <h1 className="text-2xl tracking-[0.3em] font-serif text-white group-hover:opacity-70 transition-opacity">
-                        tsgabrielle
-                    </h1>
+                    <div className="relative w-40 h-10 transition-transform duration-300 group-hover:scale-105">
+                        <Image
+                            src={isDark ? "/images/logo-white.png" : "/images/logo-purple.png"}
+                            alt="tsgabrielle logo"
+                            fill
+                            className="object-contain"
+                            priority
+                        />
+                    </div>
                 </Link>
 
                 {/* Right Icons */}

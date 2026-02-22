@@ -12,31 +12,39 @@ import PageAnimations from './PageAnimations'; // We will create this wrapper fo
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  // Fetch live products from Supabase via Prisma
-  const products = await prisma.product.findMany({
-    take: 4, // Fetch top 4 core collections
-    orderBy: { createdAt: 'asc' },
-  });
+  try {
+    // Fetch live products from Supabase via Prisma
+    const products = await prisma.product.findMany({
+      take: 4, // Fetch top 4 core collections
+      orderBy: { createdAt: 'asc' },
+    });
 
-  // Serialize Decimal to satisfy Next.js Server-to-Client boundaries
-  const serializedProducts = products.map(product => ({
-    ...product,
-    price: Number(product.price)
-  }));
+    console.log(`Page: Fetched ${products?.length || 0} products`);
 
-  return (
-    <main className="min-h-screen bg-background-light selection:bg-accent-purple/30 selection:text-white">
-      <ModernNavbar />
+    // Serialize Decimal to satisfy Next.js Server-to-Client boundaries
+    const serializedProducts = products.map(product => ({
+      ...product,
+      price: Number(product.price)
+    }));
 
-      <PageAnimations>
-        <HoloHero />
-        <HoloCategories />
-        <HoloPhilosophy />
-        <HoloCollections products={serializedProducts as any} />
-        <Reviews />
-      </PageAnimations>
+    return (
+      <main className="min-h-screen bg-background-light selection:bg-accent-purple/30 selection:text-white">
+        <ModernNavbar />
 
-      <ModernFooter />
-    </main>
-  );
+        <PageAnimations>
+          <HoloHero />
+          <HoloCategories />
+          <HoloPhilosophy />
+          <HoloCollections products={serializedProducts as any} />
+          <Reviews />
+        </PageAnimations>
+
+        <ModernFooter />
+      </main>
+    );
+  } catch (error: any) {
+    console.error("PAGE RENDER ERROR:", error);
+    // Re-throw to show error page but we've logged it now
+    throw error;
+  }
 }
