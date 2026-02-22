@@ -11,19 +11,22 @@ const config: Config = {
             colors: {
                 primary: '#a932bd',
                 "primary-dark": "#8a209b",
-                "bg-primary": "#0a0a0a",
-                "bg-surface": "#121212",
-                "text-primary": "#e7e7e7",
-                "text-muted": "#bdbdbd",
-                "accent-primary": "#a932bd",
+                "bg-light": "#e7e7e7",
+                "bg-dark": "#050406",
+                "text-dark": "#1a1a1a",
+                "text-light": "#e7e7e7",
+                "accent-purple": "#a932bd",
             },
             fontFamily: {
                 sans: ["Lato", "sans-serif"],
                 lato: ["Lato", "sans-serif"],
             },
+            fontWeight: {
+                light: "300",
+            },
             borderRadius: {
-                DEFAULT: '4px',
-                sm: '2px',
+                DEFAULT: '2px',
+                sm: '1px',
             },
             backgroundImage: {
                 'holo-border': 'linear-gradient(135deg, #a932bd, #667eea, #f093fb, #a932bd)',

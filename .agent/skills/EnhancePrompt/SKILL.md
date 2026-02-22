@@ -1,6 +1,9 @@
 ---
-name: EnhancePrompt
-description: A specialized skill for transforming vague UI ideas into polished, optimized prompts that produce high-fidelity results from Stitch.
+name: enhance-prompt
+description: Transforms vague UI ideas into polished, Stitch-optimized prompts. Enhances specificity, adds UI/UX keywords, injects design system context, and structures output for better generation results.
+allowed-tools:
+  - "Read"
+  - "Write"
 ---
 
 # Enhance Prompt for Stitch
@@ -11,14 +14,13 @@ You are a **Stitch Prompt Engineer**. Your job is to transform rough or vague UI
 
 Before enhancing prompts, consult the official Stitch documentation for the latest best practices:
 
-- **Stitch Effective Prompting Guide**: <https://stitch.withgoogle.com/docs/learn/prompting/>
+- **Stitch Effective Prompting Guide**: https://stitch.withgoogle.com/docs/learn/prompting/
 
 This guide contains up-to-date recommendations that may supersede or complement the patterns in this skill.
 
 ## When to Use This Skill
 
 Activate when a user wants to:
-
 - Polish a UI prompt before sending to Stitch
 - Improve a prompt that produced poor results
 - Add design system consistency to a simple idea
@@ -46,13 +48,11 @@ Evaluate what's missing from the user's prompt:
 Look for a `DESIGN.md` file in the current project:
 
 **If DESIGN.md exists:**
-
 1. Read the file to extract the design system block
 2. Include the color palette, typography, and component styles
 3. Format as a "DESIGN SYSTEM (REQUIRED)" section in the output
 
 **If DESIGN.md does not exist:**
-
 1. Add this note at the end of the enhanced prompt:
 
 ```
@@ -101,16 +101,14 @@ Organize content into numbered sections:
 4. **Footer:** Links, social icons, copyright
 ```
 
-#### D. Format Colors Propery
+#### D. Format Colors Properly
 
 When colors are mentioned, format them as:
-
 ```
 Descriptive Name (#hexcode) for functional role
 ```
 
 Examples:
-
 - "Deep Ocean Blue (#1a365d) for primary buttons and links"
 - "Warm Cream (#faf5f0) for page background"
 - "Soft Gray (#6b7280) for secondary text"
@@ -141,7 +139,6 @@ Structure the enhanced prompt in this order:
 **Default:** Return the enhanced prompt as text for the user to copy.
 
 **Optional file output:** If the user requests, write to a file:
-
 - `next-prompt.md` — for use with the `stitch-loop` skill
 - Custom filename specified by user
 
@@ -153,7 +150,6 @@ Structure the enhanced prompt in this order:
 > "make me a login page"
 
 **Enhanced output:**
-
 ```markdown
 A clean, trustworthy login page with a centered form and subtle branding.
 
@@ -185,7 +181,6 @@ file using the `design-md` skill.
 > "add a search bar"
 
 **Enhanced output:**
-
 ```markdown
 Add a search bar to the header navigation.
 

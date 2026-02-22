@@ -21,16 +21,16 @@
 
 Only the following technologies are approved. Do not introduce anything outside this list without explicit approval.
 
-| Layer                  | Technology                                                |
-| ---------------------- | --------------------------------------------------------- |
-| Hosting & Deployment   | Vercel                                                    |
-| Source Control         | GitHub                                                    |
-| Database & Auth Backend | Supabase                                                  |
-| Authentication         | Google OAuth via Supabase Auth                            |
-| UI Design              | Google Stitch                                             |
-| Payments               | PayPal ONLY (buttons, Venmo, Apple Pay, Google Pay, Cards) |
-| Print-on-Demand        | Printful API (Private Token)                              |
-| Frontend Framework     | React / Next.js                                           |
+| Layer                    | Technology                                                 |
+| ------------------------ | ---------------------------------------------------------- |
+| Hosting & Deployment     | Vercel                                                     |
+| Source Control           | GitHub                                                     |
+| Database & Auth Backend  | Supabase                                                   |
+| Authentication           | Google OAuth via Supabase Auth                             |
+| UI Design                | Google Stitch                                              |
+| Payments                 | PayPal ONLY (buttons, Venmo, Apple Pay, Google Pay, Cards) |
+| Print-on-Demand          | Printful API (Private Token)                               |
+| Frontend Framework       | React / Next.js                                            |
 
 ### ❌ PERMANENTLY BANNED
 
@@ -44,7 +44,7 @@ Only the following technologies are approved. Do not introduce anything outside 
 
 All secrets must live in `.env.local` (local) and Vercel Environment Variables (production). Never hardcode secrets in code.
 
-```
+```env
 NEXT_PUBLIC_SUPABASE_URL
 NEXT_PUBLIC_SUPABASE_ANON_KEY
 SUPABASE_SERVICE_ROLE_KEY
@@ -196,7 +196,14 @@ Before any deployment or major change, run through this checklist:
 
 ---
 
-## 10. UPDATE PROTOCOL
+## 11. INTERFACE & NAVIGATION
+
+- **Internal Explorer:** When browsing or navigating files, always prioritize using the internal Antigravity panel. Do not trigger new browser windows or tabs for file inspection unless absolutely necessary (e.g., viewing complex visual artifacts).
+- **Embedded Navigation:** Keep all codebase exploration, directory listings, and file views embedded within the chat interface to maintain context and flow.
+
+---
+
+## 12. UPDATE PROTOCOL
 
 When updating these rules:
 

@@ -6,11 +6,9 @@ import CheckoutSummary from '@/components/Stitch/Checkout/CheckoutSummary';
 
 export default function CheckoutPage() {
     return (
-        <main className="min-h-screen bg-[#0a0a0a] text-[#e7e7e7] font-lato selection:bg-[#a932bd]/30 selection:text-white">
+        <main className="min-h-screen bg-bg-light text-text-dark font-light">
             {/* Global Navbar */}
-            <div className="bg-[#0a0a0a] relative z-50">
-                <ModernNavbar />
-            </div>
+            <ModernNavbar />
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
 

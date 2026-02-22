@@ -41,7 +41,7 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
         ]);
 
     return (
-        <main className="min-h-screen bg-[#050406] text-slate-100 font-sans">
+        <main className="min-h-screen bg-bg-light text-text-dark font-light">
             <ModernNavbar />
 
             <div className="max-w-7xl mx-auto px-8 py-12">
@@ -49,54 +49,39 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                     {/* Left: Sticky Image Gallery */}
                     <div className="w-full lg:w-[62%] flex flex-col gap-6 custom-gallery-scroll">
                         {galleryImages.map((img: string, i: number) => (
-                            <div key={i} className={`overflow-hidden bg-[#111] rounded-sm ${i > 1 ? 'aspect-square' : 'aspect-[3/4]'}`}>
+                            <div key={i} className={`overflow-hidden bg-white border border-primary/10 rounded-sm ${i > 1 ? 'aspect-square' : 'aspect-[3/4]'}`}>
                                 <img
                                     alt={`${product.name} View ${i + 1}`}
-                                    className="w-full h-full object-cover grayscale-[0.2] hover:grayscale-0 transition-all duration-1000"
+                                    className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105"
                                     src={img}
                                 />
                             </div>
                         ))}
-                        {/* Fill empty spots if less than 3 images to match the stunning design grid */}
-                        {galleryImages.length < 3 && (
-                            <div className="grid grid-cols-2 gap-6">
-                                <div className="aspect-[3/4] overflow-hidden bg-[#111] rounded-sm opacity-50">
-                                    <div className="w-full h-full flex items-center justify-center border border-white/5">
-                                        <span className="material-symbols-outlined text-white/20 text-4xl">inventory_2</span>
-                                    </div>
-                                </div>
-                                <div className="aspect-[3/4] overflow-hidden bg-[#111] rounded-sm opacity-50">
-                                    <div className="w-full h-full flex items-center justify-center border border-white/5">
-                                        <span className="material-symbols-outlined text-white/20 text-4xl">inventory_2</span>
-                                    </div>
-                                </div>
-                            </div>
-                        )}
                     </div>
 
                     {/* Right: Product Details Sidebar */}
                     <div className="w-full lg:w-[38%] relative">
                         <div className="sticky top-32 flex flex-col gap-10">
                             <div className="space-y-4">
-                                <nav className="flex items-center gap-2 text-[10px] font-normal tracking-[0.2em] text-slate-400 uppercase">
-                                    <Link className="hover:text-[#a932bd]" href="/">Home</Link>
-                                    <span className="text-[12px] opacity-30">/</span>
-                                    <Link className="hover:text-[#a932bd]" href="/collections">{product.category}</Link>
-                                    <span className="text-[12px] opacity-30">/</span>
-                                    <span className="text-white truncate max-w-[120px]">{product.name}</span>
+                                <nav className="flex items-center gap-2 text-[12px] font-light text-text-dark/50">
+                                    <Link className="hover:text-primary transition-colors" href="/">Home</Link>
+                                    <span className="opacity-30">/</span>
+                                    <Link className="hover:text-primary transition-colors" href="/shop">{product.category}</Link>
+                                    <span className="opacity-30">/</span>
+                                    <span className="text-text-dark truncate max-w-[120px]">{product.name}</span>
                                 </nav>
                                 <div>
-                                    <p className="text-[11px] font-bold tracking-[0.3em] text-[#a932bd] uppercase mb-2">Exclusive</p>
-                                    <h1 className="text-3xl font-light tracking-tight text-white leading-tight">{product.name}</h1>
-                                    <div className="flex items-center gap-4 mt-4">
-                                        <p className="text-lg font-normal text-slate-300">${Number(product.price).toFixed(2)}</p>
-                                        <div className="h-4 w-px bg-white/10"></div>
-                                        <p className="text-[9px] font-bold tracking-[0.2em] text-[#fef08a] uppercase animate-pulse">
+                                    <p className="text-[12px] font-light text-primary mb-2">Exclusive</p>
+                                    <h1 className="text-4xl font-light tracking-tight text-text-dark leading-tight">{product.name}</h1>
+                                    <div className="flex items-center gap-4 mt-6">
+                                        <p className="text-xl font-light text-text-dark opacity-80">${Number(product.price).toFixed(2)}</p>
+                                        <div className="h-4 w-px bg-primary/10"></div>
+                                        <p className="text-[11px] font-light text-primary">
                                             {product.stock && product.stock > 0 && product.stock <= 5
-                                                ? `Only ${product.stock} remaining in the Amethyst Era`
+                                                ? `Only ${product.stock} remaining`
                                                 : product.stock && product.stock > 5 && product.stock <= 15
-                                                    ? "Limited Edition - Amethyst Era Release"
-                                                    : "Curated Archive Piece"}
+                                                    ? "Limited edition"
+                                                    : "Curated piece"}
                                         </p>
                                     </div>
                                 </div>
@@ -104,26 +89,26 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
                             <div className="space-y-4">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white">Color: Midnight</span>
+                                    <span className="text-[12px] font-light text-text-dark">Color: midnight</span>
                                 </div>
                                 <div className="flex gap-4">
-                                    <button className="w-6 h-6 rounded-full bg-[#11112d] ring-1 ring-[#a932bd] ring-offset-4 ring-offset-[#050406]"></button>
-                                    <button className="w-6 h-6 rounded-full bg-[#1a1a1a] hover:ring-1 hover:ring-slate-500 transition-all"></button>
-                                    <button className="w-6 h-6 rounded-full bg-[#d2b48c] hover:ring-1 hover:ring-slate-500 transition-all"></button>
+                                    <button className="w-6 h-6 rounded-full bg-[#11112d] ring-1 ring-primary ring-offset-4 ring-offset-bg-light"></button>
+                                    <button className="w-6 h-6 rounded-full bg-[#1a1a1a] border border-primary/10"></button>
+                                    <button className="w-6 h-6 rounded-full bg-[#d2b48c] border border-primary/10"></button>
                                 </div>
                             </div>
 
                             <div className="space-y-5">
                                 <div className="flex items-center justify-between">
-                                    <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white">Select Size</span>
-                                    <Link className="text-[10px] font-bold tracking-[0.2em] uppercase text-slate-500 underline underline-offset-4 hover:text-[#a932bd] transition-colors" href="/size-guide">Size Guide</Link>
+                                    <span className="text-[12px] font-light text-text-dark">Select size</span>
+                                    <Link className="text-[12px] font-light text-text-dark/50 underline underline-offset-4 hover:text-primary transition-colors" href="/size-guide">Size guide</Link>
                                 </div>
-                                <div className="grid grid-cols-5 gap-0 border-l border-t border-white/10 rounded-sm overflow-hidden">
-                                    <button className="h-12 border-r border-b border-white/10 text-[11px] text-white tracking-widest hover:bg-white/5 transition-colors">XS</button>
-                                    <button className="h-12 border-r border-b border-white/10 text-[11px] tracking-widest bg-white text-black font-bold">S</button>
-                                    <button className="h-12 border-r border-b border-white/10 text-[11px] text-white tracking-widest hover:bg-white/5 transition-colors">M</button>
-                                    <button className="h-12 border-r border-b border-white/10 text-[11px] text-white tracking-widest hover:bg-white/5 transition-colors">L</button>
-                                    <button className="h-12 border-r border-b border-white/10 text-[11px] text-white/30 tracking-widest cursor-not-allowed">XL</button>
+                                <div className="grid grid-cols-5 gap-0 border-l border-t border-primary/10 rounded-sm overflow-hidden">
+                                    <button className="h-12 border-r border-b border-primary/10 text-[12px] text-text-dark font-light hover:bg-white transition-colors">xs</button>
+                                    <button className="h-12 border-r border-b border-primary/10 text-[12px] bg-primary text-white font-light">s</button>
+                                    <button className="h-12 border-r border-b border-primary/10 text-[12px] text-text-dark font-light hover:bg-white transition-colors">m</button>
+                                    <button className="h-12 border-r border-b border-primary/10 text-[12px] text-text-dark font-light hover:bg-white transition-colors">l</button>
+                                    <button className="h-12 border-r border-b border-primary/10 text-[12px] text-text-dark/30 font-light cursor-not-allowed">xl</button>
                                 </div>
                             </div>
 
@@ -136,31 +121,31 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                                 }} />
                                 <WishlistButton productId={product.id} />
 
-                                <div className="grid grid-cols-3 gap-1 pt-2 opacity-50">
+                                <div className="grid grid-cols-3 gap-1 pt-4 border-t border-primary/5">
                                     <div className="flex flex-col items-center gap-1">
-                                        <span className="material-symbols-outlined text-white font-light text-lg">verified</span>
-                                        <p className="text-[7px] font-bold uppercase tracking-[0.1em] text-slate-400">Authentic</p>
+                                        <span className="material-symbols-outlined text-primary font-light text-xl">verified</span>
+                                        <p className="text-[9px] font-light text-text-dark/40">Authentic</p>
                                     </div>
                                     <div className="flex flex-col items-center gap-1">
-                                        <span className="material-symbols-outlined text-white font-light text-lg">public</span>
-                                        <p className="text-[7px] font-bold uppercase tracking-[0.1em] text-slate-400">Global</p>
+                                        <span className="material-symbols-outlined text-primary font-light text-xl">public</span>
+                                        <p className="text-[9px] font-light text-text-dark/40">Global</p>
                                     </div>
                                     <div className="flex flex-col items-center gap-1">
-                                        <span className="material-symbols-outlined text-white font-light text-lg">eco</span>
-                                        <p className="text-[7px] font-bold uppercase tracking-[0.1em] text-slate-400">Conscious</p>
+                                        <span className="material-symbols-outlined text-primary font-light text-xl">eco</span>
+                                        <p className="text-[9px] font-light text-text-dark/40">Conscious</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="border-t border-white/10 mt-4">
-                                <details className="group py-5 border-b border-white/10" open>
-                                    <summary className="flex items-center justify-between cursor-pointer list-none outline-none">
-                                        <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white">Details & Fit</span>
-                                        <span className="material-symbols-outlined text-sm font-light text-white group-open:rotate-180 transition-transform">expand_more</span>
+                            <div className="border-t border-primary/10 mt-4">
+                                <details className="group py-5 border-b border-primary/10" open>
+                                    <summary className="flex items-center justify-between cursor-pointer list-none outline-none text-[13px] font-light text-text-dark">
+                                        Details & fit
+                                        <span className="material-symbols-outlined text-sm font-light text-text-dark group-open:rotate-180 transition-transform">expand_more</span>
                                     </summary>
-                                    <div className="mt-6 text-[13px] leading-[1.8] text-slate-400 space-y-4">
+                                    <div className="mt-6 text-[14px] leading-relaxed text-text-dark/60 space-y-4 font-light">
                                         <p>{product.description}</p>
-                                        <ul className="space-y-2 border-l border-[#a932bd] pl-4">
+                                        <ul className="space-y-2 border-l border-primary/30 pl-4">
                                             {product.details?.map((detail: string, i: number) => (
                                                 <li key={i}>{detail}</li>
                                             ))}
@@ -170,23 +155,23 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
                                 </details>
 
                                 {product.sustainability && (
-                                    <details className="group py-5 border-b border-white/10">
-                                        <summary className="flex items-center justify-between cursor-pointer list-none outline-none">
-                                            <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white">Sustainability</span>
-                                            <span className="material-symbols-outlined text-sm font-light text-white group-open:rotate-180 transition-transform">expand_more</span>
+                                    <details className="group py-5 border-b border-primary/10">
+                                        <summary className="flex items-center justify-between cursor-pointer list-none outline-none text-[13px] font-light text-text-dark">
+                                            Sustainability
+                                            <span className="material-symbols-outlined text-sm font-light text-text-dark group-open:rotate-180 transition-transform">expand_more</span>
                                         </summary>
-                                        <div className="mt-6 text-[13px] leading-[1.8] text-slate-400">
+                                        <div className="mt-6 text-[14px] leading-relaxed text-text-dark/60 font-light">
                                             <p>{product.sustainability}</p>
                                         </div>
                                     </details>
                                 )}
 
-                                <details className="group py-5 border-b border-white/10">
-                                    <summary className="flex items-center justify-between cursor-pointer list-none outline-none">
-                                        <span className="text-[11px] font-bold tracking-[0.2em] uppercase text-white">Shipping & Returns</span>
-                                        <span className="material-symbols-outlined text-sm font-light text-white group-open:rotate-180 transition-transform">expand_more</span>
+                                <details className="group py-5 border-b border-primary/10">
+                                    <summary className="flex items-center justify-between cursor-pointer list-none outline-none text-[13px] font-light text-text-dark">
+                                        Shipping & returns
+                                        <span className="material-symbols-outlined text-sm font-light text-text-dark group-open:rotate-180 transition-transform">expand_more</span>
                                     </summary>
-                                    <div className="mt-6 text-[13px] leading-[1.8] text-slate-400">
+                                    <div className="mt-6 text-[14px] leading-relaxed text-text-dark/60 font-light">
                                         <p>Complimentary express shipping on all orders over $500. Free returns within 30 days of purchase.</p>
                                     </div>
                                 </details>
@@ -198,33 +183,33 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
 
                 {/* Cross-Sells Section */}
                 {crossSellsData.length > 0 && (
-                    <section className="mt-40 border-t border-white/5 pt-16">
+                    <section className="mt-40 border-t border-primary/10 pt-16">
                         <div className="flex items-center justify-between mb-16">
-                            <h2 className="text-[11px] font-bold tracking-[0.5em] uppercase text-white">Complete the Look</h2>
-                            <div className="h-[1px] flex-grow mx-8 bg-white/5"></div>
-                            <Link className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#a932bd] hover:brightness-125 transition-all" href="/collections">Shop All</Link>
+                            <h2 className="text-[14px] font-light text-text-dark">Complete the look</h2>
+                            <div className="h-px flex-grow mx-8 bg-primary/10"></div>
+                            <Link className="text-[12px] font-light text-primary hover:opacity-80 transition-opacity" href="/shop">Shop all</Link>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                             {crossSellsData.map((item: any) => {
                                 const crossImage = item.image_url || ((item.images && item.images.length > 0) ? item.images[0] : '');
                                 return (
                                     <Link href={`/product/${item.id}`} key={item.id} className="group cursor-pointer">
-                                        <div className="aspect-[3/4] overflow-hidden mb-6 bg-white/5 rounded-sm hover-glow">
+                                        <div className="aspect-[3/4] overflow-hidden mb-6 bg-white border border-primary/10 rounded-sm">
                                             {crossImage ? (
                                                 <img
                                                     alt={item.name}
-                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 grayscale-[0.3]"
+                                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                                                     src={crossImage}
                                                 />
                                             ) : (
                                                 <div className="w-full h-full flex items-center justify-center">
-                                                    <span className="material-symbols-outlined text-white/20 text-4xl">image</span>
+                                                    <span className="material-symbols-outlined text-text-dark/20 text-4xl font-light">image</span>
                                                 </div>
                                             )}
                                         </div>
-                                        <p className="text-[10px] font-bold tracking-widest text-[#a932bd] uppercase">tsgabrielle®</p>
-                                        <h3 className="text-[12px] text-white font-light mt-2 tracking-wide truncate">{item.name}</h3>
-                                        <p className="text-[11px] text-slate-400 font-normal mt-2">${Number(item.price).toFixed(2)}</p>
+                                        <p className="text-[11px] font-light text-primary">tsgabrielle®</p>
+                                        <h3 className="text-[13px] text-text-dark font-light mt-2 tracking-wide truncate group-hover:text-primary transition-colors">{item.name}</h3>
+                                        <p className="text-[12px] text-text-dark/50 font-light mt-2">${Number(item.price).toFixed(2)}</p>
                                     </Link>
                                 );
                             })}
